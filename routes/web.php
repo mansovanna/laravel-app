@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\Authuntication;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\GuardControlApp;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,6 +63,11 @@ Route::get('/eshop', function (){
 
 
 // -------------
-Route::get('/admins', function (){
-    return 'Hello';
-});
+Route::get('/admins', [AdminController::class, "index"]);
+Route::get('/admins/login', [AdminController::class, "login"]);
+Route::get('/admins/register', [AdminController::class, "register"]);
+Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
+
+// Route::group(['prefix' => 'admins'], function(){
+
+// });
