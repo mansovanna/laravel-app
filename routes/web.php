@@ -54,9 +54,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
-
-
 // -------------
 Route::get('/eshop', function (){
     return view('eshop.layouts.master');
+});
+
+
+
+// -------------
+Route::get('/admins', function (){
+    return 'Hello';
 });

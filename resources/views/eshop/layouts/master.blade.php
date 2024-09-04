@@ -10,8 +10,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="w-full h-screen font-sans">
-    @include('eshop.layouts.header-top')
-    @include('eshop.layouts.header-bottom')
+    <header>
+        <nav class="z-50">
+            @include('eshop.layouts.header-top')
+        </nav>
+        <nav class="z-0">
+            @include('eshop.layouts.header-bottom')
+        </nav>
+    </header>
+
+
 
     @yield('content')
 

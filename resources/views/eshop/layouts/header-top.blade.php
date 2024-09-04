@@ -1,4 +1,4 @@
-<div class="w-full flex flex-row justify-center items-center shadow font-Roboto">
+<div class="w-full flex flex-row justify-center items-center shadow font-Roboto z-50">
     <div class="w-11/12 px-8 py-6 flex flex-row justify-between items-center font-[500]">
         <!-- Logo of App -->
         <div class="flex flex-row items-center justify-start gap-20 text-center">
@@ -7,7 +7,7 @@
             <!-- End Logo -->
 
             <!-- Menu -->
-            <ul class="flex flex-row justify-start items-center gap-6">
+            <ul class="flex flex-row justify-start items-center gap-6 z-[100]">
                 <li
                     class="father flex flex-row hover:text-red-500 justify-center items-center text-center cursor-pointer relative">
                     <p>Home</p>
@@ -174,7 +174,7 @@
 
              <!-- Dropdown -->
              <ul
-                 class="px-4 py-2 text-black child rounded-lg absolute -left-6 top-16 flex flex-col justify-start items-start w-[4.5cm] bg-white">
+                 class="px-4 py-2 text-black child rounded-lg absolute -left-6 top-16 flex flex-col justify-start items-start w-[4.5cm] bg-white z-[100]">
                  <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
                          href="#">Language</a>
                  </li>

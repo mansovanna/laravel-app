@@ -128,4 +128,6 @@ class Authuntication extends Controller
         return redirect()->route('profile', ['id' => $id]);
     }
 
+
+
 }
