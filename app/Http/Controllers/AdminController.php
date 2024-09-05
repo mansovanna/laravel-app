@@ -7,27 +7,43 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view("AdminLTE.index");
     }
 
-    public function login(){
-        return view("AdminLTE.pages.examples.login");
-    }
-
-    public function register(){
+    public function register()
+    {
         return view("AdminLTE.pages.examples.register");
     }
-
-    public function adminRegister(Request $request){
+    public function adminRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:users,name',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|max:10|confirmed',
+        ]);
+        $data = $request->all();
+        User::create($data);
+        return redirect()->route('adminlogin');
+    }
+    public function login()
+    {
+        return view("AdminLTE.pages.examples.login");
+    }
+    public function stafflogin(Request $request)
+    {
         $data = $request->validate([
-            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6|max:10',
         ]);
 
-       return User::create($data);
+        $compare = $request->except(["_token"]);
 
-
+        if (auth()->attempt($compare)) {
+            // Find information of user and create session id to cookie on the browser
+            return redirect()->route('admin');
+        }
+        return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
     }
 }
