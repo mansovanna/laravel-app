@@ -62,6 +62,7 @@ Route::get('/eshop', function (){
 
 
 // -------------
+
 Route::get('/admins', function (){
-    return 'Hello';
+    return view('admin.layouts.adminlayout');
 });
