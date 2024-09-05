@@ -5,13 +5,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\GuardControlApp;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MenuController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-
 
 // Routes accessible only by guests (not logged in)
 Route::middleware('guest')->group(function () {
@@ -57,12 +55,16 @@ Route::middleware('auth')->group(function () {
 
 // -------------
 Route::get('/eshop', function (){
-    return view('eshop.layouts.master');
+    return view('eshop.pages.home');
 });
 
 
 
 // -------------
+Route::get('/admins', [AdminController::class, "index"])->name("admin");
+Route::get('/admins/menu', [MenuController::class, "index"])->name("admin");
+Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin");
+Route::post('/admins/login',[AdminController::class, 'stafflogin']);
 Route::get('/admins', [AdminController::class, "index"]);
 Route::get('/admins/login', [AdminController::class, "login"]);
 Route::get('/admins/register', [AdminController::class, "register"]);

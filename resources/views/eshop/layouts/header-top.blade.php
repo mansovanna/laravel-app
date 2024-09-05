@@ -1,5 +1,5 @@
 <div class="w-full flex flex-row justify-center items-center shadow font-Roboto z-50">
-    <div class="w-11/12 px-8 py-6 flex flex-row justify-between items-center font-[500]">
+    <div class="w-11/12 px-8 py-6 flex flex-row justify-between items-center font-[500] z-50">
         <!-- Logo of App -->
         <div class="flex flex-row items-center justify-start gap-20 text-center">
             <!-- Logo -->
@@ -121,7 +121,7 @@
         <!-- End Logo of App -->
 
         <!-- Menu of App -->
-        <ul class="flex flex-row justify-end items-center gap-8">
+        <ul class="flex flex-row justify-end items-center gap-8 z-50">
             <li><a href="#" class="hover:text-red-500 duration-200 ease-in-out">Login</a>/ <a href="#"
                     class="hover:text-red-500  duration-200  ease-in-out">Register</a></li>
 
