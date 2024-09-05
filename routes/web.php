@@ -65,6 +65,8 @@ Route::get('/admins', [AdminController::class, "index"])->name("admin");
 Route::get('/admins/menu', [MenuController::class, "index"])->name("admin");
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin");
 Route::post('/admins/login',[AdminController::class, 'stafflogin']);
+Route::get('/admins', [AdminController::class, "index"]);
+Route::get('/admins/login', [AdminController::class, "login"]);
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
 

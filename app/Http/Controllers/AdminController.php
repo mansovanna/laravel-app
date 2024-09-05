@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,8 +13,11 @@ class AdminController extends Controller
         return view("AdminLTE.index");
     }
 
-    public function register()
-    {
+    public function login(){
+        return view("AdminLTE.pages.examples.login");
+    }
+
+    public function register(){
         return view("AdminLTE.pages.examples.register");
     }
     public function adminRegister(Request $request)
@@ -27,10 +31,7 @@ class AdminController extends Controller
         User::create($data);
         return redirect()->route('adminlogin');
     }
-    public function login()
-    {
-        return view("AdminLTE.pages.examples.login");
-    }
+
     public function stafflogin(Request $request)
     {
         $data = $request->validate([
@@ -38,12 +39,8 @@ class AdminController extends Controller
             'password' => 'required|min:6|max:10',
         ]);
 
-        $compare = $request->except(["_token"]);
+       return User::create($data);
 
-        if (auth()->attempt($compare)) {
-            // Find information of user and create session id to cookie on the browser
-            return redirect()->route('admin');
-        }
-        return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
+
     }
 }

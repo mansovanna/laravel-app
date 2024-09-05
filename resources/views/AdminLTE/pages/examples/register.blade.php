@@ -26,7 +26,8 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
-                <form method="post" action="/admins/register" enctype="multipart/form-data">
+
+                <form method="post" action="/admins/login" enctype="multipart/form-data">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Full name" name="name">
