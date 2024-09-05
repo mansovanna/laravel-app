@@ -10,9 +10,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-
 // Routes accessible only by guests (not logged in)
 Route::middleware('guest')->group(function () {
     Route::get('/login', [Authuntication::class, 'loginForm'])->name('login');
@@ -63,13 +60,8 @@ Route::get('/eshop', function (){
 
 
 // -------------
-Route::get('/admins', [AdminController::class, "index"])->name('admin');
-
-
+Route::get('/admins', [AdminController::class, "index"]);
 Route::get('/admins/login', [AdminController::class, "login"]);
-Route::post('/admins/login', [AdminController::class, "adminLogin"])->name('login');
-
-
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
 

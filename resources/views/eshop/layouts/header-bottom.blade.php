@@ -1,7 +1,7 @@
-<div class="w-full p-2 bg-danger-danger flex flex-row justify-center items-center font-roboto -z-50">
+<div class="w-full p-2 bg-danger-danger flex flex-row justify-center items-center font-roboto z-40">
     <div class="w-[85%]  flex flex-row justify-between items-center relative">
         <button
-            class="flex flex-row justify-center items-center bg-secondary-secondary text-white px-8 py-[0.7rem] rounded-md gap-2">
+            class="flex flex-row justify-center items-center bg-secondary-secondary text-white px-8 py-[0.7rem] rounded-md gap-2 z-40">
             <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="fill-white"
                     d="M4 7a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1zm0 5a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1z" />
@@ -12,7 +12,7 @@
 
 
             {{-- All categories --}}
-            <ul class="w-[17.2%] absolute top-12 rounded-md text-black bg-white border boxShadow z-0">
+            <ul class="w-[17.2%] absolute top-12 rounded-md text-black bg-white border boxShadow z-40">
                 <li class="w-full px-2 flex flex-col justify-center items-start hover:bg-slate-100 mt-1">
                     <a href="#" class="flex flex-row justify-center items-center p-2 gap-6">
                         <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon" version="1.1"
@@ -544,7 +544,7 @@
 
         {{-- -------------------------------------------------- --}}
         {{--  Block Search --}}
-        <div class="flex flex-row justify-center items-center text-md">
+        <div class="flex flex-row justify-center items-center text-md z-0">
             <button
                 class="bg-white text-center rounded-l-md px-2 border-r border-black py-[0.7rem] flex flex-row justify-center items-center gap-4">
                 <p>All category</p>
