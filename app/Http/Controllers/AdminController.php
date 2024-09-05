@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         return view("AdminLTE.index");
     }
 
@@ -17,29 +16,38 @@ class AdminController extends Controller
         return view("AdminLTE.pages.examples.login");
     }
 
+    public function adminLogin(Request $request){
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            // return redirect()->intended('/home');
+            return redirect()->route('admin');
+
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
     public function register(){
         return view("AdminLTE.pages.examples.register");
     }
-    public function adminRegister(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|unique:users,name',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|max:10|confirmed',
-        ]);
-        $data = $request->all();
-        User::create($data);
-        return redirect()->route('adminlogin');
-    }
 
-    public function stafflogin(Request $request)
-    {
+    public function adminRegister(Request $request){
         $data = $request->validate([
+            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:10',
+            'password' => 'required|min:6'
         ]);
 
-       return User::create($data);
+        User::create($data);
+    //    return redirect()->route('login');
 
 
     }
