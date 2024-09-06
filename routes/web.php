@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\Authuntication;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\GuardControlApp;
+use App\Http\Middleware\islogin;
+use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
@@ -61,15 +63,12 @@ Route::get('/eshop', function (){
 
 
 // -------------
-Route::get('/admins', [AdminController::class, "index"])->name("admin");
-Route::get('/admins/menu', [MenuController::class, "index"])->name("admin");
-Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin");
-Route::post('/admins/login',[AdminController::class, 'stafflogin']);
-Route::get('/admins', [AdminController::class, "index"]);
-Route::get('/admins/login', [AdminController::class, "login"]);
-Route::get('/admins/register', [AdminController::class, "register"]);
-Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
+// Route::get('/admins', [AdminController::class, "index"])->name("admin");
+Route::get('/admins/menu', [MenuController::class, "index"])->name("admin")->middleware(Nologin::class);
 
-// Route::group(['prefix' => 'admins'], function(){
+Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin")->middleware(islogin::class);
+Route::post('/admins/login',[AdminController::class, 'stafflogin'])->middleware(islogin::class);
 
-// });
+Route::get('/admins/register', [AdminController::class, "register"])->middleware(islogin::class);
+Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister")->middleware(islogin::class);
+
