@@ -63,8 +63,11 @@ Route::get('/eshop', function (){
 
 
 // -------------
-// Route::get('/admins', [AdminController::class, "index"])->name("admin");
-Route::get('/admins/menu', [MenuController::class, "index"])->name("admin")->middleware(Nologin::class);
+Route::get('/admins', [AdminController::class, "index"])->name("admin")->middleware(Nologin::class);
+Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
+Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
+
+Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin")->middleware(islogin::class);
 Route::post('/admins/login',[AdminController::class, 'stafflogin'])->middleware(islogin::class);
