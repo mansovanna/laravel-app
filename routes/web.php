@@ -8,6 +8,7 @@ use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
+use App\Models\Menu;
 
 
 Route::get('/', function () {
@@ -59,24 +60,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
-// Public route for eShop
-Route::get('/eshop', function () {
-    return view('eshop.pages.home');
-})->name('eshop');
+// -------------
+Route::get('/eshop', function (){
 
-// Admin routes grouping with prefix and namespace
-Route::prefix('admins')->name('admin.')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 
-    // // Admin login and registration
-    Route::get('/login', [AdminController::class, 'adminLogin'])->name('login');
-    Route::post('/login', [AdminController::class, 'login']);
 
-    Route::get('/register', [AdminController::class, 'register'])->name('register');
-    Route::post('/register', [AdminController::class, 'adminRegister']);
 
-    // You could add more admin-related routes here in the future
+
+    $menus = Menu::with(['children'])->where("parent_id", null)->get();
+    return view('eshop.pages.home', compact('menus'));
 });
 
 
@@ -85,6 +77,7 @@ Route::prefix('admins')->name('admin.')->group(function () {
 Route::get('/admins', [AdminController::class, "index"])->name("admin")->middleware(Nologin::class);
 Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
 Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
+Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
