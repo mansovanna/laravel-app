@@ -63,6 +63,7 @@ Route::get('/eshop', function (){
 
 
 // -------------
+<<<<<<< Updated upstream
 // Route::get('/admins', [AdminController::class, "index"])->name("admin");
 Route::get('/admins/menu', [MenuController::class, "index"])->name("admin")->middleware(Nologin::class);
 
@@ -71,4 +72,14 @@ Route::post('/admins/login',[AdminController::class, 'stafflogin'])->middleware(
 
 Route::get('/admins/register', [AdminController::class, "register"])->middleware(islogin::class);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister")->middleware(islogin::class);
+=======
+Route::get('/admins/menu', [MenuController::class, "index"])->name("admin");
+
+Route::get('/admins/login', [AdminController::class, "login"])->name("adminLogin");
+Route::post('/admins/login',[AdminController::class, 'stafflogin']);
+
+Route::get('/admins/register', [AdminController::class, "register"]);
+Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
+// Route::group(['prefix' => 'admins'], function(){
+>>>>>>> Stashed changes
 
