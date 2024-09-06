@@ -8,6 +8,7 @@ use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
+use App\Models\Menu;
 
 Route::get('/', function () {
     return view('welcome');
@@ -57,7 +58,13 @@ Route::middleware('auth')->group(function () {
 
 // -------------
 Route::get('/eshop', function (){
-    return view('eshop.pages.home');
+
+
+
+
+
+    $menus = Menu::with(['children'])->where("parent_id", null)->get();
+    return view('eshop.pages.home', compact('menus'));
 });
 
 
@@ -66,6 +73,7 @@ Route::get('/eshop', function (){
 Route::get('/admins', [AdminController::class, "index"])->name("admin")->middleware(Nologin::class);
 Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
 Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
+Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 

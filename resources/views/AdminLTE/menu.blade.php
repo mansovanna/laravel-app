@@ -36,39 +36,19 @@
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($menus as $menu)
+                        
+                     
                       <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 4.0
+                        <td>{{$menu->id}}</td>
+                        <td>{{$menu->name}}
                         </td>
-                        <td>Win 95+</td>
+                        <td>{{$menu->parent_id}}</td>
                         <td> 4</td>
                       </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                      </tr>
-                      <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                          Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                      </tr>
+                      @endforeach
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>No.</th>
-                        <th>Menu Name</th>
-                        <th>Parent ID</th>
-                        <th>Action</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div>
                 <!-- /.card-body -->

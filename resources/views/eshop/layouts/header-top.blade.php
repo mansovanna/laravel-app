@@ -8,30 +8,35 @@
 
             <!-- Menu -->
             <ul class="flex flex-row justify-start items-center gap-6 z-[100]">
-                <li
-                    class="father flex flex-row hover:text-red-500 justify-center items-center text-center cursor-pointer relative">
-                    <p>Home</p>
-                    <!-- Icon -->
-                    <div class="icon-tran">
-                        <svg height="16px" width="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                            <path fill="#231F20"
-                                d="M15.563,40.836c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l15-15c0.391-0.391,0.391-1.023,0-1.414l-15-15c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l14.293,14.293L15.563,39.422C15.172,39.813,15.172,40.446,15.563,40.836z" />
-                        </svg>
-                    </div>
-                    <!-- End Icon -->
+                @foreach ($menus as $key => $menu)
+                    <li
+                        class="father flex flex-row hover:text-red-500 justify-center items-center text-center cursor-pointer relative">
+                        <p>{{ $menu->name }}</p>
+                        <!-- Icon -->
+                        <div class="icon-tran">
+                            <svg height="16px" width="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                                <path fill="#231F20"
+                                    d="M15.563,40.836c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l15-15c0.391-0.391,0.391-1.023,0-1.414l-15-15c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l14.293,14.293L15.563,39.422C15.172,39.813,15.172,40.446,15.563,40.836z" />
+                            </svg>
+                        </div>
+                        <!-- End Icon -->
 
-                    <!-- Dropdown -->
-                    <ul
-                        class="px-4 py-2 text-black child rounded-lg absolute -left-6 top-16 flex flex-col justify-start items-start w-[4.5cm] bg-white">
-                        <li class="p-1 hover:text-red-500 duration-200 ease-linear"><a href="#">Home Page 1</a>
-                        </li>
-                        <li class="p-1 hover:text-red-500 duration-200 ease-linear"><a href="#">Home Page 2</a>
-                        </li>
-                        <li class="p-1 hover:text-red-500 duration-200 ease-linear"><a href="#">Home Page 3</a>
-                        </li>
-                    </ul>
-                    <!-- End Dropdown -->
-                </li>
+                        <!-- Dropdown -->
+                        @if (count($menu->children))
+                            <ul
+                                class="px-4 py-2 text-black child rounded-lg absolute -left-6 top-16 flex flex-col justify-start items-start w-[4.5cm] bg-white">
+                                @foreach ($menu->children as $child)
+                                    <li class="p-1 hover:text-red-500 duration-200 ease-linear"><a
+                                            href="#">{{ $child->name }}</a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        @endif
+                        <!-- End Dropdown -->
+                    </li>
+                @endforeach
+
 
                 {{-- Shop --}}
                 <li
@@ -159,37 +164,37 @@
 
 
             {{--  --}}
-             {{-- Currency --}}
-             <li
-             class="father flex flex-row hover:text-red-500 justify-center items-center text-center cursor-pointer relative">
-             <p>Currency</p>
-             <!-- Icon -->
-             <div class="icon-tran">
-                 <svg height="16px" width="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-                     <path fill="#231F20"
-                         d="M15.563,40.836c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l15-15c0.391-0.391,0.391-1.023,0-1.414l-15-15c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l14.293,14.293L15.563,39.422C15.172,39.813,15.172,40.446,15.563,40.836z" />
-                 </svg>
-             </div>
-             <!-- End Icon -->
+            {{-- Currency --}}
+            <li
+                class="father flex flex-row hover:text-red-500 justify-center items-center text-center cursor-pointer relative">
+                <p>Currency</p>
+                <!-- Icon -->
+                <div class="icon-tran">
+                    <svg height="16px" width="16px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path fill="#231F20"
+                            d="M15.563,40.836c0.195,0.195,0.451,0.293,0.707,0.293s0.512-0.098,0.707-0.293l15-15c0.391-0.391,0.391-1.023,0-1.414l-15-15c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l14.293,14.293L15.563,39.422C15.172,39.813,15.172,40.446,15.563,40.836z" />
+                    </svg>
+                </div>
+                <!-- End Icon -->
 
-             <!-- Dropdown -->
-             <ul
-                 class="px-4 py-2 text-black child rounded-lg absolute -left-6 top-16 flex flex-col justify-start items-start w-[4.5cm] bg-white z-[100]">
-                 <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
-                         href="#">Language</a>
-                 </li>
-                 <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
-                         href="#">Dollar</a>
-                 </li>
-                 <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
-                         href="#">Euro</a>
-                 </li>
+                <!-- Dropdown -->
+                <ul
+                    class="px-4 py-2 text-black child rounded-lg absolute -left-6 top-16 flex flex-col justify-start items-start w-[4.5cm] bg-white z-[100]">
+                    <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
+                            href="#">Language</a>
+                    </li>
+                    <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
+                            href="#">Dollar</a>
+                    </li>
+                    <li class="p-1 hover:bg-slate-100 w-full text-left duration-200 ease-linear"><a
+                            href="#">Euro</a>
+                    </li>
 
 
-             </ul>
-             <!-- End Dropdown -->
-         </li>
-         {{-- End Language --}}
+                </ul>
+                <!-- End Dropdown -->
+            </li>
+            {{-- End Language --}}
         </ul>
         <!-- End Menu of App -->
     </div>

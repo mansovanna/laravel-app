@@ -1,6 +1,6 @@
 @extends('AdminLTE.layouts.master')
 @section('content')
-    
+
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -23,24 +23,32 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form class="form-horizontal px-5">
+                    <form class="form-horizontal px-5" method="POST" action="/admins/addmenu">
+                        @csrf
+                        <div class="form-group row">
+                            <label for="id" class="col-sm-2 col-form-label">Parent ID</label>
+                            <div class="col-sm-10">
+                                <select name="parent_id" class="form-control">
+                                    <option value="">Please select parent ID</option>
+                                    @foreach($parents as $parent)
+                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="name" class="col-sm-2 col-form-label">Menu Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" placeholder="Menu Name">
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Menu Name">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="id" class="col-sm-2 col-form-label">Parent ID</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="id" placeholder="Parent ID">
-                                </div>
-                            </div>
+
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-info float-right">Sign in</button>
+                            <button type="submit" class="btn btn-info float-right">Save</button>
                             <a href="/admins/menu" class="btn btn-default">Cancel</a>
                         </div>
                         <!-- /.card-footer -->

@@ -10,4 +10,8 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = ["name", "parent_id"];
+
+    public function children(){
+        return $this->hasMany($this, 'parent_id', 'id');
+    }
 }
