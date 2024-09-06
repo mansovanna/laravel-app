@@ -27,28 +27,41 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
         @if($errors->has('message'))
-            <div class="alert alert-danger">
-                <span>{{ $errors->first('message') }}</span>
-            </div>
-        @endif
+      <div class="alert alert-danger">
+        <span>{{ $errors->first('message') }}</span>
+      </div>
+    @endif
         <form action="/admins/login" method="post" enctype="multipart/form-data">
           @csrf
-          <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" name="email">
+          <div class="input-group">
+            @php 
+                $rememberEmail;
+        if ($errors->first('dataEmail')) {
+          $rememberEmail = $errors->first('dataEmail');
+        } else {
+          $rememberEmail = old('email');
+        }
+        @endphp
+            <input type="email" class="form-control" placeholder="Email" name="email" value="{{ $rememberEmail }}">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope">{{$errors->first('email')}}</span>
+                <span class="fas fa-envelope"></span>
               </div>
             </div>
           </div>
-          <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password" name="password">
+          <span class="text-danger">{{$errors->first('email')}}</span>
+          <div class="mb-3"></div>
+          <div class="input-group">
+            <input type="password" class="form-control" placeholder="Password" name="password"
+              value="{{ old('password') }}">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-lock">{{$errors->first('password')}}</span>
+                <span class="fas fa-lock"></span>
               </div>
             </div>
           </div>
+          <span class="text-danger">{{$errors->first('password')}}</span>
+          <div class="mb-3"></div>
           <div class="row">
 
             <!-- /.col -->

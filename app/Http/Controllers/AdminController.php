@@ -13,7 +13,7 @@ class AdminController extends Controller
         return view("AdminLTE.index");
     }
 
-    public function adminLogin(){
+    public function login(){
         return view("AdminLTE.pages.examples.login");
     }
     public function login(Request $request) {
@@ -33,7 +33,8 @@ class AdminController extends Controller
     }
 
 
-    public function register(){
+    public function register()
+    {
         return view("AdminLTE.pages.examples.register");
     }
     public function adminRegister(Request $request)
@@ -48,6 +49,15 @@ class AdminController extends Controller
         return redirect()->route('adminLogin');
     }
 
+    public function stafflogin(Request $request)
+    {
+        $data = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6|max:10',
+        ]);
+
+       return User::create($data);
 
 
+    }
 }

@@ -29,43 +29,47 @@
 
                 <form method="post" action="/admins/register" enctype="multipart/form-data">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Full name" name="name">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Full name" name="name"  value="{{ old('name') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user">{{$errors->first('name')}}</span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
-                        <p class="text-danger">{{$errors->first('name')}}</p>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" name="email">
+                    <span class="text-danger">{{$errors->first('name')}}</span>
+                    <div class="mb-3"></div>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
-                        <p class="text-danger">{{$errors->first('email')}}</p>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" name="password">
+                    <span class="text-danger">{{$errors->first('email')}}</span>
+                    <div class="mb-3"></div>
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password" value="{{ old('password') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        <p class="text-danger">{{$errors->first('password')}}</p>
                     </div>
-                    <div class="input-group mb-3">
+                    <span class="text-danger">{{$errors->first('password')}}</span>
+                    <div class="mb-3"></div>
+                    <div class="input-group">
                         <input type="password" class="form-control" placeholder="Confirm Password"
-                            name="password_confirmation">
+                            name="password_confirmation"  value="{{ old('password') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                        <p class="text-danger">{{$errors->first('password')}}</p>
                     </div>
+                    <span class="text-danger">{{$errors->first('password')}}</span>
+                    <div class="mb-3"></div>
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-4">
