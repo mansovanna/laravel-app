@@ -52,27 +52,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update', [Authuntication::class, 'changePrfile'])->name('profile.update');
     Route::put('/personal/{id}', [Authuntication::class, 'changePersonal'])->name('personal');
 
-    Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
+        Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
 // -------------
 Route::get('/eshop', function (){
     return view('eshop.pages.home');
-});
-
-
+}); 
 
 // -------------
-<<<<<<< Updated upstream
-// Route::get('/admins', [AdminController::class, "index"])->name("admin");
-Route::get('/admins/menu', [MenuController::class, "index"])->name("admin")->middleware(Nologin::class);
-
-Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin")->middleware(islogin::class);
-Route::post('/admins/login',[AdminController::class, 'stafflogin'])->middleware(islogin::class);
-
-Route::get('/admins/register', [AdminController::class, "register"])->middleware(islogin::class);
-Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister")->middleware(islogin::class);
-=======
 Route::get('/admins/menu', [MenuController::class, "index"])->name("admin");
 
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminLogin");
@@ -81,5 +69,4 @@ Route::post('/admins/login',[AdminController::class, 'stafflogin']);
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
 // Route::group(['prefix' => 'admins'], function(){
->>>>>>> Stashed changes
 
