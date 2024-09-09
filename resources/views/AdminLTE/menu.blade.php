@@ -60,7 +60,7 @@
                                                         <td>{{ $menu->parent_id }}</td>
                                                         <td class="flex flex-row text-center gap-3">
                                                             {{-- Block Update --}}
-                                                            <a href="#"
+                                                            <a href="{{ route('menu.edit', $menu->id) }}"
                                                                 class="p-1 bg-blue-500 rounded-full text-white hover:bg-blue-400 active:bg-indigoblue-500">
                                                                 <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg"
                                                                     viewBox="0 0 24 24" fill="none">
