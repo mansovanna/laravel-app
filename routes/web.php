@@ -63,10 +63,6 @@ Route::middleware('auth')->group(function () {
 // -------------
 Route::get('/eshop', function (){
 
-
-
-
-
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
     return view('eshop.pages.home', compact('menus'));
 });
@@ -78,6 +74,8 @@ Route::get('/admins', [AdminController::class, "index"])->name("admin")->middlew
 Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
 Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
 Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
+Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
+
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
