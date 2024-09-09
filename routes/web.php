@@ -62,11 +62,24 @@ Route::middleware('auth')->group(function () {
 
 // -------------
 Route::get('/eshop', function (){
-    return view('eshop.pages.home');
-}); 
+
+    $menus = Menu::with(['children'])->where("parent_id", null)->get();
+    return view('eshop.pages.home', compact('menus'));
+});
+
+
 
 // -------------
-Route::get('/admins/menu', [MenuController::class, "index"])->name("admin");
+Route::get('/admins', [AdminController::class, "index"])->name("admin")->middleware(Nologin::class);
+Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
+Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
+Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
+Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
+Route::put('/admins/{id}/menu', [MenuController::class, 'update'])->name('menu.update');
+
+
+
+Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminLogin");
 Route::post('/admins/login',[AdminController::class, 'stafflogin']);
@@ -74,5 +87,3 @@ Route::post('/admins/login',[AdminController::class, 'stafflogin']);
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
 // Route::group(['prefix' => 'admins'], function(){
-
-

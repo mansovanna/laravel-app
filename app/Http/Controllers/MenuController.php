@@ -44,6 +44,17 @@ class MenuController extends Controller
     return redirect()->route('adminmenu')->with('success', 'Menu item deleted successfully.');
 }
 
+public function update(Request $request, $id)
+{
+    $menu = Menu::find($id);
+    $menu->name = $request->input('name');
+    $menu->parent_id = $request->input('parent_id');
+    $menu->save();
+
+    return redirect()->back()->with('success', 'Menu updated successfully.');
+}
+
+
 }
 
 
