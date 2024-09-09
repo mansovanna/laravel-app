@@ -70,3 +70,4 @@ Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
 // Route::group(['prefix' => 'admins'], function(){
 
+

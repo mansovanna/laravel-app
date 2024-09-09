@@ -13,7 +13,7 @@ class AdminController extends Controller
         return view("AdminLTE.index");
     }
 
-    public function login()
+    public function Login(Request $request)
     {
         return view("AdminLTE.pages.examples.login");
     }
@@ -31,7 +31,7 @@ class AdminController extends Controller
         ]);
         $data = $request->all();
         User::create($data);
-        return redirect()->route('adminlogin');
+        return redirect()->route('login');
     }
 
     public function stafflogin(Request $request)
