@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -13,7 +13,7 @@ class AdminController extends Controller
         return view("AdminLTE.index");
     }
 
-    public function Login(Request $request)
+    public function login()
     {
         return view("AdminLTE.pages.examples.login");
     }
@@ -48,5 +48,9 @@ class AdminController extends Controller
             return redirect()->route('admin');
         }
         return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
+    }
+    public function logout(){
+        auth()->logout();
+        return redirect()->route('adminlogin');
     }
 }
