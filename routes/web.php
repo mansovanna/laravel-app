@@ -75,7 +75,10 @@ Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")-
 Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
 Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
 Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
-Route::put('/admins/{id}/menu', [MenuController::class, 'update'])->name('menu.update');
+Route::get('/admins/menu/{id}/update', [MenuController::class, 'edit'])->name('menu.edit')->middleware(Nologin::class);
+Route::put('/admins/menu/{id}/update', [MenuController::class, 'update'])->name('menu.update')->middleware(Nologin::class);
+
+
 
 
 

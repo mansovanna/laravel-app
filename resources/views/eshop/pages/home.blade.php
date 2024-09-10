@@ -193,7 +193,7 @@
 
                         <!-- Block Item (Dropdown List) -->
                         <ul id="listSet"
-                            class="text-left bg-white boxShadows rounded-md border absolute top-8 left-0 right-0 hidden opacity-0 transform transition-all duration-300 ease-in-out scale-95 translate-y-4">
+                            class="text-left bg-white boxShadows rounded-md border absolute top-8 left-0 right-0 hidden opacity-0 transform transition-all duration-300 ease-linear scale-95 translate-y-4">
                             <li class="p-2 px-4 hover:bg-slate-100 font-medium text-sm">Default sorting</li>
                             <li class="p-2 px-4 hover:bg-slate-100  text-sm">Price low-high</li>
                             <li class="p-2 px-4 hover:bg-slate-100  text-sm">Price high-low</li>
@@ -246,7 +246,7 @@
 
                 {{-- Content --}}
                 <div class="content mt-4 flex flex-wrap gap-5 ">
-                    @for ($i = 0; $i < 10; $i++)
+                    @for ($i = 0; $i < 1; $i++)
                         <div
                             class="box-father w-[calc(33.6%-1rem)] min-h-80 rounded-md border flex flex-col justify-start items-center relative z-0">
                             <div
@@ -267,8 +267,9 @@
                                             background-color: rgba(236, 240, 241, 0.5)
                                         }
                                     </style>
-                                    {{--  --}}
-                                    <button id="button-details"
+
+                                    {{-- Block Detail ro User Icon Search  --}}
+                                    <button id="buttonDetails"
                                         class="p-2 rounded-full bg-danger text-white hover:bg-sceondary ease-linear duration-150">
                                         <svg class="text-white w-5" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 24 24" fill="none">
@@ -292,7 +293,7 @@
                                     </button>
                                 </div>
                             </div>
-                            {{-- End Bloci Icon --}}
+                            {{-- End Block Icon --}}
 
                             <div class=" p-5 text-left w-full ">
                                 <h3 class="text-lg font-medium  text-left w-full text-gray-600">PH Pavilion 15</h3>
@@ -347,7 +348,7 @@
                             {{--  --}}
                             {{-- Buttn Add to cart --}}
                             <button
-                                class="children-2 bg-danger rounded-sm text-white font-medium  hover:bg-white hover:text-slate-600 duration-300 ease-in-out px-5 py-2 border border-danger absolute bottom-0 left-4">ADD
+                                class="children-2 bg-danger rounded-sm text-white font-medium  hover:bg-white hover:text-slate-600 duration-300 ease-linear px-5 py-2 border border-danger absolute bottom-0 left-4">ADD
                                 TO CART
                             </button>
                         </div>
@@ -360,9 +361,12 @@
     </div>
 </div>
 
+{{-- Block POP UP START NOW  --}}
+
+{{-- --------------------------------------------------------------------------------------- --}}
+
 {{-- Pop UP Detail --}}
-<div id="overlay"
-    class=" w-full h-screen hidden overlay fixed top-0 right-0 left-0 pop p-8 z-50 justify-center items-center">
+<div id="overlay" class=" w-full h-screen  fixed top-0 right-0 left-0 pop p-8 z-50 hidden justify-center items-center">
     <div id="pop-detail" class="w-9/12 h-[14cm] bg-white rounded-sm boxShadow  overflow-y-auto">
         {{-- Icon Close --}}
         <div class="w-full flex flex-row justify-end items-center p-2">
@@ -443,7 +447,7 @@
                     }
 
                     #main-image {
-                        transition: opacity 0.5s ease-in-out;
+                        transition: opacity 0.5s ease-out;
                     }
                 </style>
 
@@ -754,7 +758,7 @@
     /*  */
     .box-father>.children-1 {
         opacity: 0;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-linear;
         /* transform: translateY(-20px); */
     }
 
@@ -765,7 +769,7 @@
 
     .box-father>.children-2 {
         opacity: 0;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.4sease-linear;
         transform: translateY(0px);
     }
 
@@ -776,7 +780,7 @@
 
     .pop-detail {
         opacity: 0;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.4sease-linear;
         transform: scale3d(1.09);
     }
 </style>
@@ -823,7 +827,7 @@
         /*  */
         .box-father>.children-1 {
             opacity: 0;
-            transition: all 0.4s ease-in-out;
+            transition: all 0.4sease-linear;
             /* transform: translateY(-20px); */
         }
 
@@ -834,7 +838,7 @@
 
         .box-father>.children-2 {
             opacity: 0;
-            transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-linear;
             transform: translateY(0px);
         }
 
@@ -845,7 +849,7 @@
 
         .pop-detail {
             opacity: 0;
-            transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-linear;
             transform: scale3d(1.09);
         }
     </style>
