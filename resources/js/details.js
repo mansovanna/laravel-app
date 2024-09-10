@@ -1,13 +1,22 @@
 
+//
 
-document.addEventListener('DOMContentLoaded', () => {
-    const buttonDetailf = document.getElementById('buttonDetails');
-    const overlay = document.getElementById('overlay');
+document.addEventListener('DOMContentLoaded', function() {
+    const quantityInput = document.getElementById('quantity');
+    const decreaseBtn = document.getElementById('decrease-btn');
+    const increaseBtn = document.getElementById('increase-btn');
 
-    buttonDetailf.addEventListener('click', () => {
-        overlay.classList.remove('hidden');
-        overlay.classList.add('flex');
+    decreaseBtn.addEventListener('click', function() {
+        let currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+    });
 
-        console.log("HELLO");
+    increaseBtn.addEventListener('click', function() {
+        let currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
     });
 });
+
+

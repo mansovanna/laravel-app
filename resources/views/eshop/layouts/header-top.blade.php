@@ -160,7 +160,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        const button = document.getElementById('button');
+        const buttonApp = document.getElementById('button');
         const buttons = document.getElementById('buttons');
         const overlay = document.getElementById('overlay');
         const overlays = document.getElementById('overlays');
@@ -168,7 +168,7 @@
         const aRRows = document.getElementById('arrowss');
 
         document.addEventListener('click', (e) => {
-            if (overlay && button && !overlay.contains(e.target) && !button.contains(e.target)) {
+            if (overlay && buttonApp && !overlay.contains(e.target) && !buttonApp.contains(e.target)) {
                 overlay.classList.add('hidden');
                 aRRow.classList.remove('rotate-180');
             }
