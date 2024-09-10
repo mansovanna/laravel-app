@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // -------------
-Route::get('/eshop', function (){
+Route::get('/eshop', function () {
 
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
     $products =  Product::with('category')->get();
@@ -92,7 +92,13 @@ Route::prefix('admins')->group(function () {
     Route::get('/product/{id}/update', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{id}/delete', [ProductController::class, 'destroy'])->name('product.destroy');
-
+    // Block Children Image of Product
+    Route::get('/images', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/images/create', [CategoryController::class, 'show'])->name('children.product.show');
+    Route::post('/images/create', [CategoryController::class, 'store'])->name('children.product.store');
+    Route::get('/images/{id}/update', [CategoryController::class, 'edit'])->name('children.product.edit');
+    Route::put('/images/{id}/update', [CategoryController::class, 'update'])->name('children.product.update');
+    Route::delete('/images/{id}/destroy', [CategoryController::class, 'destroy'])->name('children.product.destroy');
 
     // Block Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
@@ -109,8 +115,7 @@ Route::prefix('admins')->group(function () {
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin")->middleware(islogin::class);
-Route::post('/admins/login',[AdminController::class, 'stafflogin'])->middleware(islogin::class);
+Route::post('/admins/login', [AdminController::class, 'stafflogin'])->middleware(islogin::class);
 
 Route::get('/admins/register', [AdminController::class, "register"])->middleware(islogin::class);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister")->middleware(islogin::class);
-
