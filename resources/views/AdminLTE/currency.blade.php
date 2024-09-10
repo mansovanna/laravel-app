@@ -37,8 +37,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @if (!empty($currencys->count()))
-                                                @foreach ($currencys as $currency)
+                                            @if (!empty($currencies->count()))
+                                                @foreach ($currencies as $currency)
                                                     <tr>
                                                         <td>{{$currency->id}}</td>
                                                         <td>{{$currency->name}}</td>

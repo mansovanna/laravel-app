@@ -1,11 +1,6 @@
 @extends('eshop.layouts.master')
 
 @section('content')
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> eca9f1a88b01e70cdf5897f29bf96881b8934d9e
-
 <div class="container flex items-center  justify-center">
     <div class="w-11/12  flex flex-col justify-start items-center">
         {{-- Block Header --}}
@@ -1215,12 +1210,4 @@
             transform: scale3d(1.09);
         }
     </style>
-<<<<<<< HEAD
-
-
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7a8e435d883adc78d04435144473abe25636cec9
->>>>>>> eca9f1a88b01e70cdf5897f29bf96881b8934d9e
 @endsection

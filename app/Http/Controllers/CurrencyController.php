@@ -9,9 +9,9 @@ class CurrencyController extends Controller
 {
     public function index()
     {
-        $currencys = Currency::get();
-        //dd($currencys);
-        return view('AdminLTE.currency', compact('currencys'));
+        $currencies = Currency::get();
+        //dd($currencies);
+        return view('AdminLTE.currency', compact('currencies'));
 
     }
 

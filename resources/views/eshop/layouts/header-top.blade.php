@@ -91,7 +91,7 @@
                 </div>
                 {{-- End Icon --}}
                 <ul id="overlays" class="hidden flex-col justify-center bg-white rounded-md border items-start absolute top-8 text-secondary duration-300 ease-in-out">
-                    @foreach ($currencys as $currency)
+                    @foreach ($currencies as $currency)
                         <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">
                             <a href="#" class="w-full">{{ $currency->name }}</a>
                         </li>

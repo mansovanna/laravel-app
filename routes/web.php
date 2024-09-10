@@ -16,6 +16,7 @@ use App\Http\Controllers\languageController;
 
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
+use App\Models\Currency;
 
 Route::get('/', function () {
     return view('welcome');
@@ -73,15 +74,16 @@ Route::get('/eshop', function () {
     $languages = language::get();
 
     $products = Product::with('category')->get();
+    $currencies = Currency::get();
 
-    return view('eshop.pages.home', compact('menus', 'products', 'languages'));
+    return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies'));
 });
 
 
 
 // Route::get('/eshop', function () {
-//     $currencys = Currency::get();
-//     return view('eshop.pages.home', compact('currencys'));
+//     $currencies = Currency::get();
+//     return view('eshop.pages.home', compact('currencies'));
 // });
 
 
