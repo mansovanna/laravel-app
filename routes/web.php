@@ -8,7 +8,9 @@ use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
+use App\Models\language;
 use App\Models\Menu;
+use App\Http\Controllers\languageController;
 
 
 Route::get('/', function () {
@@ -57,14 +59,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update', [Authuntication::class, 'changePrfile'])->name('profile.update');
     Route::put('/personal/{id}', [Authuntication::class, 'changePersonal'])->name('personal.update');
 
-        Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
+    Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
 // -------------
-Route::get('/eshop', function (){
+Route::get('/eshop', function () {
 
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
-    return view('eshop.pages.home', compact('menus'));
+    $languages = language::get();
+    return view('eshop.pages.home', compact('menus', 'languages'));
 });
 
 
@@ -77,12 +80,21 @@ Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("cre
 Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
 Route::put('/admins/{id}/menu', [MenuController::class, 'update'])->name('menu.update');
 
+//---------------------
+Route::prefix('admins')->group(function () {
+    Route::get('/language', [languageController::class, 'index'])->name('language.index');
+    Route::get('/language/create', [languageController::class, 'show'])->name('language.show');
+    Route::post('/language/create', [languageController::class, 'store'])->name('language.store');
+    Route::get('/language/{id}/update', [languageController::class, 'edit'])->name('language.edit');
+    Route::put('/language/{id}/update', [languageController::class, 'update'])->name('language.update');
+    Route::delete('language/{id}', [languageController::class, 'destroy'])->name('language.destroy');
+});
 
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminLogin");
-Route::post('/admins/login',[AdminController::class, 'stafflogin']);
+Route::post('/admins/login', [AdminController::class, 'stafflogin']);
 
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");

@@ -52,28 +52,32 @@
                 /
                 <a href="#"class="hover:text-danger duration-150 ease-in-out">Register</a>
             </li>
-            {{--  --}}
+
+            
+            
+           
             <li class="flex flex-row justify-start items-center gap-2 hover:text-danger cursor-pointer relative">
 
-                <div onclick="clickHere()" id="button" class="flex flex-row justify-center items-center gap-2">
+                <div onclick="clickHeress()" id="buttonisSetLa" class="flex flex-row justify-center items-center gap-2">
                     <p>Language</p>
                     {{-- Icon --}}
-                    <svg id="arrows" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    <svg id="arrowssL" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor" class="size-4 ease-in-out duration-200">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </div>
 
                 {{-- End Icon --}}
-                <ul id="overlay"
-                    class="hidden  flex-col justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out ">
-                    <li class="font-semibold hover:bg-slate-200 px-4 py-2  rounded-t-md">Language</li>
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">English</li>
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">Franch</li>
+                <ul id="overlayss"
+                class="hidden flex-col  justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out "">
+                    @foreach ($languages as $lagng)
+                    <li class="font-semibold hover:bg-slate-200 px-4 py-2 rounded-t-md">{{ $lagng->name }}</li>
+                    @endforeach
+                    {{-- <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">English</li>
+                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">French</li> --}}
                 </ul>
                 {{-- List Down to Up --}}
             </li>
-            {{--  --}}
 
 
 
@@ -141,9 +145,9 @@
 
 <script>
     // Functions defined globally
-    function clickHere() {
-        const aRRow = document.getElementById('arrows');
-        const overlay = document.getElementById('overlay');
+    function clickHeress() {
+        const aRRow = document.getElementById('arrowssL');
+        const overlay = document.getElementById('overlayss');
         if (aRRow && overlay) {
             aRRow.classList.toggle('rotate-180');
             overlay.classList.toggle('hidden');
