@@ -571,12 +571,12 @@
                 <p class="px-2 py-[0.8px]">All category</p>
 
                 <!-- Dropdown Icon -->
-                <svg id="reteteIconCategories" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 duration-700 ease-in-out">
+                <svg id="reteteIconCategories" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 duration-700 ease-linear">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
 
                 <!-- Category Options -->
-                <ul id="lists-categorie" class="w-full bg-white absolute top-10 border rounded-md boxShadows flex-col justify-center items-start hidden opacity-0 transform transition-all duration-300 ease-in-out scale-95 translate-y-2 ">
+                <ul id="lists-categorie" class="w-full bg-white absolute top-10 border rounded-md boxShadows flex-col justify-center items-start hidden opacity-0 transform transition-all duration-300 ease-linear scale-95 translate-y-2 ">
                     <li class="p-2 hover:bg-slate-100 w-full text-left font-medium rounded-t-md">All category</li>
                     <li class="p-2 hover:bg-slate-100 w-full text-left rounded-b-md">Men</li>
                 </ul>
@@ -591,7 +591,7 @@
             </button>
 
             <!-- Search Results Dropdown -->
-            <ul id="searchResults" class="flex-col min-w-min bg-white boxShadows absolute left-0 right-0 top-14 rounded-sm opacity-0 duration-700 ease-in-out">
+            <ul id="searchResults" class="flex-col min-w-min bg-white boxShadows absolute left-0 right-0 top-14 rounded-sm opacity-0 duration-700 ease-linear">
                 <li class="flex flex-row justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
                     <img class="p-1 w-24" src="https://themes.programmingkit.xyz/rafcart/assets/images/laptop-2.png" alt="">
 
@@ -635,7 +635,7 @@
             {{-- End Block Favorite --}}
 
             {{-- Block Shopping --}}
-            <div href="#" class="text-white flex flex-col justify-center items-center relative father cursor-pointer z-10 ">
+            <div class="text-white flex flex-col justify-center items-center relative father cursor-pointer z-10 ">
                 <div >
                     <svg class="w-7 h-7 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"   fill="none">
                         <path d="M8 16H15.2632C19.7508 16 20.4333 13.1808 21.261 9.06908C21.4998 7.88311 21.6192 7.29013 21.3321 6.89507C21.045 6.5 20.4947 6.5 19.3941 6.5H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
@@ -727,8 +727,8 @@
 
                      {{-- Button --}}
                      <div class="w-full flx flex-row justify-between items-center text-white mt-2 gap-8">
-                         <button class=" min-w-max px-8 text-sm py-2 mr-8 bg-danger  border hover:bg-white border-danger text-white hover:text-danger  rounded-sm duration-200 ease-in-out">VIEW CART</button>
-                         <button class="min-w-max px-8 text-sm py-2 hover:bg-danger  bg-white hover:text-white text-danger border border-danger hover:border-danger rounded-sm duration-500 ease-in-out">CHECKOUT</button>
+                         <button class=" min-w-max px-8 text-sm py-2 mr-8 bg-danger  border hover:bg-white border-danger text-white hover:text-danger  rounded-sm duration-200 ease-linear">VIEW CART</button>
+                         <button class="min-w-max px-8 text-sm py-2 hover:bg-danger  bg-white hover:text-white text-danger border border-danger hover:border-danger rounded-sm duration-500 ease-linear">CHECKOUT</button>
                      </div>
                 </ul>
                 {{-- End Block result of app --}}
@@ -736,15 +736,101 @@
             {{-- End Block Shopping --}}
 
             {{-- Block Account --}}
-            <a href="#" class="text-white flex flex-col justify-center items-center">
-                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-                    <path d="M6.57757 15.4816C5.1628 16.324 1.45336 18.0441 3.71266 20.1966C4.81631 21.248 6.04549 22 7.59087 22H16.4091C17.9545 22 19.1837 21.248 20.2873 20.1966C22.5466 18.0441 18.8372 16.324 17.4224 15.4816C14.1048 13.5061 9.89519 13.5061 6.57757 15.4816Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z" stroke="currentColor" stroke-width="1.5" />
-                </svg>
+            <div class="text-white flex flex-col justify-center items-center relative  cursor-pointer z-10  father">
+                <div>
+                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M6.57757 15.4816C5.1628 16.324 1.45336 18.0441 3.71266 20.1966C4.81631 21.248 6.04549 22 7.59087 22H16.4091C17.9545 22 19.1837 21.248 20.2873 20.1966C22.5466 18.0441 18.8372 16.324 17.4224 15.4816C14.1048 13.5061 9.89519 13.5061 6.57757 15.4816Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M16.5 6.5C16.5 8.98528 14.4853 11 12 11C9.51472 11 7.5 8.98528 7.5 6.5C7.5 4.01472 9.51472 2 12 2C14.4853 2 16.5 4.01472 16.5 6.5Z" stroke="currentColor" stroke-width="1.5" />
+                    </svg>
+                </div>
 
                  {{--  --}}
                  <p class="text-xs">Account</p>
-            </a>
+
+                 {{--  --}}
+                 <ul class="p-4 absolute top-14  right-0 bg-white rounded-md boxShadows flex flex-col justify-center items-start min-w-max text-sceondary text-nowrap cursor-default">
+                    <h1 class="p-2 border-b w-full text-left cursor-auto text-sm  font-medium">Welcome to RAFCART Shop</h1>
+
+                    {{-- Button --}}
+                    <li class="w-full flex flex-row justify-between  gap-2 mt-3 mb-2">
+                        <button class="border border-danger rounded-sm  hover:text-danger text-white p-1 w-full bg-danger hover:bg-white duration-150 ease-linear uppercase text-sm">join</button>
+                        <button class="border border-danger rounded-sm  text-danger hover:text-white p-1 w-full hover:bg-danger bg-white duration-150 ease-linear uppercase text-sm">Sing in</button>
+                    </li>
+
+                    {{--  --}}
+                        <li class="w-full flex flex-row justify-start items-center p-1 hover:text-danger gap-2 text-sm duration-200 ease-linear cursor-pointer ">
+                            {{-- Icon --}}
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none">
+                                <path d="M14 8.99988H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M14 12.4999H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <rect x="2" y="2.99988" width="20" height="18" rx="5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M5 15.9999C6.20831 13.4188 10.7122 13.249 12 15.9999" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M10.5 8.99988C10.5 10.1044 9.60457 10.9999 8.5 10.9999C7.39543 10.9999 6.5 10.1044 6.5 8.99988C6.5 7.89531 7.39543 6.99988 8.5 6.99988C9.60457 6.99988 10.5 7.89531 10.5 8.99988Z" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
+                            {{-- Name --}}
+
+                            <p>My Account</p>
+                        </li>
+                        {{--  --}}
+
+                        {{--  --}}
+                        <li class="w-full flex flex-row justify-start items-center p-1 hover:text-danger gap-2 text-sm duration-200 ease-linear cursor-pointer">
+                            {{-- Icon --}}
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" fill="none">
+                                <path d="M4 11V15C4 18.2998 4 19.9497 5.02513 20.9749C6.05025 22 7.70017 22 11 22H13C16.2998 22 17.9497 22 18.9749 20.9749C20 19.9497 20 18.2998 20 15V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M3 9C3 8.25231 3 7.87846 3.20096 7.6C3.33261 7.41758 3.52197 7.26609 3.75 7.16077C4.09808 7 4.56538 7 5.5 7H18.5C19.4346 7 19.9019 7 20.25 7.16077C20.478 7.26609 20.6674 7.41758 20.799 7.6C21 7.87846 21 8.25231 21 9C21 9.74769 21 10.1215 20.799 10.4C20.6674 10.5824 20.478 10.7339 20.25 10.8392C19.9019 11 19.4346 11 18.5 11H5.5C4.56538 11 4.09808 11 3.75 10.8392C3.52197 10.7339 3.33261 10.5824 3.20096 10.4C3 10.1215 3 9.74769 3 9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M6 3.78571C6 2.79949 6.79949 2 7.78571 2H8.14286C10.2731 2 12 3.7269 12 5.85714V7H9.21429C7.43908 7 6 5.56091 6 3.78571Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M18 3.78571C18 2.79949 17.2005 2 16.2143 2H15.8571C13.7269 2 12 3.7269 12 5.85714V7H14.7857C16.5609 7 18 5.56091 18 3.78571Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M12 11L12 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            {{-- Name --}}
+
+                            <p>My Order</p>
+                        </li>
+
+                         {{--  --}}
+                         <li class="w-full flex flex-row justify-start items-center p-1 hover:text-danger gap-2 text-sm duration-200 ease-linear cursor-pointer">
+                            {{-- Icon --}}
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                <path d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            {{-- Name --}}
+
+                            <p>My Wishlist</p>
+                        </li>
+
+
+                         {{--  --}}
+                         <li class="w-full flex flex-row justify-start items-center p-1 hover:text-danger gap-2 text-sm duration-200 ease-linear cursor-pointer">
+                            {{-- Icon --}}
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none">
+                                <path d="M8 16L16.7201 15.2733C19.4486 15.046 20.0611 14.45 20.3635 11.7289L21 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M6 6H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <circle cx="6" cy="20" r="2" stroke="currentColor" stroke-width="1.5" />
+                                <circle cx="17" cy="20" r="2" stroke="currentColor" stroke-width="1.5" />
+                                <path d="M8 20L15 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M2 2H2.966C3.91068 2 4.73414 2.62459 4.96326 3.51493L7.93852 15.0765C8.08887 15.6608 7.9602 16.2797 7.58824 16.7616L6.63213 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            {{-- Name --}}
+
+                            <p>My Cart</p>
+                        </li>
+
+
+                         {{--  --}}
+                         <li class="w-full flex flex-row justify-start items-center p-1 hover:text-danger gap-2 text-sm duration-200 ease-linearcursor-pointer">
+                            {{-- Icon --}}
+                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none">
+                                <path d="M7.02331 5.5C4.59826 7.11238 3 9.86954 3 13C3 17.9706 7.02944 22 12 22C16.9706 22 21 17.9706 21 13C21 9.86954 19.4017 7.11238 16.9767 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12 2V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            {{-- Name --}}
+
+                            <p>Log out</p>
+                        </li>
+                        
+                 </ul>
+            </div>
             {{-- End Block Account --}}
         </div>
         {{-- Block Icon Item of app --}}
@@ -763,19 +849,19 @@
     }
 
     .mather>svg {
-        transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-linear;
         transform: translateX(10px);
     }
 
     .mather:hover>svg {
-        transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-linear;
         transform: translateX(0px);
     }
 
     .mather>ul {
         opacity: 0;
         visibility: hidden;
-        transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-linear;
         transform: translateX(30px);
         cursor: pointer;
     }
@@ -793,7 +879,7 @@
     transform: translateY(-10px); /* Initial hidden position */
     opacity: 0;
     pointer-events: none; /* Disable interactions when hidden */
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Smooth transitions */
+    transition: opacity 0.3s ease-linear, transform 0.3s ease-linear; /* Smooth transitions */
 }
 
 /* Style when the dropdown is visible */
@@ -808,28 +894,4 @@
 
 
 
-<script>
-const searchInput = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
 
-// Show results when the search input is clicked or focused
-searchInput.addEventListener('focus', () => {
-    searchResults.classList.add('visible');
-});
-
-// Hide results when clicking outside the search input or results
-document.addEventListener('click', function (e) {
-    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-        searchResults.classList.remove('visible');
-    }
-});
-
-searchInput.addEventListener('input', function () {
-    if (searchInput.value.trim() === "") {
-        searchResults.classList.remove('visible');
-    } else {
-        searchResults.classList.add('visible');
-    }
-});
-
-</script>
