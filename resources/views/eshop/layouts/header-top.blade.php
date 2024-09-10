@@ -82,24 +82,21 @@
 
 
             <li class="flex flex-row justify-start items-center gap-2 hover:text-danger cursor-pointer relative">
-
                 <div onclick="clickHeres()" id="buttons" class="flex flex-row justify-center items-center gap-2">
                     <p>Currency</p>
                     {{-- Icon --}}
-                    <svg id="arrowss" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" class="size-4 ease-in-out duration-200">
+                    <svg id="arrowss" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 ease-in-out duration-200">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </div>
-
                 {{-- End Icon --}}
-                <ul id="overlays"
-                    class="hidden flex-col  justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out ">
-                    <li class="font-semibold hover:bg-slate-200 px-4 py-2  rounded-t-md">Currency</li>
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">Dollar</li>
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">Euro</li>
+                <ul id="overlays" class="hidden flex-col justify-center bg-white rounded-md border items-start absolute top-8 text-secondary duration-300 ease-in-out">
+                    @foreach ($currencys as $currency)
+                        <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">
+                            <a href="#" class="w-full">{{ $currency->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
-                {{-- List Down to Up --}}
             </li>
             {{--  --}}
         </ul>
@@ -164,7 +161,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        const button = document.getElementById('button');
+        const buttonApp = document.getElementById('button');
         const buttons = document.getElementById('buttons');
         const overlay = document.getElementById('overlay');
         const overlays = document.getElementById('overlays');
@@ -172,7 +169,7 @@
         const aRRows = document.getElementById('arrowss');
 
         document.addEventListener('click', (e) => {
-            if (overlay && button && !overlay.contains(e.target) && !button.contains(e.target)) {
+            if (overlay && buttonApp && !overlay.contains(e.target) && !buttonApp.contains(e.target)) {
                 overlay.classList.add('hidden');
                 aRRow.classList.remove('rotate-180');
             }
