@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\ProductController;
+use App\Models\language;
 use App\Models\Menu;
+use App\Http\Controllers\languageController;
+
+use App\Http\Controllers\ProductController;
 use App\Models\Product;
 
 Route::get('/', function () {
@@ -65,10 +68,13 @@ Route::middleware('auth')->group(function () {
 
 // -------------
 Route::get('/eshop', function () {
-    $menus = Menu::with(['children'])->where("parent_id", null)->get();
-    $products =  Product::with('category')->get();
 
-    return view('eshop.pages.home', compact('menus', 'products'));
+    $menus = Menu::with(['children'])->where("parent_id", null)->get();
+    $languages = language::get();
+
+    $products = Product::with('category')->get();
+
+    return view('eshop.pages.home', compact('menus', 'products', 'languages'));
 });
 
 
@@ -121,6 +127,15 @@ Route::prefix('admins')->group(function () {
     Route::delete('/currency/{id}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
 });
 
+//---------------------
+Route::prefix('admins')->group(function () {
+    Route::get('/language', [languageController::class, 'index'])->name('language.index');
+    Route::get('/language/create', [languageController::class, 'show'])->name('language.show');
+    Route::post('/language/create', [languageController::class, 'store'])->name('language.store');
+    Route::get('/language/{id}/update', [languageController::class, 'edit'])->name('language.edit');
+    Route::put('/language/{id}/update', [languageController::class, 'update'])->name('language.update');
+    Route::delete('language/{id}', [languageController::class, 'destroy'])->name('language.destroy');
+});
 
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
