@@ -37,8 +37,8 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">DataTable with minimal features & hover style</h3>
-                                    <a href="/admins/addmenu" class="btn btn-info float-right ms-5" type="button">Add
-                                        Menu</a>
+                                    <a href="/admins/addlanguage" class="btn btn-info float-right ms-5" type="button">Add
+                                        language</a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -46,21 +46,19 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Menu Name</th>
-                                                <th>Parent ID</th>
+                                                <th>Language Name</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($menus as $menu)
+                                            @foreach ($languages as $language)
                                                 <tr>
-                                                    <td>{{ $menu->id }}</td>
-                                                    <td>{{ $menu->name }}
+                                                    <td>{{ $language->id }}</td>
+                                                    <td>{{ $language->name }}
                                                     </td>
-                                                    <td>{{ $menu->parent_id }}</td>
                                                     <td class="flex flex-row text-center gap-3">
                                                         {{-- Block Update --}}
-                                                        <a href="{{ route('menu.edit', $menu->id) }}"
+                                                        <a href="{{ route('language.edit', $language->id) }}"
                                                             class="p-1 bg-blue-500 rounded-full text-white hover:bg-blue-400 active:bg-indigoblue-500">
                                                             <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg"
                                                                 viewBox="0 0 24 24" fill="none">
@@ -80,7 +78,7 @@
 
                                                         <!-- SVG Icon -->
 
-                                                        <form action="/admins/{{ $menu->id }}/menu" method="POST">
+                                                        <form action="/admins/deletelanguage/{{ $language->id }}" method="POST">
                                                             @csrf
                                                             @method('delete')
                                                             <button
@@ -127,24 +125,24 @@
     <aside class="control-sidebar control-sidebar-dark"></aside>
     </div>
 
-    <!-- Edit Menu Modal -->
-    <div class="modal fade" id="editMenuModal" tabindex="-1" role="dialog" aria-labelledby="editMenuModalLabel"
+    <!-- Edit language Modal -->
+    <div class="modal fade" id="editlanguageModal" tabindex="-1" role="dialog" aria-labelledby="editlanguageModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editMenuModalLabel">Edit Menu</h5>
+                    <h5 class="modal-title" id="editlanguageModalLabel">Edit language</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editMenuForm" method="POST" action="">
+                <form id="editlanguageForm" method="POST" action="">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="menuName">Menu Name</label>
-                            <input type="text" class="form-control" id="menuName" name="name" required>
+                            <label for="languageName">language Name</label>
+                            <input type="text" class="form-control" id="languageName" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="parentId">Parent ID</label>
@@ -170,11 +168,11 @@
                     const parentId = this.getAttribute('data-parent-id');
 
                     // Set form action URL
-                    const form = document.getElementById('editMenuForm');
-                    form.action = `/admins/${id}/menu`;
+                    const form = document.getElementById('editlanguageForm');
+                    form.action = `/admins/editlanguage/${id}`;
 
                     // Populate form fields
-                    document.getElementById('menuName').value = name;
+                    document.getElementById('languageName').value = name;
                     document.getElementById('parentId').value = parentId;
                 });
             });

@@ -8,7 +8,9 @@ use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\languagecontroller;
 use App\Models\Menu;
+use App\Models\language;
 
 
 Route::get('/', function () {
@@ -61,11 +63,16 @@ Route::middleware('auth')->group(function () {
 });
 
 // -------------
-Route::get('/eshop', function (){
+
+Route::get('/eshop', function () {
+    $languages = language::all();
 
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
-    return view('eshop.pages.home', compact('menus'));
+
+    // Pass the data to the view
+    return view('eshop.pages.home', compact('menus', 'languages'));
 });
+
 
 
 
@@ -79,7 +86,12 @@ Route::get('/admins/menu/{id}/update', [MenuController::class, 'edit'])->name('m
 Route::put('/admins/menu/{id}/update', [MenuController::class, 'update'])->name('menu.update')->middleware(Nologin::class);
 
 
-
+Route::get('/admins/language',[languagecontroller::class,'showlanguagePage'])->name("adminlanguage")->middleware(Nologin::class);
+Route::get('/admins/addlanguage',[languagecontroller::class,'showaddlanguage'])->middleware(Nologin::class);
+Route::post('/admins/addlanguage',[languagecontroller::class,'createlanguage'])->middleware(Nologin::class);
+Route::get('/admins/editlanguage/{id}',[languagecontroller::class,'showeditlanguage'])->name("language.edit")->middleware(Nologin::class);
+Route::put('/admins/editlanguage/{id}',[languagecontroller::class,'editlanguage'])->name("language.update")->middleware(Nologin::class);
+Route::delete('/admins/deletelanguage/{id}',[languagecontroller::class,'deletelanguage'])->middleware(Nologin::class);
 
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
