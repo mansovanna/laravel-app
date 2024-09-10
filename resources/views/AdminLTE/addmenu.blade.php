@@ -31,7 +31,7 @@
                                 <select name="parent_id" class="form-control">
                                     <option value="">Please select parent ID</option>
                                     @foreach($parents as $parent)
-                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
