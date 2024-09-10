@@ -7,11 +7,9 @@ use App\Http\Middleware\islogin;
 use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\ProductController;
 use App\Models\Menu;
-use App\Models\Product;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,12 +61,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // -------------
-Route::get('/eshop', function () {
+Route::get('/eshop', function (){
+
+
+
+
 
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
-    $products =  Product::with('category')->get();
-
-    return view('eshop.pages.home', compact('menus', 'products'));
+    return view('eshop.pages.home', compact('menus'));
 });
 
 
@@ -78,44 +78,12 @@ Route::get('/admins', [AdminController::class, "index"])->name("admin")->middlew
 Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
 Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
 Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
-Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
-Route::get('/admins/menu/{id}/update', [MenuController::class, 'edit'])->name('menu.edit')->middleware(Nologin::class);
-Route::put('/admins/menu/{id}/update', [MenuController::class, 'update'])->name('menu.update')->middleware(Nologin::class);
-
-
-// Block Product
-Route::prefix('admins')->group(function () {
-    Route::get('/product', [ProductController::class, 'index'])->name('product.index');
-    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
-    Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-
-    Route::get('/product/{id}/update', [ProductController::class, 'edit'])->name('product.edit');
-    Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('/product/{id}/delete', [ProductController::class, 'destroy'])->name('product.destroy');
-    // Block Children Image of Product
-    Route::get('/images', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('/images/create', [CategoryController::class, 'show'])->name('children.product.show');
-    Route::post('/images/create', [CategoryController::class, 'store'])->name('children.product.store');
-    Route::get('/images/{id}/update', [CategoryController::class, 'edit'])->name('children.product.edit');
-    Route::put('/images/{id}/update', [CategoryController::class, 'update'])->name('children.product.update');
-    Route::delete('/images/{id}/destroy', [CategoryController::class, 'destroy'])->name('children.product.destroy');
-
-    // Block Category
-    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('/category/create', [CategoryController::class, 'show'])->name('category.show');
-    Route::post('/category/create', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category/{id}/update', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
-    Route::delete('/category/{id}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
-});
-
-
-
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin")->middleware(islogin::class);
-Route::post('/admins/login', [AdminController::class, 'stafflogin'])->middleware(islogin::class);
+Route::post('/admins/login',[AdminController::class, 'stafflogin'])->middleware(islogin::class);
 
 Route::get('/admins/register', [AdminController::class, "register"])->middleware(islogin::class);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister")->middleware(islogin::class);
+
