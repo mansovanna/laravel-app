@@ -105,8 +105,6 @@ button.addEventListener('click', () => {
 
 
 
-
-
 document.addEventListener('click', (event) => {
     if (!buttonCategories.contains(event.target) && !listCategories.contains(event.target)) {
         reteteIcon.classList.remove('-rotate-90');

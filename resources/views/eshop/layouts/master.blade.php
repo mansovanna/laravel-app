@@ -14,7 +14,7 @@
 
 </head>
 
-<body class="font-system min-h-screen flex flex-col ">
+<body class="font-system min-h-screen flex flex-col box-border">
 
     {{-- ScrollTop --}}
     <button id="scrollTop"

@@ -31,7 +31,7 @@ class AdminController extends Controller
         ]);
         $data = $request->all();
         User::create($data);
-        return redirect()->route('login');
+        return redirect()->route('adminLogin');
     }
 
     public function stafflogin(Request $request)
