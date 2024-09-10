@@ -22,6 +22,18 @@
                         <h3 class="card-title">Add Menu</h3>
                     </div>
                     <!-- /.card-header -->
+                    @if (session('success'))
+                        <br>
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <!-- form start -->
                     <form class="form-horizontal px-5" method="POST" action="/admins/addmenu">
                         @csrf
@@ -31,7 +43,7 @@
                                 <select name="parent_id" class="form-control">
                                     <option value="">Please select parent ID</option>
                                     @foreach($parents as $parent)
-                                    <option value="{{$parent->id}}">{{$parent->name}}</option>
+                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
