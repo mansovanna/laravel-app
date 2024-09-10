@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\Authuntication;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\GuardControlApp;
 use App\Http\Middleware\islogin;
@@ -8,7 +9,9 @@ use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
+//use App\Http\Controllers\CurrencyController;
 use App\Models\Menu;
+use App\Models\Currency;
 
 
 Route::get('/', function () {
@@ -57,15 +60,22 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update', [Authuntication::class, 'changePrfile'])->name('profile.update');
     Route::put('/personal/{id}', [Authuntication::class, 'changePersonal'])->name('personal.update');
 
-        Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
+    Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
 // -------------
-Route::get('/eshop', function (){
-
+Route::get('/eshop', function () {
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
-    return view('eshop.pages.home', compact('menus'));
+    $currencys = Currency::get();
+    return view('eshop.pages.home', compact('menus', 'currencys'));
 });
+
+
+
+// Route::get('/eshop', function () {
+//     $currencys = Currency::get();
+//     return view('eshop.pages.home', compact('currencys'));
+// });
 
 
 
@@ -78,12 +88,20 @@ Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('me
 Route::put('/admins/{id}/menu', [MenuController::class, 'update'])->name('menu.update');
 
 
+Route::prefix('admins')->group(function () {
+    Route::get('/currency', [CurrencyController::class, 'index'])->name('currency.index');
+    Route::get('/currency/create', [CurrencyController::class, 'show'])->name('currency.create');
+    Route::post('/currency/create', [CurrencyController::class, 'store'])->name('currency.store');
+    Route::get('/currency/{id}/edit', [CurrencyController::class, 'edit'])->name('currency.edit');
+    Route::put('/currency/{id}', [CurrencyController::class, 'update'])->name('currency.update');
+    Route::delete('/currency/{id}', [CurrencyController::class, 'destroy'])->name('currency.destroy');
+});
+
+
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
-
 Route::get('/admins/login', [AdminController::class, "login"])->name("adminLogin");
-Route::post('/admins/login',[AdminController::class, 'stafflogin']);
+Route::post('/admins/login', [AdminController::class, 'stafflogin']);
 
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
-// Route::group(['prefix' => 'admins'], function(){
