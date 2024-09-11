@@ -23,7 +23,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Currency Table</h3>
-                                    <a href="{{ route('currency.show') }}" class="btn btn-info float-right ms-5"
+                                    <a href="{{ route('currency.create') }}" class="btn btn-info float-right ms-5"
                                         type="button">Add
                                         Menu</a>
                                 </div>
@@ -115,7 +115,7 @@
     <script>
         function confirmDelete(id) {
             let form = document.getElementById('deleteForm');
-            form.action = '/currency/' + id;
+            form.action = '/admins/currency/' + id;
 
             $('#deleteModal').modal('show');
         }
