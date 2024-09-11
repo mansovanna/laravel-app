@@ -48,23 +48,7 @@ class AdminController extends Controller
         }
         return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
     }
-    public function logout(){
-        Auth::logout();
-    // public function adminRegister(Request $request){
-    //     $data = $request->validate([
-    //         'name' => 'required',
-    //         'email' => 'required|email',
-    //         'password' => 'required|min:6'
-    //     ]);
 
-    //     $compare = $request->except(["_token"]);
-
-    //     if (auth()->attempt($compare)) {
-    //         // Find information of user and create session id to cookie on the browser
-    //         return redirect()->route('admin');
-    //     }
-    //     return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
-    // }
     public function logout()
     {
         auth()->logout();
