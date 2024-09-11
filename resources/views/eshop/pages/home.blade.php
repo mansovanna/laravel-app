@@ -286,7 +286,7 @@
                                             </svg>
                                         </button>
 
-                                        {{--  --}}
+                                        // {{--  --}}
                                         <button
                                             class="p-2 rounded-full bg-danger text-white hover:bg-sceondary ease-linear duration-150">
                                             <svg class="text-white w-5" xmlns="http://www.w3.org/2000/svg"
@@ -296,9 +296,9 @@
                                                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                             </svg>
                                         </button>
-                                    </div>
-                                </div>
-                                {{-- End Bloci Icon --}}
+                                    // </div>
+                                // </div>
+                                // {{-- End Bloci Icon --}}
 
                                 <div class=" p-5 text-left w-full ">
                                     <h3 class="text-lg font-medium  text-left w-full text-gray-600">{{ $product->name }}
