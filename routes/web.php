@@ -63,13 +63,10 @@ Route::middleware('auth')->group(function () {
 // -------------
 Route::get('/eshop', function (){
 
-<<<<<<< HEAD
 
 
 
 
-=======
->>>>>>> parent of 4039069 (Product)
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
     return view('eshop.pages.home', compact('menus'));
 });
@@ -81,8 +78,6 @@ Route::get('/admins', [AdminController::class, "index"])->name("admin")->middlew
 Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
 Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
 Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
-<<<<<<< HEAD
-=======
 Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
 Route::get('/admins/menu/{id}/update', [MenuController::class, 'edit'])->name('menu.edit')->middleware(Nologin::class);
 Route::put('/admins/menu/{id}/update', [MenuController::class, 'update'])->name('menu.update')->middleware(Nologin::class);
@@ -90,7 +85,6 @@ Route::put('/admins/menu/{id}/update', [MenuController::class, 'update'])->name(
 
 
 
->>>>>>> parent of 4039069 (Product)
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
 
