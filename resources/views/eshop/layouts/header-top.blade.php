@@ -227,3 +227,51 @@
         transform: translateY(-30px);
     }
 </style>
+<<<<<<< HEAD
+=======
+
+{{-- --------------- --}}
+
+
+<script>
+    // Functions defined globally
+    function clickHere() {
+        const aRRow = document.getElementById('arrows');
+        const overlay = document.getElementById('overlay');
+        if (aRRow && overlay) {
+            aRRow.classList.toggle('rotate-180');
+            overlay.classList.toggle('hidden');
+        }
+    }
+
+    function clickHeres() {
+        const aRRows = document.getElementById('arrowss');
+        const overlays = document.getElementById('overlays');
+        if (aRRows && overlays) {
+            aRRows.classList.toggle('rotate-180');
+            overlays.classList.toggle('hidden');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const button = document.getElementById('button');
+        const buttons = document.getElementById('buttons');
+        const overlay = document.getElementById('overlay');
+        const overlays = document.getElementById('overlays');
+        const aRRow = document.getElementById('arrows');
+        const aRRows = document.getElementById('arrowss');
+
+        document.addEventListener('click', (e) => {
+            if (overlay && button && !overlay.contains(e.target) && !button.contains(e.target)) {
+                overlay.classList.add('hidden');
+                aRRow.classList.remove('rotate-180');
+            }
+
+            if (overlays && buttons && !overlays.contains(e.target) && !buttons.contains(e.target)) {
+                overlays.classList.add('hidden');
+                aRRows.classList.remove('rotate-180');
+            }
+        });
+    });
+</script>
+>>>>>>> parent of 4039069 (Product)
