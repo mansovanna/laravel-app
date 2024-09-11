@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable(); // Allow name to be optional
             $table->string('email')->unique();
             $table->string('profile_image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
@@ -23,7 +23,8 @@ return new class extends Migration
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id(); // Primary key for better handling
+            $table->string('email');
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
