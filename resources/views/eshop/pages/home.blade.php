@@ -18,7 +18,7 @@
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                 </svg>
 
-                {{-- End Icon --}}
+                        {{-- End Icon --}}
 
                 {{-- Icon arrow --}}
                 <svg class="w-4 h-4 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="#000000" fill="none">
@@ -27,114 +27,113 @@
                 </svg>
                 {{-- End Icon Arrow --}}
 
-                {{--  --}}
-                <p class="text-base">Name</p>
-                {{--  --}}
-            </div>
-
-
-            <div class="w-full flex flex-row justify-between  items-start gap-2">
-                {{-- Block of Left --}}
-                <div class="w-4/12 p-4  boxShadow bg-white mb-4">
-                    <h1 class="uppercase font-medium text-xl">categories</h1>
-
-                    {{-- Women --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-                            <p>Women</p>
-                        </label>
-                        <p>(16)</p>
+                        {{-- --}}
+                        <p class="text-base">Name</p>
+                        {{-- --}}
                     </div>
 
-                    {{-- End Women --}}
+                    <div class="w-full flex flex-row justify-between  items-start gap-2">
+                        {{-- Block of Left --}}
+                        <div class="w-4/12 p-4  boxShadow bg-white mb-4">
+                            <h1 class="uppercase font-medium text-xl">categories</h1>
 
-                    {{-- Men --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
-                            <p>Men</p>
-                        </label>
-                        <p>(9)</p>
-                    </div>
-                    {{-- End Men --}}
+                            {{-- Women --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
+                                    <p>Women</p>
+                                </label>
+                                <p>(16)</p>
+                            </div>
 
+                            {{-- End Women --}}
 
-                    {{-- Shoes --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
-                            <p>Shoes</p>
-                        </label>
-                        <p>(19)</p>
-                    </div>
-                    {{-- End Shoes --}}
-
-                    {{-- Computer --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
-                            <p>Computer</p>
-                        </label>
-                        <p>(35)</p>
-                    </div>
-                    {{-- End Computer --}}
-
-                    <hr class="my-4">
-
-                    {{--  --}}
-                    <h1 class="uppercase font-medium text-xl">Brands</h1>
-
-                    {{-- Adidas --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-                            <p>Adidas</p>
-                        </label>
-                        <p>(16)</p>
-                    </div>
-
-                    {{-- End Adidas --}}
-
-                    {{-- Nike --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-                            <p>Nike</p>
-                        </label>
-                        <p>(16)</p>
-                    </div>
-
-                    {{-- End Nike --}}
-
-                    {{-- Easy --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-                            <p>Easy</p>
-                        </label>
-                        <p>(16)</p>
-                    </div>
-
-                    {{-- End Easy --}}
+                            {{-- Men --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
+                                    <p>Men</p>
+                                </label>
+                                <p>(9)</p>
+                            </div>
+                            {{-- End Men --}}
 
 
-                    {{-- Arong --}}
-                    <div class="mt-2 flex flex-row justify-between items-center">
-                        <label class="peer flex flex-row gap-4 cursor-pointer">
-                            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-                            <p>Arong</p>
-                        </label>
-                        <p>(16)</p>
-                    </div>
+                            {{-- Shoes --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
+                                    <p>Shoes</p>
+                                </label>
+                                <p>(19)</p>
+                            </div>
+                            {{-- End Shoes --}}
 
-                    {{-- End Arong --}}
+                            {{-- Computer --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
+                                    <p>Computer</p>
+                                </label>
+                                <p>(35)</p>
+                            </div>
+                            {{-- End Computer --}}
+
+                            <hr class="my-4">
+
+                            {{-- --}}
+                            <h1 class="uppercase font-medium text-xl">Brands</h1>
+
+                            {{-- Adidas --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
+                                    <p>Adidas</p>
+                                </label>
+                                <p>(16)</p>
+                            </div>
+
+                            {{-- End Adidas --}}
+
+                            {{-- Nike --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
+                                    <p>Nike</p>
+                                </label>
+                                <p>(16)</p>
+                            </div>
+
+                            {{-- End Nike --}}
+
+                            {{-- Easy --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
+                                    <p>Easy</p>
+                                </label>
+                                <p>(16)</p>
+                            </div>
+
+                            {{-- End Easy --}}
 
 
-                    <hr class="my-4">
+                            {{-- Arong --}}
+                            <div class="mt-2 flex flex-row justify-between items-center">
+                                <label class="peer flex flex-row gap-4 cursor-pointer">
+                                    <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
+                                    <p>Arong</p>
+                                </label>
+                                <p>(16)</p>
+                            </div>
 
-                    {{--  --}}
-                    <h1 class="uppercase font-medium text-xl">Price</h1>
+                            {{-- End Arong --}}
+
+
+                            <hr class="my-4">
+
+                            {{-- --}}
+                            <h1 class="uppercase font-medium text-xl">Price</h1>
 
                     {{-- Price --}}
                     <div class="mt-4">
@@ -261,12 +260,13 @@
                                         src="{{ asset('images/'.$product->image) }}"
                                         alt="">
                                 </div>
+                            </div>
+                            {{-- End Price --}}
 
-                                {{-- Block Icon --}}
-                                <div
-                                    class="children-1 py-8  h-[6cm] w-full rounded-t-md box flex flex-row justify-center items-center absolute top-0">
-                                    <div class="flex flex-row gap-3">
-                                        {{--  --}}
+                            <script>
+                                const slider = document.getElementById('slider');
+                                const minPrice = document.getElementById('minPrice');
+                                const maxPrice = document.getElementById('maxPrice');
 
                                         <style>
                                             .box {
@@ -355,7 +355,12 @@
                                     </div>
 
 
-                                </div>
+                                    <svg id="reteteIcon" class="w-4 text-secondary  duration-300 ease-linear"
+                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                                        <path d="M18 9.00005C18 9.00005 13.5811 15 12 15C10.4188 15 6 9 6 9"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
 
                                 {{--  --}}
                                 {{-- Buttn Add to cart --}}
@@ -366,12 +371,8 @@
                             </div>
                         @endforeach
                     </div>
-
                 </div>
-                {{-- End Block of Riht --}}
             </div>
-        </div>
-    </div>
 
     {{-- Pop UP Detail --}}
     <div id="overlay"
