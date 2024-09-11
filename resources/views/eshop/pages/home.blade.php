@@ -595,7 +595,7 @@
                                                 </ul>
                                             </button>
                                             <script type="text/javascript">
-                                                
+
                                                 function sortByPrice(orderDir = 'asc'){
                                                    window.location.href="{{URL::to('/')}}/eshop?orderDir="+orderDir
 
