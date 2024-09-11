@@ -144,7 +144,7 @@ Route::prefix('admins')->group(function () {
 
 
 Route::get('/admins/logout', [AdminController::class, "logout"])->name("adminlogout")->middleware(Nologin::class);
-Route::get('/admins/login', [AdminController::class, "login"])->name("adminLogin");
+Route::get('/admins/login', [AdminController::class, "login"])->name("adminlogin");
 Route::post('/admins/login', [AdminController::class, 'stafflogin']);
 
 Route::get('/admins/register', [AdminController::class, "register"]);
