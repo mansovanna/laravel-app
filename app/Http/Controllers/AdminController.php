@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -42,14 +42,14 @@ class AdminController extends Controller
 
         $compare = $request->except(["_token"]);
 
-        if (auth()->attempt($compare)) {
+        if (Auth::attempt($compare)) {
             // Find information of user and create session id to cookie on the browser
-            return redirect()->route('admin');
+            return redirect()->route('adminLogin');
         }
         return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
     }
     public function logout(){
-        auth()->logout();
+        Auth::logout();
         return redirect()->route('adminlogin');
     }
 }

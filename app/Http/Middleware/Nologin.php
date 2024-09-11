@@ -15,9 +15,11 @@ class Nologin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check()) {
-            return redirect()->route('adminLogin')->withErrors(['message' => 'You must be logged in to access this page.']);
+        if (auth()->check()) {
+            
+            return redirect()->route('admin')->with('message', 'You are already logged in.');
         }
+       
         return $next($request);
     }
 }
