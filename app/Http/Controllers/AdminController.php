@@ -8,8 +8,7 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         return view("AdminLTE.index");
     }
 
@@ -22,23 +21,23 @@ class AdminController extends Controller
     {
         return view("AdminLTE.pages.examples.register");
     }
-    public function adminRegister(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|unique:users,name',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|max:10|confirmed',
-        ]);
-        $data = $request->all();
-        User::create($data);
-        return redirect()->route('adminLogin');
-    }
+    // public function adminRegister(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|unique:users,name',
+    //         'email' => 'required|email|unique:users,email',
+    //         'password' => 'required|min:6|max:10|confirmed',
+    //     ]);
+    //     $data = $request->all();
+    //     User::create($data);
+    //     return redirect()->route('adminLogin');
+    // }
 
-    public function stafflogin(Request $request)
-    {
+    public function adminRegister(Request $request){
         $data = $request->validate([
+            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:6|max:10',
+            'password' => 'required|min:6'
         ]);
 
         $compare = $request->except(["_token"]);

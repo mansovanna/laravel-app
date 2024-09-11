@@ -22,6 +22,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 // Routes accessible only by guests (not logged in)
 Route::middleware('guest')->group(function () {
     Route::get('/login', [Authuntication::class, 'loginForm'])->name('login');
