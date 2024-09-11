@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view("AdminLTE.index");
     }
 
@@ -21,34 +22,35 @@ class AdminController extends Controller
     {
         return view("AdminLTE.pages.examples.register");
     }
-    // public function adminRegister(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|unique:users,name',
-    //         'email' => 'required|email|unique:users,email',
-    //         'password' => 'required|min:6|max:10|confirmed',
-    //     ]);
-    //     $data = $request->all();
-    //     User::create($data);
-    //     return redirect()->route('adminLogin');
-    // }
-
-    public function adminRegister(Request $request){
+    public function adminRegister(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:users,name',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|max:10|confirmed',
+        ]);
+        $data = $request->all();
+        User::create($data);
+        return redirect()->route('adminlogin');
+    }
+    public function stafflogin(Request $request)
+    {
         $data = $request->validate([
-            'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6|max:10',
         ]);
 
         $compare = $request->except(["_token"]);
 
-        if (auth()->attempt($compare)) {
+        if (Auth::attempt($compare)) {
             // Find information of user and create session id to cookie on the browser
-            return redirect()->route('admin');
+            return redirect()->route('adminLogin');
         }
         return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
     }
-    public function logout(){
+
+    public function logout()
+    {
         auth()->logout();
         return redirect()->route('adminlogin');
     }
