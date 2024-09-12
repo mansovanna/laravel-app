@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const listItems = document.getElementById('list-Items');
+
+
+    //
     const shortList = document.getElementById('shortlist');
     const shortNoneList = document.getElementById('shortnonlist');
-    const changesItems = document.getElementById('changesItems');
     // Handle click event for "Short By List"
     shortList.addEventListener('click', () => {
 
         localStorage.setItem('isShortList', 'false');
         updateListItems();
+
+        // console.log("Short List" + ' '+localStorage.getItem('isShortList'))
     });
 
     // Handle click event for "Short None List"
@@ -15,6 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem('isShortList', 'true');
         updateListItems(); // Update the list items display
+        console.log("Short List None" + ' '+localStorage.getItem('isShortList'))
+
     });
 
     function updateListItems() {
@@ -22,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isShortList === null || isShortList === 'false') {
             listItems.classList.remove('grid-rows-1');
             listItems.classList.add('grid-cols-3');
+
 
             //
             shortList.classList.remove('bg-white');
@@ -36,16 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             shortNoneList.classList.remove('text-white');
             shortNoneList.classList.add('text-sceondary');
-
-
-            //
-            // changesItems.classList.remove('flex-row');
-            // changesItems.classList.add('flex-col');
-
-
         } else {
             listItems.classList.remove('grid-cols-3');
             listItems.classList.add('grid-rows-1');
+
 
             shortList.classList.remove('bg-danger');
             shortList.classList.add('bg-white');
@@ -60,13 +61,11 @@ document.addEventListener('DOMContentLoaded', () => {
             shortNoneList.classList.remove('text-sceondary');
             shortNoneList.classList.add('text-white');
 
-            //
-
-            // changesItems.classList.remove('flex-col');
-            // changesItems.classList.add('flex-row');
         }
     }
 
     // Initialize the list items display based on current localStorage value
     updateListItems();
 });
+
+

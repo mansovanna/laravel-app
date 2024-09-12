@@ -6,4 +6,5 @@ import './details';
 import "./auth/password";
 // Block Dada
 import './scroll';
-import './ListConten'
+import './ListConten';
+import './default_shorting';

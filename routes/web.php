@@ -75,6 +75,13 @@ Route::get('/eshop', function () {
     $languages = language::get();
 
     $products = Product::with('category')->get();
+    $orderDir = "asc";
+
+    if(request()->get('orderDir')){
+        $orderDir = request()->get('orderDir');
+    }
+
+    $products = Product::with('category')->orderBy('price',$orderDir)->get();
     $currencies = Currency::get();
 
     return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies'));

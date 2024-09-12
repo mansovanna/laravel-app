@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>E-Shop</title>
     @vite('resources/css/app.css')
+    @vite('resources/css/main.css')
 
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap"
@@ -14,7 +15,7 @@
 
 </head>
 
-<body class="font-system min-h-screen flex flex-col box-border">
+<body class="font-system w-full">
 
     {{-- ScrollTop --}}
     <button id="scrollTop"
@@ -25,7 +26,7 @@
                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
     </button>
-    {{-- * --}}
+    {{-- End ScrollTop --}}
 
 
     @include('eshop.layouts.header-top')
@@ -33,11 +34,13 @@
     @include('eshop.layouts.header-bottom')
 
 
-    <div class="container mx-auto flex-grow mb-4">
+    <div class="container mx-auto flex-grow mb-3">
         @yield('content')
     </div>
 
+
     @include('eshop.layouts.footer')
+
 
     @vite('resources/js/app.js')
 

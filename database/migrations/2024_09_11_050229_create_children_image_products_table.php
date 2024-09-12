@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('children_image_products', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('image_url'); 
-            $table->foreignId('product_id')->constrained()->onDelete('cascade'); 
-            $table->timestamps(); 
+            $table->id();
+            $table->string('image_url');
+            $table->foreignId('product_id')->constrained();
+            $table->timestamps();
+            // ->onDelete('cascade') useThe delete all rela..
         });
     }
 
