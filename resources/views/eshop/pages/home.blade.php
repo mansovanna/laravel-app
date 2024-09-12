@@ -169,8 +169,7 @@
                 </div>
                 {{-- End Block  Left --}}
 
-                {{-- ====================================================================================== --}}
-
+                
                 {{-- Block of Riht --}}
                 <div class="w-full    col-span-5 ">
                     {{-- Block Header of Content --}}
@@ -197,8 +196,8 @@
                             <ul id="listSet"
                                 class="text-left bg-white boxShadows rounded-md border absolute top-8 left-0 right-0 hidden opacity-0 transform transition-all duration-300 ease-in-out scale-95 translate-y-4">
                                 <li class="p-2 px-4 hover:bg-slate-100 font-medium text-sm">Default sorting</li>
-                                <li class="p-2 px-4 hover:bg-slate-100  text-sm" onclick="sortByPrice('ASC')">Price low-high</li>
-                                <li class="p-2 px-4 hover:bg-slate-100  text-sm" onclick="sortByPrice('DESC')">Price high-low</li>
+                                <li class="p-2 px-4 hover:bg-slate-100  text-sm">Price low-high</li>
+                                <li class="p-2 px-4 hover:bg-slate-100  text-sm">Price high-low</li>
                             </ul>
                         </button>
 
@@ -591,8 +590,8 @@
                                                     class="text-left bg-white boxShadows rounded-md border absolute top-8 left-0 right-0 hidden opacity-0 transform transition-all duration-300 ease-linear scale-95 translate-y-4">
                                                     <li class="p-2 px-4 hover:bg-slate-100 font-medium text-sm">Default
                                                         sorting</li>
-                                                    <li class="p-2 px-4 hover:bg-slate-100  text-sm" onclick="sortByPrice('asc')">Price low-high</li>
-                                                    <li class="p-2 px-4 hover:bg-slate-100  text-sm" onclick="sortByPrice('desc')">Price high-low</li>
+                                                    <li class="p-2 px-4 hover:bg-slate-100  text-sm">Price low-high</li>
+                                                    <li class="p-2 px-4 hover:bg-slate-100  text-sm">Price high-low</li>
                                                 </ul>
                                             </button>
                                             <script type="text/javascript">
