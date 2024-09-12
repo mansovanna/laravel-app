@@ -31,8 +31,9 @@ class AdminController extends Controller
         ]);
         $data = $request->all();
         User::create($data);
-        return redirect()->route('adminlogin');
+        return redirect()->route('adminLogin'); // Use the correct route name
     }
+
     public function stafflogin(Request $request)
     {
         $data = $request->validate([
@@ -40,18 +41,17 @@ class AdminController extends Controller
             'password' => 'required|min:6|max:10',
         ]);
 
-        $compare = $request->except(["_token"]);
+        $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($compare)) {
-            // Find information of user and create session id to cookie on the browser
-            return redirect()->route('adminLogin');
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('adminLogin'); // Use the correct route name
         }
-        return redirect()->back()->withErrors(['message' => 'Invalid credential', "dataEmail" => $data["email"]]);
+        return redirect()->back()->withErrors(['message' => 'Invalid credentials', 'dataEmail' => $data['email']]);
     }
 
     public function logout()
     {
-        auth()->logout();
-        return redirect()->route('adminlogin');
+        Auth::logout();
+        return redirect()->route('adminLogin'); // Use the correct route name
     }
 }

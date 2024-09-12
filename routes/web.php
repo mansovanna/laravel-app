@@ -73,8 +73,12 @@ Route::get('/eshop', function () {
 
     $menus = Menu::with(['children'])->where("parent_id", null)->get();
     $languages = language::get();
-
-    $products = Product::with('category')->get();
+    $orderDir = "AS";
+    if (request()->get(key: 'orderDir')) {
+        $orderDir = request()->get('orderDir');
+    }
+    //return $orderDir;
+    $products = Product::with('category')->orderBy('price', $orderDir)->get();
     $currencies = Currency::get();
 
     return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies'));
@@ -112,11 +116,11 @@ Route::prefix('admins')->group(function () {
     Route::post('/child/create', [ChildrenImageProductController::class, 'store'])->name('child.product.store');
     Route::get('/child/{id}/update', [ChildrenImageProductController::class, 'edit'])->name('child.product.edit');
     Route::put('/child/{id}/update', [ChildrenImageProductController::class, 'update'])->name('child.product.update');
-    Route::delete('/child/{id}/update', [ChildrenImageProductController::class, 'distroy'])->name('child.product.distroy');
+    Route::delete('/child/{id}/delete', [ChildrenImageProductController::class, 'destroy'])->name('child.product.destroy');
     // ----------------------------
     // End Block of Product for App
 
-// --------------------------------------
+    // --------------------------------------
     // Block Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'show'])->name('category.show');
