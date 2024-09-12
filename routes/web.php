@@ -80,12 +80,6 @@ Route::get('/eshop', function () {
     if(request()->get('orderDir')){
         $orderDir = request()->get('orderDir');
     }
-
-    $products = Product::with('category')->orderBy('price',$orderDir)->get();
-    $orderDir = "AS";
-    if (request()->get(key: 'orderDir')) {
-        $orderDir = request()->get('orderDir');
-    }
     //return $orderDir;
     $products = Product::with('category')->orderBy('price', $orderDir)->get();
     $currencies = Currency::get();
