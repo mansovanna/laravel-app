@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChildrenImageProductController;
 use App\Models\Product;
 use App\Models\Currency;
+use App\Models\Brand;
 
 Route::get('/', function () {
     return view('welcome');
@@ -76,6 +77,7 @@ Route::get('/eshop', function () {
     $languages = language::get();
 
     $products = Product::with('category')->get();
+    $brands = Brand::all();
     $orderDir = "asc";
 
     if(request()->get('orderDir')){
@@ -85,7 +87,7 @@ Route::get('/eshop', function () {
     $products = Product::with('category')->orderBy('price', $orderDir)->get();
     $currencies = Currency::get();
 
-    return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies'));
+    return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies', 'brands'));
 });
 
 

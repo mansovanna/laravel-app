@@ -48,51 +48,22 @@
     {{-- --}}
     <h1 class="uppercase font-medium text-xl">Brands</h1>
 
-    {{-- Adidas --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-            <p>Adidas</p>
-        </label>
-        <p>(16)</p>
-    </div>
-
-    {{-- End Adidas --}}
-
-    {{-- Nike --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-            <p>Nike</p>
-        </label>
-        <p>(16)</p>
-    </div>
-
-    {{-- End Nike --}}
-
-    {{-- Easy --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-            <p>Easy</p>
-        </label>
-        <p>(16)</p>
-    </div>
-
-    {{-- End Easy --}}
-
-
-    {{-- Arong --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-            <p>Arong</p>
-        </label>
-        <p>(16)</p>
-    </div>
-
-    {{-- End Arong --}}
-
+    @forelse ($brands as $brand)
+        <div class="mt-2 flex flex-row justify-between items-center">
+            <label class="peer flex flex-row gap-4 cursor-pointer">
+                <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
+                <p>{{ $brand->name}}</p>
+            </label>
+            <p>(16)</p>
+        </div>
+    @empty
+        <div class="mt-2 flex flex-row justify-between items-center">
+            <label class="peer flex flex-row gap-4 cursor-pointer">
+                <p>No Brand found</p>
+            </label>
+            <p>(16)</p>
+        </div>
+    @endforelse
 
     <hr class="my-4">
 
@@ -113,14 +84,14 @@
 
     <script>
         const slider = document.getElementById('slider');
-            const minPrice = document.getElementById('minPrice');
-            const maxPrice = document.getElementById('maxPrice');
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
 
-            slider.addEventListener('input', () => {
-                const value = slider.value;
-                minPrice.textContent = `$${value}`;
-                maxPrice.textContent = `$${Math.max(50, value + 50)}`;
-            });
+        slider.addEventListener('input', () => {
+            const value = slider.value;
+            minPrice.textContent = `$${value}`;
+            maxPrice.textContent = `$${Math.max(50, value + 50)}`;
+        });
     </script>
 
 
