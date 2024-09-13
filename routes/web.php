@@ -6,6 +6,7 @@ use App\Http\Middleware\Nologin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\MenuController;
 use App\Models\language;
 use App\Models\Menu;
@@ -132,6 +133,15 @@ Route::prefix('admins')->group(function () {
     Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{id}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
     // End Block Category
+    
+    //Block Brand 
+    Route::get('/brand', [BrandController::class, 'index'])->name('brand.index');
+    Route::get('/brand/create', [BrandController::class, 'show'])->name('brand.show');
+    Route::post('/brand/create', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/{id}/update', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::put('/brand/{id}/update', [BrandController::class, 'update'])->name('brand.update');
+    Route::delete('/brand/{id}/destroy', [BrandController::class, 'destroy'])->name('brand.destroy');
+    //End Block Brand
 
     // Currency of App
 

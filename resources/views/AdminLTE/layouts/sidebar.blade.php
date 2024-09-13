@@ -72,6 +72,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('brand.index') }}"
+                                class="nav-link {{ $currentRoute == 'brand.index' ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Brand</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('currency.index') }}"
                                 class="nav-link {{ $currentRoute == 'currency.index' ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
