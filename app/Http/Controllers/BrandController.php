@@ -76,18 +76,7 @@ class BrandController extends Controller
     }
 
 
-    // public function destroy($id)
-    // {
-    //     $data = Brand::find($id);
 
-    //     if (!$data) {
-    //         return redirect()->back()->with('error', 'Not found data!!');
-    //     }
-
-    //     $data->delete();
-
-    //     return redirect()->route('brand.index')->with('success', 'Category deleted successfully.' . ' ' . $data->name);
-    // }
     public function destroy($id)
     {
         $data = Brand::find($id);

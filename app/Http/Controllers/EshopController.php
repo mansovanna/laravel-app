@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Currency;
@@ -15,6 +16,7 @@ class EshopController extends Controller
     {
         $menus = Menu::with(['children'])->where("parent_id", null)->get();
         $languages = Language::get();
+        $brands = Brand::get();
 
         $products = Product::with('category')->get();
         $orderDir = "asc";
@@ -27,7 +29,7 @@ class EshopController extends Controller
         $products = Product::with('category')->orderBy('price', $orderDir)->get();
         $currencies = Currency::get();
 
-        return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies'));
+        return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies', 'brands'));
     }
 
 }
