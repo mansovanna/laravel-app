@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\Currency;
 use App\Models\Product;
 use App\Models\Language;
+use App\Models\Brand;
 class EshopController extends Controller
 {
     //
@@ -18,16 +19,17 @@ class EshopController extends Controller
 
         $products = Product::with('category')->get();
         $orderDir = "asc";
-
+        
+        $brands = Brand::get();
         if(request()->get('orderDir')){
             $orderDir = request()->get('orderDir');
         }
-
+        // return $brands;
 
         $products = Product::with('category')->orderBy('price', $orderDir)->get();
         $currencies = Currency::get();
 
-        return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies'));
+        return view('eshop.pages.home', compact('menus', 'products', 'languages', 'currencies', 'brands'));
     }
 
 }
