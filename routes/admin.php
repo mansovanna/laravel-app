@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\languageController;
@@ -11,6 +12,15 @@ use App\Http\Controllers\ChildrenImageProductController;
 
 
 Route::prefix('admins')->group(function () {
+    
+    //Block Brand 
+    Route::get('/brand', [BrandController::class, 'index'])->name('brand.index');
+    Route::get('/brand/create', [BrandController::class, 'show'])->name('brand.show');
+    Route::post('/brand/create', [BrandController::class, 'store'])->name('brand.store');
+    Route::get('/brand/{id}/update', [BrandController::class, 'edit'])->name('brand.edit');
+    Route::put('/brand/{id}/update', [BrandController::class, 'update'])->name('brand.update');
+    Route::delete('/brand/{id}/destroy', [BrandController::class, 'destroy'])->name('brand.destroy');
+    //End Block Brand
 
 // ------------- Blolck Dashboard Admin LTE
 Route::get('/', [AdminController::class, "index"])->name("admin");
@@ -78,3 +88,4 @@ Route::post('/admins/login', [AdminController::class, 'index'])->name('admin.log
 
 Route::get('/admins/register', [AdminController::class, "register"]);
 Route::post('/admins/register', [AdminController::class, "adminRegister"])->name("adminRegister");
+
