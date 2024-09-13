@@ -15,21 +15,19 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Main content -->
-
-                <section class="content pt-2">
-                    @if (session('success'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-2"
-                            role="alert" style="margin: 0px 10px">
-                            <strong class="font-bold">Success!</strong>
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                        </div>
-                    @endif
-
+                <section class="content" style="padding: 8px 8px">
                     @if (session('error'))
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2"
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-2 "
                             role="alert" style="margin: 0px 10px">
                             <strong class="font-bold">Error!</strong>
                             <span class="block sm:inline">{{ session('error') }}</span>
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-2 "
+                            role="alert" style="margin: 0px 10px">
+                            <strong class="font-bold">Success!</strong>
+                            <span class="block sm:inline">{{ session('success') }}</span>
                         </div>
                     @endif
 
@@ -38,9 +36,9 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Products</h3>
-                                        <a href="{{ route('product.create') }}" class="btn btn-info float-right ms-5"
-                                            type="button">Add Product</a>
+                                        <h3 class="card-title">Brand</h3>
+                                        <a href="{{ route('brand.show') }}" class="btn btn-info float-right ms-5"
+                                            type="button">Add Brand</a>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
@@ -48,33 +46,21 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Product Image</th>
-                                                    <th>Name</th>
-                                                    <th>Brand</th>
-                                                    <th>Category</th>
-                                                    <th>Quantity</th>
-                                                    <th>Discount</th>
-                                                    <th>Price</th>
+                                                    <th>Brand Name</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($products as $index => $product)
+                                                @forelse ($datas as  $data)
                                                     <tr>
-                                                        <td>{{ $index + 1 }}</td>
-                                                        <td><img src="{{ asset('images/' . $product->image) }}"
-                                                                alt="{{ $product->name }}" width="50"></td>
-                                                        <td>{{ $product->name }}</td>
-                                                        <td>{{ $product->brand->name ?? 'No Brand' }}</td> <!-- Description -->
-                                                        <td>{{ $product->category->name ?? 'No Category' }}</td> <!-- Category -->
-                                                        <td>{{ $product->quantity ?? 0 }}</td> <!-- Quantity -->
-                                                        <td>{{ $product->discount }}$</td>
-                                                        <td>{{ $product->price }}$</td>
-                                                        <td class="flex flex-row text-center gap-3">
+                                                        <td>{{ $data->id }}</td>
+                                                        <td>{{ $data->name }}</td>
+
+                                                        <td class="flex flex-row text-center gap-3 justify-start">
                                                             {{-- Block Update --}}
-                                                            <a href="{{ route('product.edit', $product->id) }}"
+                                                            <a href="{{ route('brand.edit',$data->id) }}"
                                                                 class="p-1 bg-blue-500 rounded-full text-white hover:bg-blue-400 active:bg-indigo-500">
-                                                                <svg class="size-6" xmlns="http://www.w3.org/2000/svg"
+                                                                <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
                                                                     viewBox="0 0 24 24" fill="none">
                                                                     <path
                                                                         d="M16.2141 4.98239L17.6158 3.58063C18.39 2.80646 19.6452 2.80646 20.4194 3.58063C21.1935 4.3548 21.1935 5.60998 20.4194 6.38415L19.0176 7.78591M16.2141 4.98239L10.9802 10.2163C9.93493 11.2616 9.41226 11.7842 9.05637 12.4211C8.70047 13.058 8.3424 14.5619 8 16C9.43809 15.6576 10.942 15.2995 11.5789 14.9436C12.2158 14.5877 12.7384 14.0651 13.7837 13.0198L19.0176 7.78591M16.2141 4.98239L19.0176 7.78591"
@@ -90,12 +76,12 @@
 
                                                             {{-- Block Delete --}}
                                                             <form method="POST"
-                                                                action="{{ route('product.destroy', $product->id) }}">
+                                                                action="{{ route('brand.destroy', $data->id) }}">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button
                                                                     class="p-1 bg-danger rounded-full text-white hover:bg-red-400 active:bg-red-500">
-                                                                    <svg class="size-6" xmlns="http://www.w3.org/2000/svg"
+                                                                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg"
                                                                         viewBox="0 0 24 24" fill="none">
                                                                         <path
                                                                             d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
@@ -113,7 +99,7 @@
                                                     </tr>
                                                 @empty
                                                     <tr>
-                                                        <td colspan="9">No products found.</td>
+                                                        <td colspan="6">No brand found.</td>
                                                     </tr>
                                                 @endforelse
                                             </tbody>
