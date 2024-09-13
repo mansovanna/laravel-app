@@ -107,6 +107,21 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
+                                            <!-- Brand -->
+                                            <div class="form-group">
+                                                <label for="brand_id">Brand</label>
+                                                <select class="form-control" id="brand_id" name="brand_id" required>
+                                                    <option value="">Select Brand</option>
+                                                    @foreach($brands as $brand)
+                                                        <option value="{{ $brand->id }}" {{ old('brand_id', $product->brand_id) == $brand->id ? 'selected' : '' }}>
+                                                            {{ $brand->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('brand_id')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
 
                                             <!-- Quantity -->
                                             <div class="form-group">

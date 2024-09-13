@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\rc;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ProductController extends Controller
         //
 
 
-        $products =  Product::with('category')->get();
+        $products =  Product::with(['category','brand'])->get();
 
         return view('AdminLTE.products', compact('products'));
     }
@@ -27,7 +28,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('AdminLTE.pages.products.create', compact('categories'));
+        $brands = Brand::all();
+        return view('AdminLTE.pages.products.create', compact('categories', 'brands'));
     }
 
 
@@ -38,10 +40,10 @@ class ProductController extends Controller
             'image' => 'required',
             'price' => 'required',
             'category_id' => 'required',
+            'brand_id' => 'required',
             'quantity' => 'required',
             'description' => 'nullable',
         ]);
-
 
 
         if ($request->hasFile('image')) {
@@ -57,6 +59,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $request->discount ?? 0,
             'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id,
             'quantity' => $request->quantity,
             'description' => $request->description,
             'image' => $imageName,
@@ -86,8 +89,9 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         $categories = Category::all();
+        $brands = Brand::all();
 
-        return view('AdminLTE.pages.products.update', compact('product', 'categories'));
+        return view('AdminLTE.pages.products.update', compact('product', 'categories', 'brands'));
     }
 
     /**
@@ -107,6 +111,7 @@ class ProductController extends Controller
             'discount' => 'nullable|numeric',
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'category_id' => 'required',
+            'brand_id' => 'required',
             'quantity' => 'required',
             'description' => 'nullable',
         ]);
@@ -136,6 +141,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'discount' => $request->discount ?? 0,
             'category_id' => $request->category_id,
+            'brand_id' => $request->brand_id,
             'quantity' => $request->quantity,
             'description' => $request->description,
             'image' => $filename,

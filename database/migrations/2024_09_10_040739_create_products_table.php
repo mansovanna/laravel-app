@@ -19,11 +19,14 @@ return new class extends Migration
             $table->string('discount')->nullable(true);
             $table->string('price');
             $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('brand_id');
             $table->integer('quantity');
             $table->timestamps();
 
             // Foreign key constraint
             $table->foreign('category_id')->references('id')->on('categories');
+            // Foreign key constraint
+            $table->foreign('brand_id')->references('id')->on('brands');
         });
     }
 

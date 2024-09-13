@@ -50,7 +50,7 @@
                                                     <th>No.</th>
                                                     <th>Product Image</th>
                                                     <th>Name</th>
-                                                    <th>Description</th>
+                                                    <th>Brand</th>
                                                     <th>Category</th>
                                                     <th>Quantity</th>
                                                     <th>Discount</th>
@@ -65,7 +65,7 @@
                                                         <td><img src="{{ asset('images/' . $product->image) }}"
                                                                 alt="{{ $product->name }}" width="50"></td>
                                                         <td>{{ $product->name }}</td>
-                                                        <td>{{ $product->description ?? 'No Description' }}</td> <!-- Description -->
+                                                        <td>{{ $product->brand->name ?? 'No Brand' }}</td> <!-- Description -->
                                                         <td>{{ $product->category->name ?? 'No Category' }}</td> <!-- Category -->
                                                         <td>{{ $product->quantity ?? 0 }}</td> <!-- Quantity -->
                                                         <td>{{ $product->discount }}$</td>
