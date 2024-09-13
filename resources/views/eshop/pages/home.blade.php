@@ -35,7 +35,7 @@
 
         <div class="w-full flex flex-row justify-between  items-start gap-4">
             {{-- Block of Left --}}
-            @include('eshop.pages.home.left')
+            @include('eshop.pages.home.sidebar')
             {{-- End Block Left --}}
 
             {{-- ====================================================================================== --}}
@@ -44,7 +44,7 @@
             <div class="w-full    col-span-5 ">
                 {{-- Block Header of Content --}}
 
-                @include('eshop.pages.home.content_header')
+                @include('eshop.pages.home.header')
                 {{-- -------------------------------------------------------------- --}
 
                 {{-- Content --}}
