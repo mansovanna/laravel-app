@@ -2,45 +2,49 @@
     <div class=" py-6 px-5 w-[90%] flex flex-row justify-between items-center">
         <div class="flex flex-row justify-start items-center gap-14">
             {{-- Block Image --}}
-            <img class="w-[120px]" src="https://themes.programmingkit.xyz/rafcart/assets/images/svg/logo.svg"
-                alt="">
+            <img class="w-[120px]" src="https://themes.programmingkit.xyz/rafcart/assets/images/svg/logo.svg" alt="">
             {{-- End Block Image --}}
 
             {{-- Block Menu of App --}}
+            @if ($menus->count() > 0)
             <ul class="flex flex-row justify-start items-center font-medium gap-8">
 
-
                 @foreach ($menus as $key => $menu)
-                    <li
-                        class=" father flex flex-row justify-start items-center gap-2 relative hover:text-danger z-20 cursor-pointer">
-                        <p>{{ $menu->name }}</p>
+                <li
+                    class=" father flex flex-row justify-start items-center gap-2 relative hover:text-danger z-20 cursor-pointer">
+                    <p>{{ $menu->name }}</p>
 
-                        {{-- List Down to Up --}}
+                    {{-- List Down to Up --}}
 
-                        @if (count($menu->children))
-                            {{-- Icon --}}
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="size-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                            </svg>
+                    @if (count($menu->children))
+                    {{-- Icon --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
 
-                            {{-- End Icon --}}
-                            <ul
-                                class="p-4 text-sceondary boxShadow rounded-md bg-white min-w-40 absolute top-8 -left-4 font-normal text-sm flex flex-col justify-start items-start gap-2 ">
-                                @foreach ($menu->children as $child)
-                                    <li><a href="#" class="w-full hover:text-danger">{{ $child->name }}</a></li>
-                                @endforeach
+                    {{-- End Icon --}}
+                    <ul
+                        class="p-4 text-sceondary boxShadow rounded-md bg-white min-w-40 absolute top-8 -left-4 font-normal text-sm flex flex-col justify-start items-start gap-2 ">
+                        @foreach ($menu->children as $child)
+                        <li><a href="#" class="w-full hover:text-danger">{{ $child->name }}</a></li>
+                        @endforeach
 
-                            </ul>
-                        @endif
-                        {{-- End List Down to Up --}}
-                    </li>
+                    </ul>
+                    @endif
+                    {{-- End List Down to Up --}}
+                </li>
                 @endforeach
+
+
                 {{-- End Block --}}
 
                 {{-- End Bock Page --}}
                 {{-- <li><a href="#" class="hover:text-danger duration-200 ease-in-out">Contact</a></li> --}}
             </ul>
+            @else
+            <p>No menus available.</p>
+            @endif
         </div>
 
 
@@ -50,21 +54,25 @@
             <li>
                 <a href="#" class="hover:text-danger duration-150 ease-in-out">Login</a>
                 /
-                <a href="#"class="hover:text-danger duration-150 ease-in-out">Register</a>
+                <a href="#" class="hover:text-danger duration-150 ease-in-out">Register</a>
             </li>
-            {{--  --}}
+
+
+
+
             <li class="flex flex-row justify-start items-center gap-2 hover:text-danger cursor-pointer relative">
 
-                <div onclick="clickHere()" id="button" class="flex flex-row justify-center items-center gap-2">
+                <div onclick="clickHeress()" id="buttonisSetLa" class="flex flex-row justify-center items-center gap-2">
                     <p>Language</p>
                     {{-- Icon --}}
-                    <svg id="arrows" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    <svg id="arrowssL" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke-width="1.5" stroke="currentColor" class="size-4 ease-in-out duration-200">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </div>
 
                 {{-- End Icon --}}
+<<<<<<< HEAD
                 <ul id="overlay"
                     class="hidden  flex-col justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out ">
                     <li class="font-semibold hover:bg-slate-200 px-4 py-2  rounded-t-md">Language</li>
@@ -74,32 +82,42 @@
                     <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">Franch</li>
                 </ul>
                 {{-- List Down to Up --}}
+=======
+                <ul id="overlayss"
+                    class="hidden flex-col  justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out "">
+                    @foreach ($languages as $lagng)
+                    <li class=" font-semibold hover:bg-slate-200 px-4 py-2 rounded-t-md">{{ $lagng->name }}
+>>>>>>> main
             </li>
-            {{--  --}}
+            @endforeach
+            {{-- <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">English</li>
+            <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">French</li> --}}
+        </ul>
+        {{-- List Down to Up --}}
+        </li>
 
 
 
-            <li class="flex flex-row justify-start items-center gap-2 hover:text-danger cursor-pointer relative">
-
-                <div onclick="clickHeres()" id="buttons" class="flex flex-row justify-center items-center gap-2">
-                    <p>Currency</p>
-                    {{-- Icon --}}
-                    <svg id="arrowss" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke-width="1.5" stroke="currentColor" class="size-4 ease-in-out duration-200">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </div>
-
-                {{-- End Icon --}}
-                <ul id="overlays"
-                    class="hidden flex-col  justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out ">
-                    <li class="font-semibold hover:bg-slate-200 px-4 py-2  rounded-t-md">Currency</li>
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">Dollar</li>
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">Euro</li>
-                </ul>
-                {{-- List Down to Up --}}
-            </li>
-            {{--  --}}
+        <li class="flex flex-row justify-start items-center gap-2 hover:text-danger cursor-pointer relative">
+            <div onclick="clickHeres()" id="buttons" class="flex flex-row justify-center items-center gap-2">
+                <p>Currency</p>
+                {{-- Icon --}}
+                <svg id="arrowss" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-4 ease-in-out duration-200">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </div>
+            {{-- End Icon --}}
+            <ul id="overlays"
+                class="hidden flex-col justify-center bg-white rounded-md border items-start absolute top-8 text-secondary duration-100 ease-in-out">
+                @foreach ($currencies as $currency)
+                <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">
+                    <a href="#" class="w-full">{{ $currency->name }}</a>
+                </li>
+                @endforeach
+            </ul>
+        </li>
+        {{-- --}}
         </ul>
 
     </div>
@@ -143,9 +161,9 @@
 
 <script>
     // Functions defined globally
-    function clickHere() {
-        const aRRow = document.getElementById('arrows');
-        const overlay = document.getElementById('overlay');
+    function clickHeress() {
+        const aRRow = document.getElementById('arrowssL');
+        const overlay = document.getElementById('overlayss');
         if (aRRow && overlay) {
             aRRow.classList.toggle('rotate-180');
             overlay.classList.toggle('hidden');
@@ -162,7 +180,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        const button = document.getElementById('button');
+        const buttonApp = document.getElementById('button');
         const buttons = document.getElementById('buttons');
         const overlay = document.getElementById('overlay');
         const overlays = document.getElementById('overlays');
@@ -170,7 +188,7 @@
         const aRRows = document.getElementById('arrowss');
 
         document.addEventListener('click', (e) => {
-            if (overlay && button && !overlay.contains(e.target) && !button.contains(e.target)) {
+            if (overlay && buttonApp && !overlay.contains(e.target) && !buttonApp.contains(e.target)) {
                 overlay.classList.add('hidden');
                 aRRow.classList.remove('rotate-180');
             }
