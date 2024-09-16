@@ -83,6 +83,7 @@
             window.location.href="{{URL::to('/')}}/eshop?brands="+orderBrand
         }
 
+
         function sortByCategory(orderCategory) {
             window.location.href="{{URL::to('/')}}/eshop?orderCategory="+orderCategory
         }
