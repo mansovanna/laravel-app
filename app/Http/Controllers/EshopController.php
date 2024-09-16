@@ -27,8 +27,10 @@ class EshopController extends Controller
 
         // Filter by brands
         $f_brands = $request->query('brands', '');
+        // return $f_brands;
         $f_categories = $request->query('categories', ''); // Filter for categories
 
+        // return explode(",",$f_brands);
         // Modify the products query to include brand and category filtering
         $products = Product::where(function ($query) use ($f_brands, $f_categories) {
             if ($f_brands) {
