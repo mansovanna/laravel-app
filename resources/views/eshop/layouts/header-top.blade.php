@@ -72,22 +72,10 @@
                 </div>
 
                 {{-- End Icon --}}
-<<<<<<< HEAD
-                <ul id="overlay"
-                    class="hidden  flex-col justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out ">
-                    <li class="font-semibold hover:bg-slate-200 px-4 py-2  rounded-t-md">Language</li>
-                    @foreach ($languages as $language)
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">{{ $language->name }}</li>
-                    @endforeach
-                    <li class="hover:bg-slate-200 px-4 py-2 text-center w-full rounded-b-md">Franch</li>
-                </ul>
-                {{-- List Down to Up --}}
-=======
                 <ul id="overlayss"
                     class="hidden flex-col  justify-center bg-white rounded-md border  items-start absolute top-8 text-sceondary duration-300 ease-in-out "">
                     @foreach ($languages as $lagng)
                     <li class=" font-semibold hover:bg-slate-200 px-4 py-2 rounded-t-md">{{ $lagng->name }}
->>>>>>> main
             </li>
             @endforeach
             {{-- <li class="hover:bg-slate-200 px-4 py-2 text-center w-full">English</li>

@@ -3,14 +3,6 @@
 use App\Http\Controllers\Auth\Authuntication;
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\languagecontroller;
-use App\Models\Menu;
-use App\Models\language;
-=======
->>>>>>> main
 
 
 Route::get('/', function () {
@@ -60,41 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update', [Authuntication::class, 'changePrfile'])->name('profile.update');
     Route::put('/personal/{id}', [Authuntication::class, 'changePersonal'])->name('personal.update');
 
-<<<<<<< HEAD
-        Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
-});
-
-// -------------
-
-Route::get('/eshop', function () {
-    $languages = language::all();
-
-    $menus = Menu::with(['children'])->where("parent_id", null)->get();
-
-    // Pass the data to the view
-    return view('eshop.pages.home', compact('menus', 'languages'));
-});
-
-
-
-
-// -------------
-Route::get('/admins', [AdminController::class, "index"])->name("admin")->middleware(Nologin::class);
-Route::get('/admins/menu', [MenuController::class, "index"])->name("adminmenu")->middleware(Nologin::class);
-Route::get('/admins/addmenu', [MenuController::class, "addmenu"])->name("addmenu")->middleware(Nologin::class);
-Route::post('/admins/addmenu', [MenuController::class, "createMenu"])->name("create-menu")->middleware(Nologin::class);
-Route::delete('/admins/{id}/menu', [MenuController::class, 'destroy'])->name('menu.delete')->middleware(Nologin::class);
-Route::get('/admins/menu/{id}/update', [MenuController::class, 'edit'])->name('menu.edit')->middleware(Nologin::class);
-Route::put('/admins/menu/{id}/update', [MenuController::class, 'update'])->name('menu.update')->middleware(Nologin::class);
-
-
-Route::get('/admins/language',[languagecontroller::class,'showlanguagePage'])->name("adminlanguage")->middleware(Nologin::class);
-Route::get('/admins/addlanguage',[languagecontroller::class,'showaddlanguage'])->middleware(Nologin::class);
-Route::post('/admins/addlanguage',[languagecontroller::class,'createlanguage'])->middleware(Nologin::class);
-Route::get('/admins/editlanguage/{id}',[languagecontroller::class,'showeditlanguage'])->name("language.edit")->middleware(Nologin::class);
-Route::put('/admins/editlanguage/{id}',[languagecontroller::class,'editlanguage'])->name("language.update")->middleware(Nologin::class);
-Route::delete('/admins/deletelanguage/{id}',[languagecontroller::class,'deletelanguage'])->middleware(Nologin::class);
-=======
     Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
@@ -111,6 +68,5 @@ require base_path('routes/eshop.php');
 // Block Product
 require base_path('routes/admin.php');
 // End Block Admin Controller all Items
->>>>>>> main
 
 
