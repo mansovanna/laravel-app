@@ -1,11 +1,14 @@
-<div class="w-4/12 p-4  boxShadow bg-white mb-4">
-    <h1 class="uppercase font-medium text-xl">categories</h1>
+<div class="w-4/12 p-4 boxShadow bg-white mb-4">
+    <h1 class="uppercase font-medium text-xl">Categories</h1>
 
     @forelse ($categories as $category)
-    {{-- Women --}}
     <div class="mt-2 flex flex-row justify-between items-center">
         <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="category" class="w-4  appearance-auto" onclick="sortByCategory({{ $category->id }})" />
+            <input type="checkbox" name="categories" value="{{ $category->id }}" 
+                @if(in_array($category->id, explode(',', $f_categories)))
+                checked="checked" @endif
+                class="w-4 appearance-auto chk-category"
+                onclick="sortByCategory({{ $category->id }})" />
             <p>{{ $category->name }}</p>
         </label>
         <p>({{ $category->products->count() }})</p>
@@ -19,13 +22,6 @@
     </div>
     @endforelse
 
-
-    {{-- End Women --}}
-
-
-
-
-
     <hr class="my-4">
 
     {{-- --}}
@@ -34,9 +30,11 @@
     @forelse ($brands as $brand)
     <div class="mt-2 flex flex-row justify-between items-center">
         <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="brands" value="{{$brand->id}}" @if(in_array($brand->id,explode(',',$f_brands)))
-            checked="checked" @endif " class="w-4 appearance-auto chk-brand"
-            onclick="sortByBrand({{ $brand->id }})" />
+            <input type="checkbox" name="brands" value="{{ $brand->id }}" 
+                @if(in_array($brand->id, explode(',', $f_brands)))
+                checked="checked" @endif
+                class="w-4 appearance-auto chk-brand"
+                onclick="sortByBrand({{ $brand->id }})" />
             <p>{{ $brand->name }}</p>
         </label>
         <p>({{ $brand->products->count() }})</p>
@@ -62,7 +60,7 @@
         <div class="flex justify-start items-center text-base font-medium gap-2 text-gray-600 mt-2">
             <p id="minPrice">$1</p>
             <p>-</p>
-            <p id="maxPrice">$50</p>
+            <p id="maxPrice">$50</p>  
         </div>
     </div>
     {{-- End Price --}}
@@ -78,17 +76,14 @@
             maxPrice.textContent = `$${Math.max(50, value + 50)}`;
         });
 
-
         function sortByBrand(orderBrand) {
-            window.location.href="{{URL::to('/')}}/eshop?brands="+orderBrand
+            window.location.href = "{{ URL::to('/') }}/eshop?brands=" + orderBrand;
         }
-
 
         function sortByCategory(orderCategory) {
-            window.location.href="{{URL::to('/')}}/eshop?orderCategory="+orderCategory
+            window.location.href = "{{ URL::to('/') }}/eshop?categories=" + orderCategory;
         }
     </script>
-
 
     <hr class="my-4">
 
