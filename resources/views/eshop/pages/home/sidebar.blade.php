@@ -1,47 +1,30 @@
 <div class="w-4/12 p-4  boxShadow bg-white mb-4">
     <h1 class="uppercase font-medium text-xl">categories</h1>
 
+    @forelse ($categories as $category)
     {{-- Women --}}
     <div class="mt-2 flex flex-row justify-between items-center">
         <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-            <p>Women</p>
+            <input type="checkbox" name="category" class="w-4  appearance-auto" onclick="sortByCategory({{ $category->id }})" />
+            <p>{{ $category->name }}</p>
         </label>
-        <p>(16)</p>
+        <p>({{ $category->products->count() }})</p>
     </div>
+    @empty
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <p>No Category found</p>
+        </label>
+        <p>(0)</p>
+    </div>
+    @endforelse
+
 
     {{-- End Women --}}
 
-    {{-- Men --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
-            <p>Men</p>
-        </label>
-        <p>(9)</p>
-    </div>
-    {{-- End Men --}}
 
 
-    {{-- Shoes --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
-            <p>Shoes</p>
-        </label>
-        <p>(19)</p>
-    </div>
-    {{-- End Shoes --}}
 
-    {{-- Computer --}}
-    <div class="mt-2 flex flex-row justify-between items-center">
-        <label class="peer flex flex-row gap-4 cursor-pointer">
-            <input type="checkbox" name="todo[1]" class="w-4  appearance-auto" />
-            <p>Computer</p>
-        </label>
-        <p>(35)</p>
-    </div>
-    {{-- End Computer --}}
 
     <hr class="my-4">
 
@@ -49,20 +32,22 @@
     <h1 class="uppercase font-medium text-xl">Brands</h1>
 
     @forelse ($brands as $brand)
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <input type="checkbox" name="todo[1]" checked class="w-4  appearance-auto" />
-                <p>{{ $brand->name}}</p>
-            </label>
-            <p>(16)</p>
-        </div>
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <input type="checkbox" name="brands" value="{{$brand->id}}" @if(in_array($brand->id,explode(',',$f_brands)))
+            checked="checked" @endif " class="w-4 appearance-auto chk-brand"
+            onclick="sortByBrand({{ $brand->id }})" />
+            <p>{{ $brand->name }}</p>
+        </label>
+        <p>({{ $brand->products->count() }})</p>
+    </div>
     @empty
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <p>No Brand found</p>
-            </label>
-            <p>(16)</p>
-        </div>
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <p>No Brand found</p>
+        </label>
+        <p>(0)</p>
+    </div>
     @endforelse
 
     <hr class="my-4">
@@ -92,6 +77,15 @@
             minPrice.textContent = `$${value}`;
             maxPrice.textContent = `$${Math.max(50, value + 50)}`;
         });
+
+
+        function sortByBrand(orderBrand) {
+            window.location.href="{{URL::to('/')}}/eshop?brands="+orderBrand
+        }
+
+        function sortByCategory(orderCategory) {
+            window.location.href="{{URL::to('/')}}/eshop?orderCategory="+orderCategory
+        }
     </script>
 
 

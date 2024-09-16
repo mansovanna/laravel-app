@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const gridChildren = document.getElementsByClassName("grid-child");
     const descriptionProduct = document.getElementsByClassName("description-product");
 
-    console.log("Grid Children:", gridChildren); // Check if elements are selected
+    // console.log("Grid Children:", gridChildren); // Check if elements are selected
 
     const shortList = document.getElementById("shortlist");
     const shortNoneList = document.getElementById("shortnonlist");
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     shortNoneList.addEventListener("click", () => {
         localStorage.setItem("isShortList", "true");
         updateListItems();
-        console.log("Short List None" + " " + localStorage.getItem("isShortList"));
+        // console.log("Short List None" + " " + localStorage.getItem("isShortList"));
     });
 
     function updateListItems() {
@@ -29,22 +29,22 @@ document.addEventListener("DOMContentLoaded", () => {
             listItems.classList.add("grid-cols-3");
 
             Array.from(gridChildren).forEach((gridChild) => {
-                console.log("Before:", gridChild.classList); // Log current classes
+                // console.log("Before:", gridChild.classList); // Log current classes
 
                 gridChild.classList.remove("flex-row");
                 gridChild.classList.add("flex-col");
 
-                console.log("After:", gridChild.classList); // Log updated classes
+                // console.log("After:", gridChild.classList); // Log updated classes
             });
 
             // Display Description of Product
             Array.from(descriptionProduct).forEach((descProduct) => {
-                console.log("Before:", descProduct.classList);
+                // console.log("Before:", descProduct.classList);
 
                 descProduct.classList.remove("block");
                 descProduct.classList.add("hidden");
 
-                console.log("After:", descProduct.classList); // Log updated classes
+                // console.log("After:", descProduct.classList); // Log updated classes
             });
 
             shortList.classList.remove("bg-white");
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
             listItems.classList.remove("grid-cols-3");
             listItems.classList.add("grid-rows-1");
 
-            console.log("Switching to list layout");
+            // console.log("Switching to list layout");
 
             Array.from(gridChildren).forEach((gridChild) => {
                 gridChild.classList.remove("flex-col");
@@ -71,12 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Display Description of Product
             Array.from(descriptionProduct).forEach((descProduct) => {
-                console.log("Before:", descProduct.classList);
+                // console.log("Before:", descProduct.classList);
 
                 descProduct.classList.remove("hidden");
                 descProduct.classList.add("block");
 
-                console.log("After:", descProduct.classList); // Log updated classes
+                // console.log("After:", descProduct.classList); // Log updated classes
             });
 
             shortList.classList.remove("bg-danger");

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Generate an array of class names from thumbnails
         const classArray = Array.from(thumbnails).map(thumbnail => thumbnail.className);
-        console.log("Class Array:", classArray);
+        // console.log("Class Array:", classArray);
 
         // Update main image based on the current index
         function updateMainImage(index) {
