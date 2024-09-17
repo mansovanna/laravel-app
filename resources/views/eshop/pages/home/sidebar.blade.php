@@ -1,14 +1,22 @@
 <div class="w-4/12 p-4 boxShadow bg-white mb-4">
     <h1 class="uppercase font-medium text-xl">Categories</h1>
+    {{-- <button onclick="hello('hello guy')">hello guy</button><br>
+    <button onclick="hello('welcome guy')">welcome guy</button><br>
+    <button onclick="hello('hi bor')">hi bro</button><br> --}}
 
     @forelse ($categories as $category)
         <div class="mt-2 flex flex-row justify-between items-center">
+           <form method="GET" action="eshop" id="form-category">
             <label class="peer flex flex-row gap-4 cursor-pointer">
-                <input type="checkbox" name="categories" value="{{ $category->id }}"
-                    @if (in_array($category->id, explode(',', $f_categories))) checked="checked" @endif class="w-4 appearance-auto chk-category"
+                {{-- <input type="checkbox" name="categories" value="{{ $category->id }}" --}}
+                <input type="checkbox" name="categories[]" value="{{$category->id }}"
+                    {{-- @if (in_array($category->id, explode(',', $f_categories))) checked="checked" @endif class="w-4 appearance-auto chk-category" --}}
+                    @if (in_array($category->id, explode(',', $f_categories)))
+                    checked="checked" @endif class="w-4 appearance-auto chk-category"
                     onclick="sortByCategory({{ $category->id }})" />
                 <p>{{ $category->name }}</p>
             </label>
+           </form>
             <p>({{ $category->products->count() }})</p>
         </div>
     @empty
@@ -62,6 +70,7 @@
         </div>
     </div>
     {{-- End Price --}}
+    
 
     <script>
         const slider = document.getElementById('slider');
@@ -76,25 +85,46 @@
 
         function sortByBrand(orderBrand) {
             const checkedBrands = [];
-
             // Get all checkboxes with name 'brands[]'
             const checkboxes = document.querySelectorAll('input[name="brands[]"]:checked'); []
-
             // console.log(checkboxes)
-
             // Loop through the NodeList and push the value of each checked checkbox to the array
             checkboxes.forEach((checkbox) => {
                 checkedBrands.push(checkbox.value);
             });
-
             window.location.href = "{{ URL::to('/') }}/eshop?brands=" + checkedBrands.join(",")
 
 
         }
 
+        // function sortByCategory(orderCategory) {
+        //     const checkedCategories = [];
+        //     // Get all checkboxes with name 'category[]'
+        //     const checkboxes = document.querySelectorAll('input[name="c ategories[]"]:checked'); []
+        //     // Loop through the NodeList and push the value of each checked checkbox to the array
+        //     checkboxes.forEach((checkbox)=> {
+        //         checkedCategories.push(checkbox.value);
+        //     })
+        //     // window.location.href = "{{ URL::to('/') }}/eshop?categories=" + checkedCategory.join(",")
+        //     window.location.href = "{{ URL::to('/') }}/eshop?categories=" + checkedCategories.join(",")
+        //  } 
+        
+    
         function sortByCategory(orderCategory) {
-            window.location.href = "{{ URL::to('/') }}/eshop?categories=" + orderCategory;
+            const checkedCategories = [];
+            const checkboxes = document.querySelectorAll('input[name="categories[]"]:checked');
+            checkboxes.forEach((checkbox)=> {
+                checkedCategories.push(checkbox.value);
+            });
+            window.location.href = "{{ URL::to('/') }}/eshop?categories=" + checkedCategories.join(",");
         }
+            
+
+        // function hello (hello){
+        //     alert(hello)
+        // }
+
+
     </script>
 
     <hr class="my-4">

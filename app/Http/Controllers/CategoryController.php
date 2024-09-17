@@ -22,6 +22,7 @@ class CategoryController extends Controller
         return view('AdminLTE.pages.categorys.create');
     }
 
+    
 
     public function store(Request $request)
     {

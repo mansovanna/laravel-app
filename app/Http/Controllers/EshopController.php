@@ -18,8 +18,12 @@ class EshopController extends Controller
         $menus = Menu::with(['children'])->where("parent_id", null)->get();
         $languages = Language::get();
         $brands = Brand::orderBy('name', 'ASC')->get();
-        $categories = Category::get();
+
+
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $f_categories = $request->query('categories', ''); // Filter for categories
         $currencies = Currency::get();
+
 
         // Fetch products with their category relationship
         $orderDir = $request->query('orderDir', 'asc');
@@ -27,8 +31,7 @@ class EshopController extends Controller
 
         // Filter by brands
         $f_brands = $request->query('brands', '');
-        // return $f_brands;
-        $f_categories = $request->query('categories', ''); // Filter for categories
+      
 
         // return explode(",",$f_brands);
         // Modify the products query to include brand and category filtering
