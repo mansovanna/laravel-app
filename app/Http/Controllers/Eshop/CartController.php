@@ -76,4 +76,20 @@ class CartController extends Controller
         return redirect()->back()->with('error', 'Product not found in cart.');
     }
 
+
+    public function update(Request $request, $id)
+    {
+        $cart = session()->get('cart');
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] = $request->input('quantity');
+            session()->put('cart', $cart);
+
+            return redirect()->back()->with('success', 'Cart updated successfully!');
+        }
+
+        return response()->json(['error' => 'Product not found'], 404);
+    }
+
+
 }

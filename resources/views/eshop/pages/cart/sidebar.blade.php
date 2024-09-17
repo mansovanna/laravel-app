@@ -1,9 +1,24 @@
 <h4 class="font-[500] text-sceondary text-lg uppercase">Order Summary</h4>
 
+@php
+     $cart = session()->get('cart', []);
+    $subtotal = 0;
+    $taxRate = 0.1;
+
+    foreach ($cart as $item) {
+        $subtotal += $item['price'] * $item['quantity'];
+    }
+
+    $tax = $subtotal * $taxRate;
+    $total = $subtotal + $tax;
+
+
+@endphp
+
 {{-- Subtotal --}}
 <div class="flex flex-row  w-full  font-medium justify-between">
     <p>Subtotal</p>
-    <p>$45.00</p>
+    ${{ number_format($subtotal, 2) }}
 </div>
 {{-- Subtotal --}}
 
@@ -27,7 +42,7 @@
 {{-- Total --}}
 <div class="flex flex-row  w-full justify-between font-medium">
     <p >Total</p>
-    <p class="text-danger">$45.00</p>
+    <p class="text-danger">${{ number_format($total, 2) }}</p>
 </div>
 {{-- Total --}}
 
