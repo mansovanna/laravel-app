@@ -561,7 +561,7 @@
             <form action="{{ route('products.search') }}" method="GET" class="flex" id="searchForm">
                 <!-- Search Input -->
                 <input type="text" name="query" id="searchInput" class="h-[2.9rem] px-4 w-[10cm] outline-none"
-                    placeholder="Search" autocomplete="off">
+                    placeholder="Search" autocomplete="off" value="{{ request('query') }}">
 
                 <!-- Search Button -->
                 <button type="submit"
