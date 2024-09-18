@@ -2,7 +2,6 @@
     <h1 class="uppercase font-medium text-xl">Categories</h1>
 
     @forelse ($categories as $category)
-<<<<<<< HEAD
     <div class="mt-2 flex flex-row justify-between items-center">
         <form method="GET" action="eshop" id="form-category">
             <label class="peer flex flex-row gap-4 cursor-pointer">
@@ -16,17 +15,6 @@
         </form>
         <p>({{ $category->products->count() }})</p>
     </div>
-=======
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <input type="checkbox" name="categories[]" value="{{ $category->id }}"
-                    @if (in_array($category->id, explode(',', $f_categories))) checked="checked" @endif
-                    class="w-4 appearance-auto chk-category" />
-                <p>{{ $category->name }}</p>
-            </label>
-            <p>({{ $category->products->count() }})</p>
-        </div>
->>>>>>> bef9d58c36be59374c2e269c66a5bb46f3656c75
     @empty
     <div class="mt-2 flex flex-row justify-between items-center">
         <label class="peer flex flex-row gap-4 cursor-pointer">
@@ -41,22 +29,8 @@
     <h1 class="uppercase font-medium text-xl">Brands</h1>
 
     @forelse ($brands as $brand)
-<<<<<<< HEAD
     <div class="mt-2 flex flex-row justify-between items-center">
         <form method="GET" accept="eshop" id="form-brand">
-=======
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <input type="checkbox" name="brands[]" value="{{ $brand->id }}"
-                    @if (in_array($brand->id, explode(',', $f_brands))) checked="checked" @endif
-                    class="w-4 appearance-auto chk-brand" />
-                <p>{{ $brand->name }}</p>
-            </label>
-            <p>({{ $brand->products->count() }})</p>
-        </div>
-    @empty
-        <div class="mt-2 flex flex-row justify-between items-center">
->>>>>>> bef9d58c36be59374c2e269c66a5bb46f3656c75
             <label class="peer flex flex-row gap-4 cursor-pointer">
                 <input type="checkbox" name="brands[]" value="{{ $brand->id }}" @if (in_array($brand->id, explode(',',
                 $f_brands))) checked="checked" @endif class="w-4 appearance-auto chk-brand"
@@ -88,7 +62,6 @@
             <p id="maxPrice">$51</p> <!-- Updated to reflect the max value correctly -->
         </div>
     </div>
-<<<<<<< HEAD
     {{-- End Price --}}
 
 
@@ -126,8 +99,6 @@
 
 
     </script>
-=======
->>>>>>> bef9d58c36be59374c2e269c66a5bb46f3656c75
 
     <hr class="my-4">
 
