@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
-use App\Models\rc;
 use Illuminate\Http\Request;
+use App\Models\Menu;
+use App\Models\Currency;
+use App\Models\Language;
+use App\Models\rc;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +22,7 @@ class ProductController extends Controller
         //
 
 
-        $products =  Product::with(['category','brand'])->get();
+        $products = Product::with(['category', 'brand'])->get();
 
         return view('AdminLTE.products', compact('products'));
     }
@@ -98,7 +101,6 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-
     {
 
         // Find the existing product
@@ -172,4 +174,47 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('success', 'Product deleted successfully.');
     }
+    // app/Http/Controllers/ProductController.php
+    public function search(Request $request)
+    {
+        // Get menus, languages, brands, and categories
+        $menus = Menu::with(['children'])->where("parent_id", null)->get();
+        $languages = Language::get();
+        $brands = Brand::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $currencies = Currency::get();
+
+        // Filter by brands and categories
+        $f_brands = $request->query('brands', '');
+        $f_categories = $request->query('categories', '');
+
+        // Get the search query from the request
+        $query = $request->input('query');
+
+        // Search products by name, price, or discount
+        $products = Product::where('name', 'like', '%' . $query . '%')
+            ->orWhere('price', 'like', '%' . $query . '%')
+            ->orWhere('discount', 'like', '%' . $query . '%')
+            ->get();
+
+        // If the request is an AJAX request, return JSON response
+        if ($request->ajax()) {
+            return response()->json($products);
+        }
+
+        // Otherwise, return the regular view
+        return view('eshop.pages.home', compact(
+            'products',
+            'query',
+            'menus',
+            'languages',
+            'currencies',
+            'brands',
+            'categories',
+            'f_brands',
+            'f_categories'
+        ));
+    }
+
+
 }

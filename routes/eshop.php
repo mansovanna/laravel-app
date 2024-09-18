@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Eshop\CartController;
 use App\Http\Controllers\EshopController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('eshop')->group(function(){
+Route::prefix('eshop')->group(function () {
     Route::get('/', [EshopController::class, 'index'])->name('eshop.home');
 
 
@@ -16,6 +17,10 @@ Route::prefix('eshop')->group(function(){
     // End route add to card of eshop
 
     Route::delete('/remove-to-cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+    // routes/web.php
+    Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');
+
 });
 
 
