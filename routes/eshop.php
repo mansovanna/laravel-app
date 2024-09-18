@@ -15,6 +15,7 @@ Route::prefix('eshop')->group(function () {
     // route add to card of eshop
     Route::get('/dd-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
     // End route add to card of eshop
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
     Route::delete('/remove-to-cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
