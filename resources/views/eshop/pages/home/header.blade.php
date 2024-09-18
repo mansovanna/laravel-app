@@ -1,10 +1,4 @@
 <div class="flex flex-row justify-between items-center">
-
-
-    {{-- Block Option --}}
-    {{-- onclick="sortByPrice('ASC')" --}}
-    {{-- onclick="sortByPrice('DESC')" --}}
-
     <!-- Default sorting Button -->
     <button id="button-default-shorting"
         class="flex flex-row justify-between items-center gap-16 border rounded-md p-3 relative z-[5]">
@@ -20,15 +14,10 @@
         <!-- Block Item (Dropdown List) -->
         <ul id="show-default-shorting"
             class="text-left bg-white rounded-md border absolute top-12 left-0 right-0 opacity-0 transform transition-all duration-300 ease-in-out translate-y-[-20px] hidden">
-            <li class="p-2 px-4 hover:bg-slate-100 font-medium text-sm">Default sorting</li>
-            <li class="p-2 px-4 hover:bg-slate-100 text-sm" onclick="sortByPrice('asc')">Price low-high</li>
+            <li class="p-2 px-4 hover:bg-slate-100 font-medium text-sm" onclick="sortByPrice('asc')">Price low-high</li>
             <li class="p-2 px-4 hover:bg-slate-100 text-sm" onclick="sortByPrice('desc')">Price high-low</li>
-
         </ul>
     </button>
-
-
-
 
     {{-- Block App --}}
     <div class="flex flex-row justify-end items-center gap-3">
@@ -43,8 +32,8 @@
         </button>
 
         {{-- Icon --}}
-        <button id="shortnonlist" class=" text-sceondary py-2 px-3 rounded-sm border  border-danger">
-            <svg class="w-4 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <button id="shortnonlist" class="text-secondary py-2 px-3 rounded-sm border border-danger">
+            <svg class="w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                 <path d="M11 5.5L21 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                 <path
                     d="M5.4 16.8926C6.46667 17.607 7 17.9642 7 18.5C7 19.0358 6.46667 19.393 5.4 20.1074C4.33333 20.8218 3.8 21.1789 3.4 20.9111C3 20.6432 3 19.9288 3 18.5C3 17.0712 3 16.3568 3.4 16.0889C3.8 15.8211 4.33333 16.1782 5.4 16.8926Z"
@@ -56,17 +45,35 @@
                 <path d="M11 18.5L21 18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
             </svg>
         </button>
-        {{-- --}}
     </div>
     {{-- End Block App --}}
 </div>
 
-
 <script type="text/javascript">
+    function sortByPrice(orderDir = 'asc') {
+        // Get currently applied filters
+        const checkedCategories = Array.from(document.querySelectorAll('input[name="categories[]"]:checked')).map(cb => cb.value);
+        const checkedBrands = Array.from(document.querySelectorAll('input[name="brands[]"]:checked')).map(cb => cb.value);
+        const minPriceValue = document.getElementById('slider').value;
+        const maxPriceValue = Math.max(50, parseInt(minPriceValue) + 50);
 
+        // Build the query parameters
+        const filters = new URLSearchParams();
+        if (checkedCategories.length) filters.set('categories', checkedCategories.join(','));
+        if (checkedBrands.length) filters.set('brands', checkedBrands.join(','));
+        filters.set('min_price', minPriceValue);
+        filters.set('max_price', maxPriceValue);
+        filters.set('orderDir', orderDir);  // Add sorting parameter
 
-function sortByPrice(orderDir = 'asc') {
-    window.location.href="{{URL::to('/')}}/eshop?orderDir="+orderDir
-}
+        // Redirect with both sorting and filtering parameters
+        window.location.href = "{{ URL::to('/') }}/eshop?" + filters.toString();
+    }
 
+    // Show or hide sorting dropdown
+    document.getElementById('button-default-shorting').addEventListener('click', () => {
+        const dropdown = document.getElementById('show-default-shorting');
+        dropdown.classList.toggle('hidden');
+        dropdown.classList.toggle('opacity-100');
+        dropdown.classList.toggle('translate-y-0');
+    });
 </script>
