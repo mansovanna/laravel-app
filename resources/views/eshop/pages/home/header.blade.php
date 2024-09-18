@@ -56,6 +56,7 @@
         const checkedBrands = Array.from(document.querySelectorAll('input[name="brands[]"]:checked')).map(cb => cb.value);
         const minPriceValue = document.getElementById('slider').value;
         const maxPriceValue = Math.max(50, parseInt(minPriceValue) + 50);
+
         // Build the query parameters
         const filters = new URLSearchParams();
         if (checkedCategories.length) filters.set('categories', checkedCategories.join(','));

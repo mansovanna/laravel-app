@@ -69,8 +69,13 @@
 
     slider.addEventListener('input', () => {
         const value = slider.value;
+<<<<<<< HEAD
         minPrice.textContent = $${value};
         maxPrice.textContent = $${Math.max(50, parseInt(value) + 50)};
+=======
+        minPrice.textContent = `$${value}`;
+        maxPrice.textContent = `$${Math.max(50, parseInt(value) + 50)}`;
+>>>>>>> chantha-branch
         bothFilters(); // Apply filters when slider value changes
     });
 
@@ -96,4 +101,8 @@
     document.querySelectorAll('input[name="brands[]"]').forEach(checkbox => {
         checkbox.addEventListener('change', bothFilters);
     });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> chantha-branch
