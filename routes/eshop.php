@@ -19,6 +19,10 @@ Route::prefix('eshop')->group(function () {
 
     Route::delete('/remove-to-cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
+    //
+
+    // Block Wish List
+    Route::get('/wish', [CartController::class, 'wishShow'])->name('wish.show');
     // routes/web.php
     Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');
 

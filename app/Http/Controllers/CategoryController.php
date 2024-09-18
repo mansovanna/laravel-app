@@ -13,7 +13,7 @@ class CategoryController extends Controller
     {
         $datas = Category::get();
 
-    
+
         return view('AdminLTE.categorys', compact('datas'));
     }
 
@@ -22,7 +22,7 @@ class CategoryController extends Controller
         return view('AdminLTE.pages.categorys.create');
     }
 
-    
+
 
     public function store(Request $request)
     {
@@ -46,16 +46,16 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-    
+
         // Check if the category exists
         if (!$category) {
             return redirect()->back()->with('error', 'Category not found.');
         }
-    
+
         return view('AdminLTE.pages.categorys.update', compact('category'));
 
     }
-    
+
 
 
     public function update(Request $request, $id)
@@ -65,7 +65,7 @@ class CategoryController extends Controller
         if(!$data){
             return redirect()->back()->with('error', 'You can\'n update datt');
         }
-        
+
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -76,7 +76,7 @@ class CategoryController extends Controller
         $data->description = $request->input('description');
 
         $data -> save();
-        
+
         return redirect()->route('category.index')->with('success', 'Category updated successfully.'.' '. $data->name);
 
     }

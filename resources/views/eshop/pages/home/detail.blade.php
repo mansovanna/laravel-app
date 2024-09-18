@@ -1,14 +1,10 @@
 {{-- Block POP UP DATA --}}
 
 @php
-$produc_images = [
-'https://themes.programmingkit.xyz/rafcart/assets/images/slider-1.png',
-'https://themes.programmingkit.xyz/rafcart/assets/images/slider-2.png',
-'https://themes.programmingkit.xyz/rafcart/assets/images/slider-3.png',
-'https://themes.programmingkit.xyz/rafcart/assets/images/slider-4.png',
-'https://themes.programmingkit.xyz/rafcart/assets/images/slider-5.png',
-'https://themes.programmingkit.xyz/rafcart/assets/images/slider-1.png'
-];
+
+// $produc_images = json_decode($product->image);
+$produc_images = json_decode($product->image);
+
 @endphp
 
 <div
@@ -34,14 +30,14 @@ $produc_images = [
             {{-- Block Detail Image --}}
             <div class="w-[11cm] px-3">
                 {{-- Main Image --}}
-                <img class="mainImage w-full h-80 object-cover" src="{{ $produc_images[0] }}" alt="">
+                <img class="mainImage w-full h-80 object-cover" src="{{ asset('images/'. $produc_images[0]) }}" alt="{{ $product->name }}">
 
                 {{-- Block Slide Children Images --}}
                 <div class="w-full h-20 mt-3 flex flex-row justify-start items-center gap-2 relative group">
                     <div class="flex flex-row gap-2 thumbnails">
                         @foreach ($produc_images as $index => $child_image)
                         <img class=" thumbnail w-20 h-20 my-2 object-center cursor-pointer outline outline-transparent hover:outline-blue-400 duration-500 ease-in-out"
-                            src="{{ $child_image }}" alt="">
+                        src="{{ asset('images/'. $child_image) }}"/>
                         @endforeach
                     </div>
 

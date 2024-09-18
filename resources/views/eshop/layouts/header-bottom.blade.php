@@ -609,7 +609,7 @@
                         <img class="p-1 w-24" src="/images/${product.image}" alt="${product.name}">
                         <div class="ml-3 flex flex-col justify-center items-start w-14">
                             <h3 class="font-medium text-lg w-full text-center">${product.name}</h3>
-                            <div class="flex justify-between w-full">   
+                            <div class="flex justify-between w-full">
                                 <p class="text-danger font-medium">$${product.discount}</p>
                                 <p class="ttext-sm line-through font-medium text-gray-400">$${product.price}</p>
                             </div>

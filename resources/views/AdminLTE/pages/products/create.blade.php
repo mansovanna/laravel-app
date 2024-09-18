@@ -87,8 +87,7 @@
                                         <!-- Image -->
                                         <div class="form-group">
                                             <label for="image">Product Image</label>
-                                            <input type="file" class="form-control-file" id="image" name="image"
-                                                required>
+                                            <input type="file" class="form-control-file" id="image" name="image[]" multiple required>
                                             @error('image')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

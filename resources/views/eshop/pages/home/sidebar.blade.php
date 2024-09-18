@@ -2,22 +2,26 @@
     <h1 class="uppercase font-medium text-xl">Categories</h1>
 
     @forelse ($categories as $category)
-        <div class="mt-2 flex flex-row justify-between items-center">
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <form method="GET" action="eshop" id="form-category">
             <label class="peer flex flex-row gap-4 cursor-pointer">
-                <input type="checkbox" name="categories[]" value="{{ $category->id }}"
-                    @if (in_array($category->id, explode(',', $f_categories))) checked="checked" @endif
-                    class="w-4 appearance-auto chk-category" />
+                <input type="checkbox"
+                    name="categories[]" value="{{$category->id }}"
+                @if (in_array($category->id, explode(',', $f_categories)))
+                checked="checked" @endif class="w-4 appearance-auto chk-category"
+                onclick=" sortByOrder()" />
                 <p>{{ $category->name }}</p>
             </label>
-            <p>({{ $category->products->count() }})</p>
-        </div>
+        </form>
+        <p>({{ $category->products->count() }})</p>
+    </div>
     @empty
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <p>No Category found</p>
-            </label>
-            <p>(0)</p>
-        </div>
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <p>No Category found</p>
+        </label>
+        <p>(0)</p>
+    </div>
     @endforelse
 
     <hr class="my-4">
@@ -25,22 +29,24 @@
     <h1 class="uppercase font-medium text-xl">Brands</h1>
 
     @forelse ($brands as $brand)
-        <div class="mt-2 flex flex-row justify-between items-center">
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <form method="GET" accept="eshop" id="form-brand">
             <label class="peer flex flex-row gap-4 cursor-pointer">
-                <input type="checkbox" name="brands[]" value="{{ $brand->id }}"
-                    @if (in_array($brand->id, explode(',', $f_brands))) checked="checked" @endif
-                    class="w-4 appearance-auto chk-brand" />
+                <input type="checkbox" name="brands[]" value="{{ $brand->id }}" @if (in_array($brand->id, explode(',',
+                $f_brands))) checked="checked" @endif class="w-4 appearance-auto chk-brand"
+                onclick=" sortByOrder()" />
                 <p>{{ $brand->name }}</p>
             </label>
-            <p>({{ $brand->products->count() }})</p>
-        </div>
+        </form>
+        <p>({{ $brand->products->count() }})</p>
+    </div>
     @empty
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <p>No Brand found</p>
-            </label>
-            <p>(0)</p>
-        </div>
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <p>No Brand found</p>
+        </label>
+        <p>(0)</p>
+    </div>
     @endforelse
 
     <hr class="my-4">
@@ -56,6 +62,43 @@
             <p id="maxPrice">$51</p> <!-- Updated to reflect the max value correctly -->
         </div>
     </div>
+    {{-- End Price --}}
+
+
+    <script>
+        const slider = document.getElementById('slider');
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+
+        slider.addEventListener('input', () => {
+            const value = slider.value;
+            minPrice.textContent = `$${value}`;
+            maxPrice.textContent = `$${Math.max(50, value + 50)}`;
+        });
+
+       function sortByOrder() {
+    const checkedBrands = [];
+    const checkedCategories = [];
+
+    // Select the checked checkboxes for categories and brands
+    const categoryCheckboxes = document.querySelectorAll('input[name="categories[]"]:checked');
+    const brandCheckboxes = document.querySelectorAll('input[name="brands[]"]:checked');
+
+    // Loop through the NodeList and push the value of each checked checkbox to the respective arrays
+    categoryCheckboxes.forEach((checkbox) => {
+        checkedCategories.push(checkbox.value);
+    });
+    brandCheckboxes.forEach((checkbox) => {
+        checkedBrands.push(checkbox.value);
+    });
+
+    // Construct the URL with both brands and categories
+    window.location.href = "{{ URL::to('/') }}/eshop?brands=" + checkedBrands.join(",") + "&categories=" + checkedCategories.join(",");
+}
+
+
+
+    </script>
 
     <hr class="my-4">
 
@@ -69,13 +112,8 @@
 
     slider.addEventListener('input', () => {
         const value = slider.value;
-<<<<<<< HEAD
-        minPrice.textContent = $${value};
-        maxPrice.textContent = $${Math.max(50, parseInt(value) + 50)};
-=======
         minPrice.textContent = `$${value}`;
         maxPrice.textContent = `$${Math.max(50, parseInt(value) + 50)}`;
->>>>>>> chantha-branch
         bothFilters(); // Apply filters when slider value changes
     });
 
@@ -105,4 +143,3 @@
 </script>
 =======
 </script>
->>>>>>> chantha-branch

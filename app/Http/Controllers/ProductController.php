@@ -21,7 +21,6 @@ class ProductController extends Controller
     {
         //
 
-
         $products = Product::with(['category', 'brand'])->get();
 
         return view('AdminLTE.products', compact('products'));
@@ -38,6 +37,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'image' => 'required',
@@ -48,15 +48,21 @@ class ProductController extends Controller
             'description' => 'nullable',
         ]);
 
+        $imageNames = [];
 
+        // Check if the request contains images and handle multiple file uploads
         if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
+            foreach ($request->file('image') as $image) {
+                $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images'), $imageName);
+                $imageNames[] = $imageName;
+            }
         }
 
-        $request->except(['_token']);
+        // Convert image names array to a JSON string (if you're storing multiple image paths in the DB)
+        $imageNamesJson = json_encode($imageNames);
 
-
+        // Create the product
         Product::create([
             'name' => $request->name,
             'price' => $request->price,
@@ -65,9 +71,8 @@ class ProductController extends Controller
             'brand_id' => $request->brand_id,
             'quantity' => $request->quantity,
             'description' => $request->description,
-            'image' => $imageName,
+            'image' => $imageNamesJson, // Storing the image paths as JSON
         ]);
-
 
         return redirect()->route('product.index')->with('success', 'Product created successfully.');
     }

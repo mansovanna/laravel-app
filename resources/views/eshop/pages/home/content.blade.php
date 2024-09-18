@@ -4,7 +4,10 @@
     class="w-full border rounded-sm group flex flex-col justify-start items-start grid-child">
 
         <div class=" w-[7.3cm] h-[6cm] bg-sky-100 overflow-hidden relative">
-            <img src="{{ asset('images/'. $product->image) }}" alt="{{ $product->name }}"
+            @php
+            $images = json_decode($product->image);
+            @endphp
+            <img src="{{ asset('images/'. $images[0]) }}" alt="{{ $product->name }}"
                 class="object-cover w-full h-full">
 
             {{-- Block Button Items more --}}
