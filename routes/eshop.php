@@ -17,6 +17,11 @@ Route::prefix('eshop')->group(function(){
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 
     Route::delete('/remove-to-cart/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
+    //
+
+    // Block Wish List
+    Route::get('/wish', [CartController::class, 'wishShow'])->name('wish.show');
 });
 
 

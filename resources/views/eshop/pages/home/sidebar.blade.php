@@ -5,27 +5,26 @@
     <button onclick="hello('hi bor')">hi bro</button><br> --}}
 
     @forelse ($categories as $category)
-        <div class="mt-2 flex flex-row justify-between items-center">
-           <form method="GET" action="eshop" id="form-category">
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <form method="GET" action="eshop" id="form-category">
             <label class="peer flex flex-row gap-4 cursor-pointer">
-                {{-- <input type="checkbox" name="categories" value="{{ $category->id }}" --}}
-                <input type="checkbox" name="categories[]" value="{{$category->id }}"
-                    {{-- @if (in_array($category->id, explode(',', $f_categories))) checked="checked" @endif class="w-4 appearance-auto chk-category" --}}
-                    @if (in_array($category->id, explode(',', $f_categories)))
-                    checked="checked" @endif class="w-4 appearance-auto chk-category"
-                    onclick="sortByCategory({{ $category->id }})" />
+                <input type="checkbox"
+                    name="categories[]" value="{{$category->id }}"
+                @if (in_array($category->id, explode(',', $f_categories)))
+                checked="checked" @endif class="w-4 appearance-auto chk-category"
+                onclick=" sortByOrder()" />
                 <p>{{ $category->name }}</p>
             </label>
-           </form>
-            <p>({{ $category->products->count() }})</p>
-        </div>
+        </form>
+        <p>({{ $category->products->count() }})</p>
+    </div>
     @empty
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <label class="peer flex flex-row gap-4 cursor-pointer">
-                <p>No Category found</p>
-            </label>
-            <p>(0)</p>
-        </div>
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <p>No Category found</p>
+        </label>
+        <p>(0)</p>
+    </div>
     @endforelse
 
     <hr class="my-4">
@@ -34,24 +33,24 @@
     <h1 class="uppercase font-medium text-xl">Brands</h1>
 
     @forelse ($brands as $brand)
-        <div class="mt-2 flex flex-row justify-between items-center">
-            <form method="GET" accept="eshop" id="form-brand">
-                <label class="peer flex flex-row gap-4 cursor-pointer">
-                    <input type="checkbox" name="brands[]" value="{{ $brand->id }}"
-                        @if (in_array($brand->id, explode(',', $f_brands))) checked="checked" @endif class="w-4 appearance-auto chk-brand"
-                        onclick="sortByBrand({{ $brand->id }})" />
-                    <p>{{ $brand->name }}</p>
-                </label>
-            </form>
-            <p>({{ $brand->products->count() }})</p>
-        </div>
-    @empty
-        <div class="mt-2 flex flex-row justify-between items-center">
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <form method="GET" accept="eshop" id="form-brand">
             <label class="peer flex flex-row gap-4 cursor-pointer">
-                <p>No Brand found</p>
+                <input type="checkbox" name="brands[]" value="{{ $brand->id }}" @if (in_array($brand->id, explode(',',
+                $f_brands))) checked="checked" @endif class="w-4 appearance-auto chk-brand"
+                onclick=" sortByOrder()" />
+                <p>{{ $brand->name }}</p>
             </label>
-            <p>(0)</p>
-        </div>
+        </form>
+        <p>({{ $brand->products->count() }})</p>
+    </div>
+    @empty
+    <div class="mt-2 flex flex-row justify-between items-center">
+        <label class="peer flex flex-row gap-4 cursor-pointer">
+            <p>No Brand found</p>
+        </label>
+        <p>(0)</p>
+    </div>
     @endforelse
 
     <hr class="my-4">
@@ -70,7 +69,7 @@
         </div>
     </div>
     {{-- End Price --}}
-    
+
 
     <script>
         const slider = document.getElementById('slider');
@@ -83,46 +82,26 @@
             maxPrice.textContent = `$${Math.max(50, value + 50)}`;
         });
 
-        function sortByBrand(orderBrand) {
-            const checkedBrands = [];
-            // Get all checkboxes with name 'brands[]'
-            const checkboxes = document.querySelectorAll('input[name="brands[]"]:checked'); []
-            // console.log(checkboxes)
-            // Loop through the NodeList and push the value of each checked checkbox to the array
-            checkboxes.forEach((checkbox) => {
-                checkedBrands.push(checkbox.value);
-            });
-            window.location.href = "{{ URL::to('/') }}/eshop?brands=" + checkedBrands.join(",")
+       function sortByOrder() {
+    const checkedBrands = [];
+    const checkedCategories = [];
 
+    // Select the checked checkboxes for categories and brands
+    const categoryCheckboxes = document.querySelectorAll('input[name="categories[]"]:checked');
+    const brandCheckboxes = document.querySelectorAll('input[name="brands[]"]:checked');
 
-        }
+    // Loop through the NodeList and push the value of each checked checkbox to the respective arrays
+    categoryCheckboxes.forEach((checkbox) => {
+        checkedCategories.push(checkbox.value);
+    });
+    brandCheckboxes.forEach((checkbox) => {
+        checkedBrands.push(checkbox.value);
+    });
 
-        // function sortByCategory(orderCategory) {
-        //     const checkedCategories = [];
-        //     // Get all checkboxes with name 'category[]'
-        //     const checkboxes = document.querySelectorAll('input[name="c ategories[]"]:checked'); []
-        //     // Loop through the NodeList and push the value of each checked checkbox to the array
-        //     checkboxes.forEach((checkbox)=> {
-        //         checkedCategories.push(checkbox.value);
-        //     })
-        //     // window.location.href = "{{ URL::to('/') }}/eshop?categories=" + checkedCategory.join(",")
-        //     window.location.href = "{{ URL::to('/') }}/eshop?categories=" + checkedCategories.join(",")
-        //  } 
-        
-    
-        function sortByCategory(orderCategory) {
-            const checkedCategories = [];
-            const checkboxes = document.querySelectorAll('input[name="categories[]"]:checked');
-            checkboxes.forEach((checkbox)=> {
-                checkedCategories.push(checkbox.value);
-            });
-            window.location.href = "{{ URL::to('/') }}/eshop?categories=" + checkedCategories.join(",");
-        }
-            
+    // Construct the URL with both brands and categories
+    window.location.href = "{{ URL::to('/') }}/eshop?brands=" + checkedBrands.join(",") + "&categories=" + checkedCategories.join(",");
+}
 
-        // function hello (hello){
-        //     alert(hello)
-        // }
 
 
     </script>
