@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Eshop\CartController;
 use App\Http\Controllers\EshopController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('eshop')->group(function(){
+Route::prefix('eshop')->group(function () {
     Route::get('/', [EshopController::class, 'index'])->name('eshop.home');
 
 
@@ -22,6 +23,9 @@ Route::prefix('eshop')->group(function(){
 
     // Block Wish List
     Route::get('/wish', [CartController::class, 'wishShow'])->name('wish.show');
+    // routes/web.php
+    Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');
+
 });
 
 
