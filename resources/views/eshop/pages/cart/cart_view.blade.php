@@ -50,8 +50,18 @@
                 @else
                 @foreach (session('cart') as $id => $item)
                 <div class="w-full p-4 border rounded-lg flex flex-row justify-between items-center gap-4">
+
                     {{-- Block Image --}}
-                    <img src="{{ asset('images/' . $item['image']) }}" alt="" class="w-36">
+                    @php
+                        // Decode the JSON string into an array
+                        $images = json_decode($item['image'], true);
+                    @endphp
+
+                    @if (!empty($images) && isset($images[0]))
+                        <img class="w-20 h-20 object-cover" src="{{ asset('images/' . $images[0]) }}" alt="Image">
+                    @else
+                        <p>No images available.</p>
+                    @endif
                     {{-- End Block Image --}}
 
                     {{-- Block Title --}}
@@ -76,8 +86,8 @@
                             </button>
 
                             <!-- Quantity Input -->
-                            <input type="number" name="quantity" id="quantity-{{ $id }}" class="border p-1 w-20 text-center"
-                                value="{{ $item['quantity'] }}" min="1">
+                            <input type="number" name="quantity" id="quantity-{{ $id }}"
+                                class="border p-1 w-20 text-center" value="{{ $item['quantity'] }}" min="1">
 
                             <!-- Increment Button -->
                             <button class="increment p-2 border border-l-0 active:bg-slate-100" data-id="{{ $id }}">

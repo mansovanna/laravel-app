@@ -40,7 +40,10 @@
                             @endphp
                             <li class="w-full flex flex-row justify-start items-center gap-4 mt-1">
                                 <a href="#" class="flex flex-row justify-start items-center gap-4 w-full">
-                                    <img class="w-[70px]" src="{{ asset('images/' . $item['image']) }}" alt="{{ $item['name'] }}">
+                                    @php
+                                        $product_image = json_decode($item['image']);
+                                    @endphp
+                                    <img class="w-[70px]" src="{{ asset('images/' . $product_image[0]) }}" alt="{{ $item['name'] }}">
                                     <aside class="flex flex-col justify-start items-start">
                                         <h3 class="hover:text-danger font-medium">{{ $item['name'] }}</h3>
                                         <div class="flex flex-row justify-start items-center gap-4">

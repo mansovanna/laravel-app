@@ -31,7 +31,7 @@ class EshopController extends Controller
 
         // Filter by brands
         $f_brands = $request->query('brands', '');
-      
+
 
         // return explode(",",$f_brands);
         // Modify the products query to include brand and category filtering

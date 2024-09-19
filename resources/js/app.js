@@ -9,3 +9,4 @@ import './scroll';
 import './ListConten';
 import './default_shorting';
 import './slider_mainImage';
+import './allCategories';

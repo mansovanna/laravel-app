@@ -1,12 +1,4 @@
 {{-- Block POP UP DATA --}}
-
-@php
-
-// $produc_images = json_decode($product->image);
-$produc_images = json_decode($product->image);
-
-@endphp
-
 <div
     class="overlay-pop-up-product w-full h-screen hidden bg-black bg-opacity-20 fixed top-0 bottom-0 right-0 left-0 z-50  justify-center items-center overflow-y-auto duration-500 ease-in-out">
     <div class="overlay-pop-up-detail w-8/12 h-5/6 bg-white rounded-sm shadow-lg p-2 overflow-y-auto">
@@ -30,15 +22,23 @@ $produc_images = json_decode($product->image);
             {{-- Block Detail Image --}}
             <div class="w-[11cm] px-3">
                 {{-- Main Image --}}
-                <img class="mainImage w-full h-80 object-cover" src="{{ asset('images/'. $produc_images[0]) }}" alt="{{ $product->name }}">
+                @if ($images || count($images) > 0)
+                <img class="mainImage w-full h-80 object-cover" src="{{ asset('images/' . $images[0]) }}"
+                    />
+
+                @else
+                <p>Image Not Found</p>
+                @endif
 
                 {{-- Block Slide Children Images --}}
                 <div class="w-full h-20 mt-3 flex flex-row justify-start items-center gap-2 relative group">
                     <div class="flex flex-row gap-2 thumbnails">
-                        @foreach ($produc_images as $index => $child_image)
+                        @forelse ( $images as $index => $child_image )
                         <img class=" thumbnail w-20 h-20 my-2 object-center cursor-pointer outline outline-transparent hover:outline-blue-400 duration-500 ease-in-out"
-                        src="{{ asset('images/'. $child_image) }}"/>
-                        @endforeach
+                            src="{{ asset('images/'. $child_image) }}" />
+                        @empty
+                        <p class="p-4">Not Found Image!</p>
+                        @endforelse
                     </div>
 
                     {{-- Previous Button --}}

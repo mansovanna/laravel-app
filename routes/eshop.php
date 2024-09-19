@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Eshop\CartController;
+use App\Http\Controllers\Eshop\WishListController;
 use App\Http\Controllers\EshopController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,9 @@ Route::prefix('eshop')->group(function () {
     //
 
     // Block Wish List
-    Route::get('/wish', [CartController::class, 'wishShow'])->name('wish.show');
+    Route::get('/wish', [WishListController::class, 'index'])->name('wish.index');
+    Route::get('/wish-store/{id}', [WishListController::class, 'store'])->name('wish.store');
+    Route::delete('/wish/delete/{id}', [WishListController::class, 'distroy'])->name('wish.remove');
     // routes/web.php
     Route::get('/search-products', [ProductController::class, 'search'])->name('products.search');
 

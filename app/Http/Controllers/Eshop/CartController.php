@@ -92,16 +92,4 @@ class CartController extends Controller
     }
 
 
-
-    public function  wishShow()
-    {
-
-        $languages = Language::get();
-        $menus = Menu::with(['children'])->where("parent_id", null)->get();
-        $products = Product::with('category')->get();
-        $currencies = Currency::get();
-        // Block Show Wishlist
-        return view('eshop.pages.wishList.wish', compact('menus','languages', 'products', 'currencies'));
-    }
-
 }

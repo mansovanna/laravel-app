@@ -1,11 +1,12 @@
 <aside id="list-Items" class="w-full grid grid-cols-3 gap-4 mt-3">
     @forelse ( $products as $index => $product )
+    @php
+    $images = json_decode($product->image);
+    @endphp
     <div class="w-full border rounded-sm group flex flex-col justify-start items-start grid-child">
 
         <div class=" w-[7.3cm] h-[6cm] bg-sky-100 overflow-hidden relative">
-            @php
-            $images = json_decode($product->image);
-            @endphp
+
             <img src="{{ asset('images/'. $images[0]) }}" alt="{{ $product->name }}" class="object-cover w-full h-full">
 
             {{-- Block Button Items more --}}
@@ -25,25 +26,27 @@
                 {{-- End Blokc Button Popup --}}
 
                 {{-- Block D --}}
-                <button
+                <a href="{{ route('wish.store', $product->id) }}"
                     class="text-white bg-danger rounded-full p-2 hover:bg-white hover:text-danger duration-200 active:bg-red-400 group-hover:opacity-100 group-hover:translate-y-0 translate-y-36 group-hover:duration-1000">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none">
                         <path
                             d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
                             stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                     </svg>
-                </button>
+                </a>
                 {{-- End Block D --}}
             </div>
             {{-- End Block Button Items more --}}
         </div>
 
         {{-- Block Title --}}
-        <div class="px-5 mt-6 flex flex-col  relative leading-[0]">
-            <h2 class="font-medium text-sceondary text-xl mb-3">{{ $product->name }}</h2>
+        <div class="w-8/12 px-5 mt-6 flex flex-col  relative leading-[0]">
+            <div class="w-full h-10 ">
+                <h2 class="font-medium text-sceondary text-xl mb-3 leading-4 text-ellipsis overflow-hidden line-clamp-1">{{ $product->name }}</h2>
+            </div>
 
             {{-- --}}
-            <div class="flex flex-row items-center justify-start gap-x-3 leading-[0] ">
+            <div class=" flex flex-row items-center justify-start gap-x-3 leading-[0] ">
                 @if ($product->discount <= 0) <h1 class="text-danger font-medium text-lg ">${{ $product->price }}</h1>
 
                     @else
@@ -94,7 +97,10 @@
             </div>
 
             {{-- Descripton --}}
-            <p class="description-product hidden">{{ $product->description }}</p>
+            <div class="description-product hidden w-full h-24 text-ellipsis overflow-hidden ">
+                <p class="leading-4 text-ellipsis overflow-hidden line-clamp-3">{{ $product->description }}</p>
+            </div>
+
 
             {{-- Block Hover Add Button Add To cart --}}
             <button
