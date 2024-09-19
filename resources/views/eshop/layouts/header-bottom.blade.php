@@ -600,34 +600,40 @@
 
                 function displayResults(results) {
                     const searchResults = document.getElementById('searchResults');
-                    searchResults.innerHTML = '';
+                    searchResults.innerHTML = '';  // Clear previous results
 
                     if (results.length > 0) {
                         results.forEach(product => {
+                            // Parse the image field as JSON and get the first image
+                            const images = JSON.parse(product.image);
+                            const firstImage = images.length > 0 ? images[0] : 'default.jpg'; // Use default image if none
+
                             const resultItem = `
-                    <li class="flex flex-row justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
-                        <img class="p-1 w-24" src="/images/${product.image}" alt="${product.name}">
-                        <div class="ml-3 flex flex-col justify-center items-start w-14">
-                            <h3 class="font-medium text-lg w-full text-center">${product.name}</h3>
-                            <div class="flex justify-between w-full">
-                                <p class="text-danger font-medium">$${product.discount}</p>
-                                <p class="ttext-sm line-through font-medium text-gray-400">$${product.price}</p>
-                            </div>
+                <li class="flex flex-row justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
+                    <img class="p-1 w-24" src="/images/${firstImage}" alt="${product.name}">
+                    <div class="ml-3 flex flex-col justify-center items-start w-14">
+                        <h3 class="font-medium text-lg w-full text-center">${product.name}</h3>
+                        <div class="flex justify-between w-full">
+                            <p class="text-danger font-medium">$${product.discount}</p>
+                            <p class="text-sm line-through font-medium text-gray-400">$${product.price}</p>
                         </div>
-                    </li>
-                `;
+                    </div>
+                </li>
+            `;
+                            // Append each result item
                             searchResults.innerHTML += resultItem;
                         });
-                        searchResults.classList.remove('hidden');
+                        searchResults.classList.remove('hidden'); // Show the results
                     } else {
-                        searchResults.classList.add('hidden');
+                        searchResults.classList.add('hidden');  // Hide the results if no product found
                     }
                 }
+
                 async function fetchResults(query) {
                     try {
                         const response = await fetch(`{{ route('products.search') }}?query=${query}`, {
                             headers: {
-                                'X-Requested-With': 'XMLHttpRequest' // This tells Laravel it's an AJAX request
+                                'X-Requested-With': 'XMLHttpRequest'
                             }
                         });
                         const results = await response.json();
@@ -650,7 +656,7 @@
         {{-- Block Icon Item of app --}}
         <div class="flex flex-row justify-end items-center gap-4  ">
             {{-- Block Favorite --}}
-            <a href="#" class="text-white flex flex-col justify-center items-center relative ">
+            <a href="{{ route('wish.show') }}" class="text-white flex flex-col justify-center items-center relative ">
                 <svg class="w-6 h-6  " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
                     <path
                         d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"

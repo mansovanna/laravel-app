@@ -6,17 +6,19 @@
         {{-- Block Header --}}
         <div class="py-4 w-full flex flex-row justify-start items-start gap-2  col-start-1 col-end-8">
             {{-- Icon --}}
-            <svg class="text-danger w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="#000000"
-                fill="none">
-                <path d="M12 17H12.009" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path
-                    d="M20 8.5V13.5C20 17.2712 20 19.1569 18.8284 20.3284C17.6569 21.5 15.7712 21.5 12 21.5C8.22876 21.5 6.34315 21.5 5.17157 20.3284C4 19.1569 4 17.2712 4 13.5V8.5"
-                    stroke="currentColor" stroke-width="1.5" />
-                <path
-                    d="M22 10.5L17.6569 6.33548C14.9902 3.77849 13.6569 2.5 12 2.5C10.3431 2.5 9.00981 3.77849 6.34315 6.33548L2 10.5"
-                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
+            <a href="{{ route('eshop.home') }}">
+                <svg class="text-danger w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" color="#000000"
+                    fill="none">
+                    <path d="M12 17H12.009" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M20 8.5V13.5C20 17.2712 20 19.1569 18.8284 20.3284C17.6569 21.5 15.7712 21.5 12 21.5C8.22876 21.5 6.34315 21.5 5.17157 20.3284C4 19.1569 4 17.2712 4 13.5V8.5"
+                        stroke="currentColor" stroke-width="1.5" />
+                    <path
+                        d="M22 10.5L17.6569 6.33548C14.9902 3.77849 13.6569 2.5 12 2.5C10.3431 2.5 9.00981 3.77849 6.34315 6.33548L2 10.5"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </a>
 
             {{-- End Icon --}}
 
@@ -193,59 +195,74 @@
 
             {{-- Block Content --}}
             <div class="w-full flex flex-col justify-start items-start gap-3">
-                @for ($i = 0 ; $i < 10 ; $i++)
-                    <div class="w-full p-4 border rounded-md flex flex-row justify-between items-center">
-                        <div class="flex flex-row gap-2">
-                            <img class="w-20" src="https://themes.programmingkit.xyz/rafcart/assets/images/bag.png" alt="">
+                @for ($i = 0 ; $i < 10 ; $i++) <div
+                    class="w-full p-4 border rounded-md flex flex-row justify-between items-center">
+                    <div class="flex flex-row gap-2">
+                        <img class="w-20" src="https://themes.programmingkit.xyz/rafcart/assets/images/bag.png" alt="">
 
-                            {{--  --}}
-                            <div>
-                                <p class="font-medium text-lg">Casual USB Charging Laptop Backpacks</p>
-                                <div class="flex flex-row justify-start items-center text-sm">
-                                    <p>Availability: </p>
-                                    <p class=" text-green-500"> In Stock</p>
-                                </div>
+                        {{-- --}}
+                        <div>
+                            <p class="font-medium text-lg">Casual USB Charging Laptop Backpacks</p>
+                            <div class="flex flex-row justify-start items-center text-sm">
+                                <p>Availability: </p>
+                                <p class=" text-green-500"> In Stock</p>
                             </div>
                         </div>
-
-                        {{--  --}}
-                        <div class="flex flex-row items-center gap-8">
-                            {{--  --}}
-                            <p class="font-semibold text-danger text-lg">$45.00</p>
-                            {{--  --}}
-
-                            {{--  --}}
-                            <button class=" h-9 bg-danger px-3 gap-2 hover:bg-red-400 active:bg-danger rounded-sm flex flex-row justify-center items-center">
-                                <svg class="w-5 h-5  text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-                                    <path d="M3 2H4.30116C5.48672 2 6.0795 2 6.4814 2.37142C6.88331 2.74285 6.96165 3.36307 7.11834 4.60351L8.24573 13.5287C8.45464 15.1826 8.5591 16.0095 9.09497 16.5048C9.63085 17 10.4212 17 12.002 17H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <circle cx="11.5" cy="19.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
-                                    <circle cx="18.5" cy="19.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
-                                    <path d="M18 14H16C14.1144 14 13.1716 14 12.5858 13.4142C12 12.8284 12 11.8856 12 10V8C12 6.11438 12 5.17157 12.5858 4.58579C13.1716 4 14.1144 4 16 4H18C19.8856 4 20.8284 4 21.4142 4.58579C22 5.17157 22 6.11438 22 8V10C22 11.8856 22 12.8284 21.4142 13.4142C20.8284 14 19.8856 14 18 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M16.5 7L17.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-
-                                {{--  --}}
-                                <p class="text-md text-white">Add to Cart</p>
-                            </button>
-
-                            {{-- Button Delete --}}
-                            <button class="p-2 rounded-full hover:bg-slate-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" color="#000000" fill="none">
-                                    <path d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M9.5 16.5L9.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                    <path d="M14.5 16.5L14.5 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                </svg>
-                            </button>
-                            {{-- End Delete --}}
-                        </div>
                     </div>
-                @endfor
-                    {{-- End Block Content --}}
+
+                    {{-- --}}
+                    <div class="flex flex-row items-center gap-8">
+                        {{-- --}}
+                        <p class="font-semibold text-danger text-lg">$45.00</p>
+                        {{-- --}}
+
+                        {{-- --}}
+                        <button
+                            class=" h-9 bg-danger px-3 gap-2 hover:bg-red-400 active:bg-danger rounded-sm flex flex-row justify-center items-center">
+                            <svg class="w-5 h-5  text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M3 2H4.30116C5.48672 2 6.0795 2 6.4814 2.37142C6.88331 2.74285 6.96165 3.36307 7.11834 4.60351L8.24573 13.5287C8.45464 15.1826 8.5591 16.0095 9.09497 16.5048C9.63085 17 10.4212 17 12.002 17H22"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <circle cx="11.5" cy="19.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
+                                <circle cx="18.5" cy="19.5" r="1.5" stroke="currentColor" stroke-width="1.5" />
+                                <path
+                                    d="M18 14H16C14.1144 14 13.1716 14 12.5858 13.4142C12 12.8284 12 11.8856 12 10V8C12 6.11438 12 5.17157 12.5858 4.58579C13.1716 4 14.1144 4 16 4H18C19.8856 4 20.8284 4 21.4142 4.58579C22 5.17157 22 6.11438 22 8V10C22 11.8856 22 12.8284 21.4142 13.4142C20.8284 14 19.8856 14 18 14Z"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M16.5 7L17.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+
+                            {{-- --}}
+                            <p class="text-md text-white">Add to Cart</p>
+                        </button>
+
+                        {{-- Button Delete --}}
+                        <button class="p-2 rounded-full hover:bg-slate-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+                                color="#000000" fill="none">
+                                <path
+                                    d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <path
+                                    d="M3 5.5H21M16.0557 5.5L15.3731 4.09173C14.9196 3.15626 14.6928 2.68852 14.3017 2.39681C14.215 2.3321 14.1231 2.27454 14.027 2.2247C13.5939 2 13.0741 2 12.0345 2C10.9688 2 10.436 2 9.99568 2.23412C9.8981 2.28601 9.80498 2.3459 9.71729 2.41317C9.32164 2.7167 9.10063 3.20155 8.65861 4.17126L8.05292 5.5"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M9.5 16.5L9.5 10.5" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path d="M14.5 16.5L14.5 10.5" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        {{-- End Delete --}}
+                    </div>
             </div>
+            @endfor
+            {{-- End Block Content --}}
         </div>
     </div>
+</div>
 
 
 
-    @endsection
+@endsection
