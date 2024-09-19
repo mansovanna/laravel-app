@@ -1,14 +1,12 @@
 <aside id="list-Items" class="w-full grid grid-cols-3 gap-4 mt-3">
-    @foreach ($products as $index => $product)
-    <div
-    class="w-full border rounded-sm group flex flex-col justify-start items-start grid-child">
+    @forelse ( $products as $index => $product )
+    <div class="w-full border rounded-sm group flex flex-col justify-start items-start grid-child">
 
         <div class=" w-[7.3cm] h-[6cm] bg-sky-100 overflow-hidden relative">
             @php
             $images = json_decode($product->image);
             @endphp
-            <img src="{{ asset('images/'. $images[0]) }}" alt="{{ $product->name }}"
-                class="object-cover w-full h-full">
+            <img src="{{ asset('images/'. $images[0]) }}" alt="{{ $product->name }}" class="object-cover w-full h-full">
 
             {{-- Block Button Items more --}}
             <div
@@ -111,10 +109,7 @@
         {{-- Popup Data --}}
         @include('eshop.pages.home.detail')
     </div>
-
-
-
-    @endforeach
-
+    @empty
+    <p class="mt-2 text-slate-400">Not Found Data</p>
+    @endforelse
 </aside>
-
