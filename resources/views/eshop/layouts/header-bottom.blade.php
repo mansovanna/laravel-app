@@ -600,29 +600,35 @@
 
                 function displayResults(results) {
                     const searchResults = document.getElementById('searchResults');
-                    searchResults.innerHTML = '';
+                    searchResults.innerHTML = '';  // Clear previous results
 
                     if (results.length > 0) {
                         results.forEach(product => {
+                            // Parse the image field as JSON and get the first image
+                            const images = JSON.parse(product.image);
+                            const firstImage = images.length > 0 ? images[0] : 'default.jpg'; // Use default image if none
+
                             const resultItem = `
-                    <li class="flex flex-row justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
-                        <img class="p-1 w-24" src="/images/${product.image}" alt="${product.name}">
-                        <div class="ml-3 flex flex-col justify-center items-start w-14">
-                            <h3 class="font-medium text-lg w-full text-center">${product.name}</h3>
-                            <div class="flex justify-between w-full">
-                                <p class="text-danger font-medium">$${product.discount}</p>
-                                <p class="ttext-sm line-through font-medium text-gray-400">$${product.price}</p>
-                            </div>
+                <li class="flex flex-row justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
+                    <img class="p-1 w-24" src="/images/${firstImage}" alt="${product.name}">
+                    <div class="ml-3 flex flex-col justify-center items-start w-14">
+                        <h3 class="font-medium text-lg w-full text-center">${product.name}</h3>
+                        <div class="flex justify-between w-full">
+                            <p class="text-danger font-medium">$${product.discount}</p>
+                            <p class="text-sm line-through font-medium text-gray-400">$${product.price}</p>
                         </div>
-                    </li>
-                `;
+                    </div>
+                </li>
+            `;
+                            // Append each result item
                             searchResults.innerHTML += resultItem;
                         });
-                        searchResults.classList.remove('hidden');
+                        searchResults.classList.remove('hidden'); // Show the results
                     } else {
-                        searchResults.classList.add('hidden');
+                        searchResults.classList.add('hidden');  // Hide the results if no product found
                     }
                 }
+
                 async function fetchResults(query) {
                     try {
                         const response = await fetch(`{{ route('products.search') }}?query=${query}`, {
