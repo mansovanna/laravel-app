@@ -139,7 +139,5 @@
     document.querySelectorAll('input[name="brands[]"]').forEach(checkbox => {
         checkbox.addEventListener('change', bothFilters);
     });
-<<<<<<< HEAD
 </script>
-=======
-</script>
+
