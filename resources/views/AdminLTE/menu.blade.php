@@ -48,6 +48,7 @@
                                                     <th>No.</th>
                                                     <th>Menu Name</th>
                                                     <th>Parent ID</th>
+                                                    <th>Herf</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -58,6 +59,7 @@
                                                         <td>{{ $menu->name }}
                                                         </td>
                                                         <td>{{ $menu->parent_id }}</td>
+                                                        <td>{{ $menu->herf }}</td>
                                                         <td class="flex flex-row text-center gap-3">
                                                             {{-- Block Update --}}
                                                             <a href="{{ route('menu.edit', $menu->id) }}"

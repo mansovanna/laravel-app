@@ -35,6 +35,11 @@
                     {{ $message }}
                 </div>
                 @enderror
+                @error('herf')
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
+                @enderror
 
                 <section class="d-flex justify-content-center align-items-center">
                     <div class="card card-info w-100" style="max-width: 800px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
@@ -63,6 +68,12 @@
                                 <label for="name" class="col-sm-3 col-form-label">Menu Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="name" id="name" value="{{ old('name', $menu->name) }}" placeholder="Menu Name">
+                                </div>
+                            </div>
+                            <div class="form-group row mb-4">
+                                <label for="herf" class="col-sm-3 col-form-label">Menu Herf</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="herf" id="herf" value="{{ old('herf', $menu->herf) }}" placeholder="Menu Herf">
                                 </div>
                             </div>
                             <!-- /.card-body -->
