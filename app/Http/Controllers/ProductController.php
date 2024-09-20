@@ -123,8 +123,6 @@ class ProductController extends Controller
             'description' => 'nullable',
         ]);
 
-
-
         // Initialize filename variable
         $filename = $product->image;
 
@@ -166,10 +164,7 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-
         $path_image = public_path('images/' . $product->image);
-
-
         if (File::exists($path_image)) {
             File::delete($path_image);
         }
@@ -196,16 +191,20 @@ class ProductController extends Controller
         // Get the search query from the request
         $query = $request->input('query');
 
+        // If the request is an AJAX request, return JSON response
+        if ($request->ajax()) {
+            $products = Product::where('name', 'like', '%' . $query . '%')
+                ->orWhere('price', 'like', '%' . $query . '%')
+                ->orWhere('discount', 'like', '%' . $query . '%')
+                ->paginate(6);
+            return response()->json($products);
+        }
+
         // Search products by name, price, or discount
         $products = Product::where('name', 'like', '%' . $query . '%')
             ->orWhere('price', 'like', '%' . $query . '%')
             ->orWhere('discount', 'like', '%' . $query . '%')
             ->get();
-
-        // If the request is an AJAX request, return JSON response
-        if ($request->ajax()) {
-            return response()->json($products);
-        }
 
         // Otherwise, return the regular view
         return view('eshop.pages.home', compact(
@@ -220,6 +219,4 @@ class ProductController extends Controller
             'f_categories'
         ));
     }
-
-
 }
