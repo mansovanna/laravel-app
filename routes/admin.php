@@ -9,6 +9,10 @@ use App\Http\Controllers\CurrencyController;
 use App\Http\Middleware\Nologin;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ChildrenImageProductController;
+use App\Http\Controllers\ContactController;
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+
 
 
 Route::prefix('admins')->group(function () {
