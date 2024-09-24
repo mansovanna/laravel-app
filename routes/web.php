@@ -55,6 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [Authuntication::class, 'logout'])->name('logout');
 });
 
+Route::get('/email/verify', function () {
+
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
 
 // Import from Eshop route
 // Eshop
