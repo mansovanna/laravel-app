@@ -112,8 +112,8 @@
 
     slider.addEventListener('input', () => {
         const value = slider.value;
-        minPrice.textContent = $${value};
-        maxPrice.textContent = $${Math.max(50, parseInt(value) + 50)};
+        minPrice.textContent = `$${value}`;
+        maxPrice.textContent = `$${Math.max(50, parseInt(value) + 50)}`;
         bothFilters(); // Apply filters when slider value changes
     });
 
@@ -140,3 +140,4 @@
         checkbox.addEventListener('change', bothFilters);
     });
 </script>
+

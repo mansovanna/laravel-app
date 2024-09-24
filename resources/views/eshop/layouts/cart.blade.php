@@ -37,13 +37,24 @@
                     @foreach(session('cart') as $id => $item)
                             @php
                                 $subtotal += $item['price'] * $item['quantity'];
+                                $image = json_decode($item['image'], true); // true makes it an associative array
                             @endphp
                             <li class="w-full flex flex-row justify-start items-center gap-4 mt-1">
                                 <a href="#" class="flex flex-row justify-start items-center gap-4 w-full">
+<<<<<<< HEAD
                                     @php
                                         $product_image = json_decode($item['image']);
                                     @endphp
                                     <img class="w-[70px]" src="{{ asset('images/' . $product_image[0]) }}" alt="{{ $item['name'] }}">
+=======
+                                    {{-- Check if $image is an array and if it has at least one element --}}
+                                    @if(is_array($image) && isset($image[0]))
+                                        <img class="w-[70px] h-[70px] overflow-hidden" src="{{ asset('images/' . $image[0]) }}" alt="{{ $item['name'] }}">
+                                    @else
+                                        {{-- Fallback in case there is no image or $image is not an array --}}
+                                        <img class="w-[70px] h-[70px] overflow-hidden" src="{{ asset('images/default.jpg') }}" alt="Default Image">
+                                    @endif
+>>>>>>> 60d6b981eb550e6de888a08cfa820c9390e23353
                                     <aside class="flex flex-col justify-start items-start">
                                         <h3 class="hover:text-danger font-medium">{{ $item['name'] }}</h3>
                                         <div class="flex flex-row justify-start items-center gap-4">

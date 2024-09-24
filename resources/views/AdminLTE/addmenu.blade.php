@@ -51,6 +51,12 @@
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Menu Name">
                                 </div>
                             </div>
+                            <div class="form-group row mb-4">
+                                <label for="herf" class="col-sm-3 col-form-label">Menu Herf</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="herf" id="herf" placeholder="Menu Herf">
+                                </div>
+                            </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-info float-right">Save</button>

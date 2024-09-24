@@ -23,7 +23,8 @@ class MenuController extends Controller
         // Validate the request data
         $request->validate([
             'parent_id' => 'nullable|integer|exists:menus,id',
-            'name' => 'required|unique:menus,name'
+            'name' => 'required|unique:menus,name',
+            'herf' => 'nullable|unique:menus,herf'
         ]);
 
         // Retrieve data except the CSRF token
@@ -31,11 +32,11 @@ class MenuController extends Controller
 
         // Create the menu item
         $menu = Menu::create($data);
-        return redirect()->route('adminmenu')->with('success', 'Menu item created successfully:' .' ' .$menu->name);
+        return redirect()->route('adminmenu')->with('success', 'Menu item created successfully:' . ' ' . $menu->name);
     }
 
 
-    public function  edit($id)
+    public function edit($id)
     {
 
         $menu = Menu::find($id);
@@ -55,7 +56,8 @@ class MenuController extends Controller
         // Validate the request data
         $request->validate([
             'parent_id' => 'nullable|integer|exists:menus,id',
-            'name' => 'required|unique:menus,name,'
+            'name' => 'required|unique:menus,name,' . $id,
+            'herf' => 'nullable|unique:menus,herf,' . $id
         ]);
 
         $menu = Menu::find($id);
@@ -69,7 +71,7 @@ class MenuController extends Controller
         $menu->update($request->except('_token'));
 
         // Redirect with a success message
-        return redirect()->route('adminmenu')->with('success', 'Menu item updated successfully of: ' . ' ' . $menu->name);
+        return redirect()->route('adminmenu')->with('success', 'Menu item updated successfully of: ' . ' ' . $menu->name.' Herf to'.$menu->herf);
     }
 
 

@@ -27,10 +27,10 @@
                     <ul
                         class="p-4 text-sceondary boxShadow rounded-md bg-white min-w-40 absolute top-8 -left-4 font-normal text-sm flex flex-col justify-start items-start gap-2 ">
                         @foreach ($menu->children as $child)
-                        <li><a href="#" class="w-full hover:text-danger">{{ $child->name }}</a></li>
+                        <li><a href="{{ $child->herf }}" class="w-full hover:text-danger">{{ $child->name }}</a></li>
                         @endforeach
 
-                    </ul>
+                    </ul> 
                     @endif
                     {{-- End List Down to Up --}}
                 </li>
