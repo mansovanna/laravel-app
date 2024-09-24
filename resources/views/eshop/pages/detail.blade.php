@@ -1,4 +1,4 @@
-{{-- @extends('eshop.layouts.master')
+@extends('eshop.layouts.master')
 
 @section('content')
     <div class="w-full bg-link-100/50">
@@ -54,4 +54,4 @@
             </div>
         </div>
     </div>
-@endsection --}}
+@endsection

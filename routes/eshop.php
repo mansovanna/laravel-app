@@ -1,10 +1,22 @@
 <?php
 
+use App\Http\Controllers\Eshop\Auth\UserController;
 use App\Http\Controllers\Eshop\CartController;
 use App\Http\Controllers\Eshop\WishListController;
 use App\Http\Controllers\EshopController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/auth/login', [UserController::class, 'LoadLogin'])->name('auth.login');
+Route::post('/auth/login', [UserController::class,'login'])->name('loign');
+Route::get('/auth/register', [UserController::class,'LoadRegister'])->name('auth.register');
+Route::post('/auth/register', [UserController::class,'register'])->name('register');
+
+
+Route::get('/verify/{id}', [UserController::class, 'LoadVerify'])->name('auth.verify');
+Route::post('/verify', [UserController::class, 'verify'])->name('verify');
+
 
 
 Route::prefix('eshop')->group(function () {

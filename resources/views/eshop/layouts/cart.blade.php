@@ -1,8 +1,8 @@
 @php
-    $subtotal = 0;
+$subtotal = 0;
 @endphp
 
-<div class="text-white flex flex-col justify-center items-center relative father cursor-pointer z-10 ">
+<div class="text-white flex flex-col justify-center items-center relative father cursor-pointer z-10">
     <div>
         <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
             <path
@@ -24,60 +24,49 @@
     </span>
 
     {{-- Cart Items --}}
-    <ul
-        class="p-4 absolute top-14 right-0 bg-white rounded-md boxShadows flex flex-col justify-center items-start min-w-max text-sceondary text-nowrap cursor-default">
-        <h1 class="p-2 border-b w-full text-left cursor-auto">{{ session('cart') ? count(session('cart')) : 0 }} Item
-        </h1>
+    <ul class="p-4 absolute top-14 right-0 bg-white rounded-md boxShadows flex flex-col justify-center items-start min-w-max text-sceondary text-nowrap cursor-default">
+        <h1 class="p-2 border-b w-full text-left cursor-auto">{{ session('cart') ? count(session('cart')) : 0 }} Item</h1>
 
         {{-- Cart Items List --}}
         <ul class="w-full flex flex-col justify-start items-start my-1">
             @if(session('cart'))
+                @foreach(session('cart') as $id => $item)
+                    @php
+                    $subtotal += $item['price'] * $item['quantity'];
+                    $image = json_decode($item['image'], true);
+                    @endphp
+                    <li class="w-full flex flex-row justify-start items-center gap-4 mt-1">
+                        <a href="#" class="flex flex-row justify-start items-center gap-4 w-full">
+                            @if(is_array($image) && isset($image[0]))
+                            <img class="w-[70px] h-[70px] overflow-hidden" src="{{ asset('images/' . $image[0]) }}"
+                                alt="{{ $item['name'] }}">
+                            @else
+                            <img class="w-[70px] h-[70px] overflow-hidden" src="{{ asset('images/default.jpg') }}"
+                                alt="Default Image">
+                            @endif
+                            <aside class="flex flex-col justify-start items-start">
+                                <h3 class="hover:text-danger font-medium">{{ $item['name'] }}</h3>
+                                <div class="flex flex-row justify-start items-center gap-4">
+                                    <p>{{ $item['quantity'] }}x</p>
+                                    <p>${{ number_format($item['price'], 2) }}</p>
+                                </div>
+                            </aside>
+                        </a>
 
-
-                    @foreach(session('cart') as $id => $item)
-                            @php
-                                $subtotal += $item['price'] * $item['quantity'];
-                                $image = json_decode($item['image'], true); // true makes it an associative array
-                            @endphp
-                            <li class="w-full flex flex-row justify-start items-center gap-4 mt-1">
-                                <a href="#" class="flex flex-row justify-start items-center gap-4 w-full">
-<<<<<<< HEAD
-                                    @php
-                                        $product_image = json_decode($item['image']);
-                                    @endphp
-                                    <img class="w-[70px]" src="{{ asset('images/' . $product_image[0]) }}" alt="{{ $item['name'] }}">
-=======
-                                    {{-- Check if $image is an array and if it has at least one element --}}
-                                    @if(is_array($image) && isset($image[0]))
-                                        <img class="w-[70px] h-[70px] overflow-hidden" src="{{ asset('images/' . $image[0]) }}" alt="{{ $item['name'] }}">
-                                    @else
-                                        {{-- Fallback in case there is no image or $image is not an array --}}
-                                        <img class="w-[70px] h-[70px] overflow-hidden" src="{{ asset('images/default.jpg') }}" alt="Default Image">
-                                    @endif
->>>>>>> 60d6b981eb550e6de888a08cfa820c9390e23353
-                                    <aside class="flex flex-col justify-start items-start">
-                                        <h3 class="hover:text-danger font-medium">{{ $item['name'] }}</h3>
-                                        <div class="flex flex-row justify-start items-center gap-4">
-                                            <p>{{ $item['quantity'] }}x</p>
-                                            <p>${{ number_format($item['price'], 2) }}</p>
-                                        </div>
-                                    </aside>
-                                </a>
-
-                                {{-- Remove Button --}}
-                                <form action="{{ route('cart.remove', $id) }}" method="POST"
-                                    onsubmit="return confirm('Are you sure you want to remove this item?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="hover:text-danger">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                            stroke="currentColor" class="size-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </li>
-                    @endforeach
+                        {{-- Remove Button --}}
+                        <form action="{{ route('cart.remove', $id) }}" method="POST"
+                            onsubmit="return confirm('Are you sure you want to remove this item?');">
+                            @csrf
+                            @method('DELETE')
+                            <button class="hover:text-danger">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </form>
+                    </li>
+                @endforeach
             @endif
         </ul>
 
@@ -90,7 +79,7 @@
 
         {{-- Buttons --}}
         <div class="w-full flx flex-row justify-between items-center text-white mt-2 gap-8">
-            <a href="{{ route("cart.view") }}"
+            <a href="{{ route('cart.view') }}"
                 class="min-w-max px-8 text-sm py-2 mr-8 bg-danger border hover:bg-white border-danger text-white hover:text-danger rounded-sm duration-200 ease-linear">VIEW
                 CART</a>
             <button
