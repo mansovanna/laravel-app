@@ -577,8 +577,6 @@
                 <!-- Results will be dynamically injected here -->
             </ul>
 
-
-
             <script>
                 document.getElementById('searchInput').addEventListener('input', function () {
                     const query = this.value;
@@ -592,11 +590,7 @@
 
                 async function fetchResults(query) {
                     try {
-                        const response = await fetch(`{{ route('products.search') }}?query=${query}`, {
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest'
-                            }
-                        });
+                        const response = await fetch(`{{ route('products.search') }}?query=${query}`);
                         const results = await response.json();
                         displayResults(results);
                     } catch (error) {
@@ -606,33 +600,98 @@
 
                 function displayResults(results) {
                     const searchResults = document.getElementById('searchResults');
-                    let resultsHTML = '';
+                    searchResults.innerHTML = '';  // Clear previous results
 
                     if (results.length > 0) {
-                        results.forEach(product => {
-                            const images = JSON.parse(product.image);
-                            const firstImage = images[0];
-                            resultsHTML += `
-                                <li class="flex flex-row justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
-                                    <img class="p-1 w-24" src="/images/${firstImage}" alt="${product.name}">
-                                    <div class="ml-3 flex flex-col justify-center items-start w-14">
-                                        <h3 class="font-medium text-lg w-full text-center">${product.name}</h3>
-                                        <div class="flex justify-between w-full">
-                                            <p class="text-danger font-medium">$${product.discount}</p>
-                                            <p class="text-sm line-through font-medium text-gray-400">$${product.price}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            `;
+                        results.forEach((product, index) => {
+                            console.log('Rendering product:', product); // Log product to ensure proper data
+
+                            // Ensure the image field is parsed correctly
+                            let images = [];
+                            try {
+                                images = JSON.parse(product.image);
+                            } catch (error) {
+                                console.error('Error parsing images:', error);
+                            }
+
+                            const firstImage = images.length > 0 ? images[0] : 'default.jpg'; // Use default image if none
+
+                            // Check if name, discount, and price are available
+                            const productName = product.name ? product.name : 'No Name Available';
+                            const productDiscount = product.discount ? `$${product.discount}` : 'No Discount';
+                            const productPrice = product.price ? `$${product.price}` : 'No Price';
+
+                            // Construct the HTML for the product
+                            const resultItem = `
+                            <li class="grid grid-rows-2 grid-flow-col justify-start items-center hover:bg-slate-100 cursor-pointer rounded-sm">
+                                <img class="row-span-2 p-1 w-24 h-24 overflow-hidden mr-2" src="/images/${firstImage}" alt="${productName}">
+                                <h3 class="col-span-3 text-center mt-8">${productName}</h3>
+                                <p class="text-danger font-medium mb-8">${productDiscount}</p>
+                                <p class="text-danger font-medium w-2 mb-8"></p>
+                                <p class="text-sm line-through font-medium text-gray-400 mb-8">${productPrice}</p> 
+                            </li>
+                        `;
+                            // Append each result item
+                            searchResults.innerHTML += resultItem;
                         });
-                        searchResults.innerHTML = resultsHTML;
-                        searchResults.classList.remove('hidden');
+
+                        searchResults.classList.remove('hidden'); // Show the results
+                        searchResults.classList.add('grid');
                     } else {
                         searchResults.classList.add('hidden');
+                        searchResults.classList.remove('grid');  // Hide the results if no product found
                     }
                 }
-            </script>
 
+                async function fetchResults(query, page = 1) {
+                    try {
+                        const response = await fetch(`{{ route('products.search') }}?query=${query}&page=${page}`, {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        });
+                        const results = await response.json();
+                        displayResults(results.data);  // `data` contains the paginated products
+                        displayPagination({
+                            ...results,
+                            query // Add the search query to the results to preserve it
+                        });
+                    } catch (error) {
+                        console.error('Error fetching search results:', error);
+                    }
+                }
+
+                function displayPagination(results) {
+                    const searchResults = document.getElementById('searchResults');
+                    const pagination = document.createElement('div');
+                    pagination.classList.add('flex', 'justify-center', 'mt-4', 'col-span-3');
+
+                    // Clear previous pagination controls
+                    const existingPagination = document.querySelector('#searchResults div');
+                    if (existingPagination) {
+                        existingPagination.remove();
+                    }
+
+                    // Previous Button
+                    if (results.prev_page_url) {
+                        pagination.innerHTML += `<button class="px-3 py-1 mx-1 bg-gray-200" onclick="fetchResults('${results.query}', ${results.current_page - 1})">Previous</button>`;
+                    }
+
+                    // Page Numbers
+                    for (let page = 1; page <= results.last_page; page++) {
+                        pagination.innerHTML += `<button class="px-3 py-1 mx-1 ${results.current_page === page ? 'bg-blue-500 text-white' : 'bg-gray-200'}" onclick="fetchResults('${results.query}', ${page})">${page}</button>`;
+                    }
+
+                    // Next Button
+                    if (results.next_page_url) {
+                        pagination.innerHTML += `<button class="px-3 py-1 mx-1 bg-gray-200" onclick="fetchResults('${results.query}', ${results.current_page + 1})">Next</button>`;
+                    }
+
+                    // Append pagination controls after the results
+                    searchResults.appendChild(pagination);
+                }
+
+            </script>
 
         </div>
 
@@ -657,7 +716,7 @@
 
                 {{-- not --}}
                 <span class="px-[5px] rounded-full bg-sceondary text-center text-sm absolute -top-1 left-8 z-0">{{
-                    session('wishs') ? count(session('wishs')) : 0 }}</span>
+    session('wishs') ? count(session('wishs')) : 0 }}</span>
                 {{-- Block not --}}
             </a>
             {{-- End Block Favorite --}}
