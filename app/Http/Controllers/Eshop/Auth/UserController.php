@@ -45,7 +45,7 @@ class UserController extends Controller
         return view('eshop.pages.auth.register');
     }
 
-    public function  register(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|min:4',
@@ -84,7 +84,7 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user || $user->otp != $request->otp) {
-        return redirect()->back()->with('error', "Code OTP is not true!!!");
+            return redirect()->back()->with('error', "Code OTP is not true!!!");
         }
 
         return redirect()->route('auth.login');
@@ -102,7 +102,7 @@ class UserController extends Controller
         $data = [
             'email' => $user->email,
             'title' => 'Mail Verification',
-            'body'  => 'Your OTP is: ' . $otp,
+            'body' => 'Your OTP is: ' . $otp,
         ];
 
         try {

@@ -16,7 +16,7 @@ export default {
                 "roboto-mono": ["Roboto Mono", "monospace"],
                 roboto: ["Roboto", "sans-serif"],
                 "varela-round": ["Varela Round", "sans-serif"],
-                system : 'Poppins, Roboto, Open Sans, Helvetica Neue, Arial, sans-serif',
+                system: "Poppins, Roboto, Open Sans, Helvetica Neue, Arial, sans-serif",
             },
 
             colors: {
@@ -28,6 +28,6 @@ export default {
         },
     },
     plugins: [
-        require('@tailwindcss/line-clamp'),
+        // require('@tailwindcss/line-clamp'),pp
     ],
 };
